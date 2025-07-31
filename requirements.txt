@@ -1,0 +1,6 @@
+requests==2.31.0
+feedparser==6.0.10
+supabase==2.3.4
+python-dotenv==1.0.0
+schedule==1.2.0
+xmltodict==0.13.0 
