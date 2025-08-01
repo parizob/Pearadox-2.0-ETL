@@ -20,13 +20,22 @@ def main():
                        help='Fetch papers for a specific date (format: YYYY-MM-DD)')
     parser.add_argument('--yesterday-only', action='store_true', default=True,
                        help='Only fetch papers from yesterday (arXiv default behavior)')
+    parser.add_argument('--update-categories', action='store_true',
+                       help='Update existing papers with category names (no new paper extraction)')
     
     args = parser.parse_args()
     
     try:
         etl = ArxivETL()
         
-        if args.specific_date:
+        if args.update_categories:
+            # Just update existing papers' categories_name field
+            print("Updating existing papers with category names...")
+            updated_count = etl.update_categories_names()
+            print(f"Successfully updated {updated_count} papers with category names.")
+            return 0
+            
+        elif args.specific_date:
             # Fetch papers for a specific date
             try:
                 target_date = datetime.strptime(args.specific_date, '%Y-%m-%d')
@@ -40,7 +49,10 @@ def main():
                 etl.create_papers_table_if_not_exists()
                 result = etl.load_papers_to_supabase(papers)
                 
-                print(f"ETL completed. Inserted {result} new papers for {target_date.strftime('%Y-%m-%d')}.")
+                # Update categories for all papers
+                updated_count = etl.update_categories_names()
+                
+                print(f"ETL completed. Inserted {result} new papers and updated {updated_count} papers with category names.")
                 
             except ValueError:
                 print("Invalid date format. Please use YYYY-MM-DD")
@@ -63,13 +75,16 @@ def main():
             etl.create_papers_table_if_not_exists()
             result = etl.load_papers_to_supabase(papers)
             
-            print(f"ETL completed. Inserted {result} new papers.")
+            # Update categories for all papers
+            updated_count = etl.update_categories_names()
+            
+            print(f"ETL completed. Inserted {result} new papers and updated {updated_count} papers with category names.")
         else:
             # Run normal daily ETL - yesterday's papers (arXiv default)
             yesterday = datetime.now() - timedelta(days=1)
             print(f"Fetching papers from yesterday: {yesterday.strftime('%Y-%m-%d')} (arXiv's latest publications)")
             result = etl.run_daily_etl()
-            print(f"Daily ETL completed. Inserted {result} new papers from yesterday.")
+            print(f"Daily ETL completed. Processed {result} papers total (new + updated).")
         
         return 0
         

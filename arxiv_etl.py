@@ -46,8 +46,8 @@ class ArxivETL:
         
         self.supabase: Client = create_client(self.supabase_url, self.supabase_key)
         
-        # Load taxonomy for category name translation
-        self.taxonomy = self.load_taxonomy()
+        # Load taxonomy for category name translation from Supabase
+        self.taxonomy = self.load_taxonomy_from_supabase()
         
         # ArXiv API configuration
         self.arxiv_base_url = "http://export.arxiv.org/api/query"
@@ -72,23 +72,30 @@ class ArxivETL:
             'llm', 'gpt', 'bert', 'diffusion model', 'gan', 'autoencoder'
         ]
     
-    def load_taxonomy(self) -> Dict[str, str]:
-        """Load the taxonomy.json file for category name translation."""
+    def load_taxonomy_from_supabase(self) -> Dict[str, str]:
+        """Load category mappings from the public.v_arxiv_categories view in Supabase."""
         try:
-            taxonomy_path = os.path.join(os.path.dirname(__file__), 'taxonomy.json')
-            with open(taxonomy_path, 'r', encoding='utf-8') as f:
-                taxonomy = json.load(f)
-            logger.info(f"Loaded taxonomy with {len(taxonomy)} category mappings")
+            logger.info("Loading category taxonomy from Supabase public.v_arxiv_categories view")
+            response = self.supabase.table('v_arxiv_categories').select('category_code, category_name').execute()
+            
+            if not response.data:
+                logger.warning("No category data found in public.v_arxiv_categories view")
+                return {}
+            
+            # Convert to dictionary mapping category_code -> category_name
+            taxonomy = {row['category_code']: row['category_name'] for row in response.data}
+            logger.info(f"Loaded taxonomy with {len(taxonomy)} category mappings from Supabase")
             return taxonomy
-        except FileNotFoundError:
-            logger.error("taxonomy.json file not found. Category names will not be translated.")
-            return {}
-        except json.JSONDecodeError as e:
-            logger.error(f"Error parsing taxonomy.json: {str(e)}")
-            return {}
+            
         except Exception as e:
-            logger.error(f"Error loading taxonomy: {str(e)}")
+            logger.error(f"Error loading taxonomy from Supabase: {str(e)}")
+            logger.info("Falling back to empty taxonomy - original category IDs will be used")
             return {}
+    
+    def load_taxonomy(self) -> Dict[str, str]:
+        """Deprecated: Load the taxonomy.json file for category name translation."""
+        logger.warning("load_taxonomy() is deprecated. Now using load_taxonomy_from_supabase()")
+        return self.load_taxonomy_from_supabase()
     
     def translate_categories(self, category_ids: List[str]) -> List[str]:
         """Translate category IDs to full names using taxonomy."""
@@ -323,6 +330,66 @@ class ArxivETL:
             logger.error(f"Error loading papers to Supabase: {str(e)}")
             raise
     
+    def update_categories_names(self) -> int:
+        """Update existing arxiv_papers records to populate categories_name field by joining with v_arxiv_categories."""
+        try:
+            logger.info("Starting update of categories_name field for existing papers")
+            
+            # Get all papers that don't have categories_name populated or have empty arrays
+            papers_response = self.supabase.table('arxiv_papers').select('id, categories').or_('categories_name.is.null,categories_name.eq.{}').execute()
+            
+            if not papers_response.data:
+                logger.info("No papers found that need categories_name updates")
+                return 0
+            
+            logger.info(f"Found {len(papers_response.data)} papers that need categories_name updates")
+            
+            # Load taxonomy for translation
+            if not self.taxonomy:
+                logger.warning("No taxonomy loaded, cannot update categories_name")
+                return 0
+            
+            updated_count = 0
+            batch_size = 50
+            
+            # Process papers in batches
+            for i in range(0, len(papers_response.data), batch_size):
+                batch = papers_response.data[i:i + batch_size]
+                
+                for paper in batch:
+                    try:
+                        paper_id = paper['id']
+                        categories = paper.get('categories', [])
+                        
+                        if not categories:
+                            continue
+                        
+                        # Translate categories to names
+                        categories_names = self.translate_categories(categories)
+                        
+                        # Update the paper with translated category names
+                        update_response = self.supabase.table('arxiv_papers').update({
+                            'categories_name': categories_names
+                        }).eq('id', paper_id).execute()
+                        
+                        if update_response.data:
+                            updated_count += 1
+                            
+                    except Exception as e:
+                        logger.error(f"Error updating paper ID {paper.get('id', 'unknown')}: {str(e)}")
+                        continue
+                
+                # Small delay between batches
+                time.sleep(0.1)
+                logger.info(f"Processed batch {i//batch_size + 1}, updated {updated_count} papers so far")
+            
+            logger.info(f"Successfully updated categories_name for {updated_count} papers")
+            return updated_count
+            
+        except Exception as e:
+            logger.error(f"Error updating categories_name: {str(e)}")
+            return 0
+    
     def run_daily_etl(self):
         """Run the complete ETL pipeline for yesterday's papers (arXiv's latest publications)."""
         yesterday = datetime.now() - timedelta(days=1)
@@ -339,7 +406,10 @@ class ArxivETL:
             
             if not papers:
                 logger.info(f"No papers found for yesterday ({yesterday_str})")
-                return 0
+                # Still try to update existing papers' categories_name
+                updated_count = self.update_categories_names()
+                logger.info(f"Updated {updated_count} existing papers with category names")
+                return updated_count
             
             # Create table if needed
             self.create_papers_table_if_not_exists()
@@ -347,8 +417,11 @@ class ArxivETL:
             # Load papers to Supabase
             inserted_count = self.load_papers_to_supabase(papers)
             
-            logger.info(f"ETL pipeline completed successfully for {yesterday_str}. Inserted {inserted_count} new papers from yesterday.")
-            return inserted_count
+            # Update existing papers' categories_name field
+            updated_count = self.update_categories_names()
+            
+            logger.info(f"ETL pipeline completed successfully for {yesterday_str}. Inserted {inserted_count} new papers and updated {updated_count} existing papers with category names.")
+            return inserted_count + updated_count
             
         except Exception as e:
             logger.error(f"ETL pipeline failed: {str(e)}")

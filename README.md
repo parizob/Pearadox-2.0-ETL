@@ -28,8 +28,25 @@ A comprehensive ETL (Extract, Transform, Load) pipeline that extracts AI science
 The pipeline includes automatic category translation:
 - **categories**: Stores original arXiv category IDs (e.g., "cs.AI", "cs.LG")
 - **categories_name**: Stores human-readable names (e.g., "Artificial Intelligence", "Machine Learning")
-- **taxonomy.json**: Contains the mapping from IDs to full names
-- **Extensible**: Easy to add new categories or modify existing translations
+- **public.v_arxiv_categories view**: Supabase view with columns `category_code` and `category_name` for category mappings
+- **Dynamic Loading**: Category mappings are loaded from Supabase at runtime
+- **Extensible**: Easy to add new categories by updating the underlying data
+
+## Category Mapping Source
+
+The pipeline loads category mappings from the **`public.v_arxiv_categories`** view in your Supabase database:
+
+```sql
+-- Example v_arxiv_categories view structure
+SELECT category_code, category_name FROM public.v_arxiv_categories;
+-- Returns: category_code (e.g., "cs.AI", "cs.LG"), category_name (e.g., "Artificial Intelligence", "Machine Learning")
+```
+
+### Benefits of Using Supabase View:
+- **Centralized**: All category data accessible through one view
+- **Dynamic**: Updates to categories are immediately available
+- **Optimized**: Views can provide pre-processed or filtered data
+- **No File Dependencies**: No need to maintain local JSON files
 
 The pipeline uses multiple layers of filtering:
 
@@ -82,6 +99,9 @@ cat create_table.sql
 # Run ETL for YESTERDAY'S papers (default - arXiv's latest publications)
 python run_once.py
 
+# Update existing papers with category names (no new paper extraction)
+python run_once.py --update-categories
+
 # Fetch papers for a specific date
 python run_once.py --specific-date 2025-01-15
 
@@ -90,6 +110,16 @@ python run_once.py --test
 
 # Fetch papers from last N days (ending yesterday)
 python run_once.py --days-back 3
+```
+
+### Category Name Updates
+
+```bash
+# Standalone script to update existing papers with category names
+python update_categories.py
+
+# Update categories as part of regular ETL run (happens automatically)
+python run_once.py  # Updates existing papers after inserting new ones
 ```
 
 ### Scheduled Daily Run
@@ -102,7 +132,7 @@ python scheduler.py
 ### Direct ETL Run
 
 ```bash
-# Run the main ETL script directly (yesterday's papers)
+# Run the main ETL script directly (yesterday's papers + category updates)
 python arxiv_etl.py
 ```
 
@@ -117,6 +147,20 @@ The pipeline now implements **arXiv-aware date filtering**:
 - **Test Mode**: Even when using `--test` or `--days-back`, papers are still filtered by individual dates
 
 **Why This Matters**: arXiv's publication cycle means that running the pipeline daily will capture each day's new publications automatically, without missing papers or getting duplicates.
+
+## Category Name Update Process
+
+The ETL pipeline now includes an automatic update process that:
+
+1. **Identifies Papers**: Finds all papers with empty or missing `categories_name` fields
+2. **Joins Data**: Uses the `categories` column to look up names in `v_arxiv_categories` view
+3. **Updates Records**: Populates the `categories_name` field with translated category names
+4. **Batch Processing**: Processes updates in batches of 50 for optimal performance
+
+This ensures that:
+- **New papers** get category names during insertion
+- **Existing papers** get updated with category names if missing
+- **Historical data** can be backfilled with category translations
 
 ## Database Schema
 
@@ -143,7 +187,7 @@ CREATE TABLE arxiv_papers (
 ### Key Fields:
 - **categories**: Original arXiv category IDs (e.g., ["cs.AI", "cs.LG"])
 - **categories_name**: Human-readable category names (e.g., ["Artificial Intelligence", "Machine Learning"])
-- **taxonomy.json**: Source file for category ID to name translations
+- **public.v_arxiv_categories view**: Source view in Supabase for category ID to name translations
 
 ## Migration for Existing Tables
 

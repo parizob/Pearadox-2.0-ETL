@@ -75,3 +75,399 @@
 2025-07-31 18:33:54,169 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22abstract%22%2C%22abstract_url%22%2C%22categories_name%22%2C%22extracted_at%22%2C%22arxiv_id%22%2C%22published_date%22%2C%22pdf_url%22%2C%22title%22%2C%22categories%22%2C%22updated_date%22%2C%22authors%22 "HTTP/2 201 Created"
 2025-07-31 18:33:54,170 - INFO - Inserted batch of 5 papers
 2025-07-31 18:33:54,675 - INFO - Successfully loaded 205 new papers to Supabase
+2025-07-31 21:08:04,384 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-07-31 21:08:05,173 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=code%2Cname "HTTP/2 400 Bad Request"
+2025-07-31 21:08:05,179 - ERROR - Error loading taxonomy from Supabase: {'message': 'column v_arxiv_categories.code does not exist', 'code': '42703', 'hint': None, 'details': None}
+2025-07-31 21:08:05,179 - INFO - Falling back to empty taxonomy - original category IDs will be used
+2025-07-31 21:08:05,180 - INFO - Extracting papers from arXiv for date range: 202507290000 to 202507292359
+2025-07-31 21:08:05,181 - INFO - ArXiv query URL: http://export.arxiv.org/api/query?search_query=(cat:cs.AI OR cat:cs.LG OR cat:cs.CV OR cat:cs.CL OR cat:cs.NE OR cat:stat.ML OR cat:cs.RO OR cat:cs.IR) AND submittedDate:[202507290000 TO 202507292359]&start=0&max_results=2000&sortBy=submittedDate&sortOrder=descending
+2025-07-31 21:08:07,005 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,005 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,006 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,006 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,006 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,007 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,008 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,009 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,010 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,011 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,011 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,011 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,011 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,011 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,011 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,011 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,012 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,012 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,012 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,012 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,012 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,013 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,014 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,014 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,014 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,014 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,014 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,014 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,014 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,015 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,015 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,015 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,015 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,015 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,015 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,015 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,016 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,017 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,018 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,019 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,020 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,020 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,020 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,020 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,020 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,020 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,021 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,022 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,023 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,024 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,024 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,024 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,024 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,024 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,025 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,025 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,025 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,026 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,027 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,027 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,027 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,028 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,029 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,030 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,031 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,032 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,033 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,034 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,034 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,034 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,034 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,034 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,035 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,035 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,035 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,035 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,035 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,035 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,036 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,037 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,038 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,038 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,038 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,038 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,038 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,039 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,039 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,039 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,039 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,040 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,041 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,042 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,043 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,043 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,043 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,043 - WARNING - No taxonomy loaded, returning original category IDs
+2025-07-31 21:08:07,043 - INFO - Successfully extracted 316 papers from target date (2025-07-29)
+2025-07-31 21:08:07,043 - INFO - Filtered out 0 papers from other dates
+2025-07-31 21:08:07,187 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=%2A&limit=1 "HTTP/2 200 OK"
+2025-07-31 21:08:07,190 - INFO - Papers table already exists
+2025-07-31 21:08:07,191 - INFO - Loading 316 papers to Supabase
+2025-07-31 21:08:07,484 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=arxiv_id&arxiv_id=in.%282507.22291v1%2C2507.22289v1%2C2507.22286v1%2C2507.22282v1%2C2507.22281v1%2C2507.22274v1%2C2507.22270v1%2C2507.22268v1%2C2507.22267v1%2C2507.22264v1%2C2507.22255v1%2C2507.22250v1%2C2507.22243v1%2C2507.22239v1%2C2507.22231v1%2C2507.22229v1%2C2507.22224v1%2C2507.22220v1%2C2507.22219v1%2C2507.22216v1%2C2507.22213v1%2C2507.22209v1%2C2507.22208v1%2C2507.22207v1%2C2507.22205v1%2C2507.22201v1%2C2507.22198v1%2C2507.22197v1%2C2507.22194v1%2C2507.22189v1%2C2507.22188v1%2C2507.22187v1%2C2507.22186v1%2C2507.22170v1%2C2507.22168v1%2C2507.22160v1%2C2507.22159v1%2C2507.22157v1%2C2507.22152v1%2C2507.22149v1%2C2507.22148v1%2C2507.22146v1%2C2507.22136v2%2C2507.22133v1%2C2507.22131v1%2C2507.22062v2%2C2507.22101v1%2C2507.22061v1%2C2507.22100v1%2C2507.22059v1%2C2507.22058v1%2C2507.22099v1%2C2507.22057v1%2C2507.22053v1%2C2507.22052v1%2C2507.22050v2%2C2507.22047v1%2C2507.22045v1%2C2507.22042v1%2C2507.22041v1%2C2507.22040v1%2C2507.22039v1%2C2507.22037v1%2C2507.22034v1%2C2507.22032v1%2C2507.22030v1%2C2507.22028v1%2C2507.22025v2%2C2507.22024v1%2C2507.22019v1%2C2507.22020v1%2C2507.22017v1%2C2507.22010v1%2C2507.22009v1%2C2507.22008v1%2C2507.22004v2%2C2507.22003v2%2C2507.22002v1%2C2507.22000v1%2C2507.21992v1%2C2507.21990v2%2C2507.21989v1%2C2507.21985v1%2C2507.21984v1%2C2507.21983v1%2C2507.21982v1%2C2507.21981v1%2C2507.21980v1%2C2507.21977v1%2C2507.21976v1%2C2507.21974v1%2C2507.21971v1%2C2507.21968v1%2C2507.21965v1%2C2507.21964v1%2C2507.21963v1%2C2507.21960v1%2C2507.21959v1%2C2507.21957v1%2C2507.21954v1%2C2507.21953v1%2C2507.21952v1%2C2507.21949v1%2C2507.21947v1%2C2507.21945v1%2C2507.22095v1%2C2507.21939v1%2C2507.21938v1%2C2507.21934v1%2C2507.21931v1%2C2507.21929v1%2C2507.21928v1%2C2507.21924v1%2C2507.21922v1%2C2507.21919v2%2C2507.21917v1%2C2507.21914v1%2C2507.21912v2%2C2507.21905v1%2C2507.21903v2%2C2507.21902v1%2C2507.21899v1%2C2507.21898v1%2C2507.21896v1%2C2507.21893v1%2C2507.21892v1%2C2507.21890v1%2C2507.21888v1%2C2507.21886v3%2C2507.21884v1%2C2507.21882v1%2C2507.21881v3%2C2507.21875v3%2C2507.21873v1%2C2507.21872v3%2C2507.21871v1%2C2507.21863v1%2C2507.21859v1%2C2507.21858v1%2C2507.21857v1%2C2507.21848v1%2C2507.21846v1%2C2507.21844v1%2C2507.21841v1%2C2507.21839v1%2C2507.21836v1%2C2507.21833v1%2C2507.21831v1%2C2507.21830v2%2C2507.21828v1%2C2507.21823v1%2C2507.21820v1%2C2507.21815v1%2C2507.21814v1%2C2507.21813v1%2C2507.21810v1%2C2507.21809v1%2C2507.21807v1%2C2507.22094v1%2C2507.21803v1%2C2507.21802v1%2C2507.21799v1%2C2507.21796v1%2C2507.21794v1%2C2507.21792v1%2C2507.21790v1%2C2507.21786v1%2C2507.21783v1%2C2507.21782v1%2C2507.21778v1%2C2507.21773v1%2C2507.21772v1%2C2507.21770v1%2C2507.21763v1%2C2507.21762v2%2C2507.21761v1%2C2507.21760v1%2C2507.21756v1%2C2507.22092v1%2C2507.21753v1%2C2507.21752v1%2C2507.21750v1%2C2507.21749v1%2C2507.21748v1%2C2507.21745v1%2C2507.21742v1%2C2507.21741v1%2C2507.21740v1%2C2507.21738v1%2C2507.21732v1%2C2507.21728v1%2C2507.21727v1%2C2507.21726v1%2C2507.21723v1%2C2507.21720v1%2C2507.21715v1%2C2507.21712v1%2C2507.21710v1%2C2507.21709v1%2C2507.21706v1%2C2507.21705v1%2C2507.21695v1%2C2507.21694v1%2C2507.21693v1%2C2507.21690v1%2C2507.21684v1%2C2507.21670v1%2C2507.21665v1%2C2507.21664v1%2C2507.21654v1%2C2507.21653v1%2C2507.21652v1%2C2507.21649v1%2C2507.21648v1%2C2507.21645v1%2C2507.21642v1%2C2507.21640v1%2C2507.21638v1%2C2507.21637v1%2C2507.21636v1%2C2507.21631v1%2C2507.21627v1%2C2507.22090v1%2C2507.21619v1%2C2507.21616v1%2C2507.21611v1%2C2507.21610v1%2C2507.21609v1%2C2507.21608v1%2C2507.21606v1%2C2507.21600v1%2C2507.22089v1%2C2507.21591v1%2C2507.21589v1%2C2507.21588v1%2C2507.21587v1%2C2507.21585v1%2C2507.21584v2%2C2507.21573v1%2C2507.21571v1%2C2507.21569v1%2C2507.21568v2%2C2507.21567v1%2C2507.21563v1%2C2507.21556v1%2C2507.21555v1%2C2507.21553v2%2C2507.21547v1%2C2507.21545v1%2C2507.21544v1%2C2507.21543v1%2C2507.21541v1%2C2507.21540v1%2C2507.21536v1%2C2507.21533v1%2C2507.21532v1%2C2507.21531v1%2C2507.21530v1%2C2507.21529v1%2C2507.21526v1%2C2507.21524v1%2C2507.21522v1%2C2507.21521v1%2C2507.21520v1%2C2507.21518v2%2C2507.21517v1%2C2507.21516v1%2C2507.21513v1%2C2507.21509v1%2C2507.21507v1%2C2507.21506v2%2C2507.21504v1%2C2507.21503v1%2C2507.21502v1%2C2507.21500v1%2C2507.21496v1%2C2507.21494v1%2C2507.21490v1%2C2507.21489v1%2C2507.21488v1%2C2507.21486v1%2C2507.21485v1%2C2507.21483v1%2C2507.21482v1%2C2507.21479v1%2C2507.21476v1%2C2507.21474v1%2C2507.21471v1%2C2507.21467v1%2C2507.21460v1%2C2507.21455v1%2C2507.21453v1%2C2507.21452v1%2C2507.21450v1%2C2507.21449v1%2C2507.21448v1%2C2507.21440v1%2C2507.21438v1%2C2507.21437v1%2C2507.21434v1%2C2507.21433v2%2C2507.21432v1%2C2507.21431v1%2C2507.21429v1%2C2507.21428v1%2C2507.21423v1%2C2507.21422v1%2C2507.21420v1%2C2507.21419v1%2C2507.21412v1%2C2507.21407v1%2C2507.21406v1%2C2507.21404v1%2C2507.21397v1%2C2507.21395v1%2C2507.21394v1%29 "HTTP/2 200 OK"
+2025-07-31 21:08:07,486 - INFO - Inserting 316 new papers
+2025-07-31 21:08:07,985 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22arxiv_id%22%2C%22extracted_at%22%2C%22published_date%22%2C%22authors%22%2C%22abstract%22%2C%22title%22%2C%22updated_date%22%2C%22abstract_url%22%2C%22pdf_url%22%2C%22categories%22%2C%22categories_name%22 "HTTP/2 201 Created"
+2025-07-31 21:08:08,035 - INFO - Inserted batch of 100 papers
+2025-07-31 21:08:09,047 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22arxiv_id%22%2C%22extracted_at%22%2C%22published_date%22%2C%22authors%22%2C%22abstract%22%2C%22title%22%2C%22updated_date%22%2C%22abstract_url%22%2C%22pdf_url%22%2C%22categories%22%2C%22categories_name%22 "HTTP/2 201 Created"
+2025-07-31 21:08:09,101 - INFO - Inserted batch of 100 papers
+2025-07-31 21:08:10,044 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22arxiv_id%22%2C%22extracted_at%22%2C%22published_date%22%2C%22authors%22%2C%22abstract%22%2C%22title%22%2C%22updated_date%22%2C%22abstract_url%22%2C%22pdf_url%22%2C%22categories%22%2C%22categories_name%22 "HTTP/2 201 Created"
+2025-07-31 21:08:10,050 - INFO - Inserted batch of 100 papers
+2025-07-31 21:08:10,778 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22arxiv_id%22%2C%22extracted_at%22%2C%22published_date%22%2C%22authors%22%2C%22abstract%22%2C%22title%22%2C%22updated_date%22%2C%22abstract_url%22%2C%22pdf_url%22%2C%22categories%22%2C%22categories_name%22 "HTTP/2 201 Created"
+2025-07-31 21:08:10,782 - INFO - Inserted batch of 16 papers
+2025-07-31 21:08:11,287 - INFO - Successfully loaded 316 new papers to Supabase
+2025-07-31 21:09:52,358 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-07-31 21:09:52,669 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-07-31 21:09:52,675 - INFO - Loaded taxonomy with 127 category mappings from Supabase
+2025-07-31 21:09:52,675 - INFO - Extracting papers from arXiv for date range: 202507280000 to 202507282359
+2025-07-31 21:09:52,676 - INFO - ArXiv query URL: http://export.arxiv.org/api/query?search_query=(cat:cs.AI OR cat:cs.LG OR cat:cs.CV OR cat:cs.CL OR cat:cs.NE OR cat:stat.ML OR cat:cs.RO OR cat:cs.IR) AND submittedDate:[202507280000 TO 202507282359]&start=0&max_results=2000&sortBy=submittedDate&sortOrder=descending
+2025-07-31 21:09:54,216 - INFO - Successfully extracted 282 papers from target date (2025-07-28)
+2025-07-31 21:09:54,216 - INFO - Filtered out 0 papers from other dates
+2025-07-31 21:09:54,411 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=%2A&limit=1 "HTTP/2 200 OK"
+2025-07-31 21:09:54,414 - INFO - Papers table already exists
+2025-07-31 21:09:54,414 - INFO - Loading 282 papers to Supabase
+2025-07-31 21:09:54,697 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=arxiv_id&arxiv_id=in.%282507.21391v2%2C2507.21389v1%2C2507.21386v1%2C2507.21385v1%2C2507.21384v1%2C2507.21383v1%2C2507.21382v1%2C2507.21378v1%2C2507.21377v1%2C2507.21372v1%2C2507.21371v1%2C2507.21369v1%2C2507.21367v1%2C2507.21364v1%2C2507.21360v1%2C2507.21358v3%2C2507.21357v1%2C2507.21354v1%2C2507.21353v1%2C2507.21350v1%2C2507.21349v1%2C2507.21340v1%2C2507.21338v1%2C2507.21335v1%2C2507.21334v1%2C2507.21331v1%2C2507.21330v1%2C2507.21328v1%2C2507.21319v1%2C2507.21311v1%2C2507.21302v1%2C2507.21295v1%2C2507.21291v1%2C2507.21288v2%2C2507.21287v1%2C2507.21285v1%2C2507.21276v1%2C2507.21274v1%2C2507.21273v1%2C2507.21270v1%2C2507.21269v1%2C2507.21265v1%2C2507.21261v1%2C2507.21260v1%2C2507.21259v1%2C2507.21257v1%2C2507.21256v1%2C2507.21247v1%2C2507.21246v1%2C2507.21245v1%2C2507.21244v1%2C2507.21242v1%2C2507.21234v1%2C2507.21225v1%2C2507.21222v1%2C2507.21053v1%2C2507.21049v1%2C2507.21046v2%2C2507.21045v1%2C2507.21206v1%2C2507.21040v1%2C2507.21037v1%2C2507.21035v2%2C2507.21205v1%2C2507.21033v1%2C2507.21028v1%2C2507.21027v1%2C2507.21024v1%2C2507.21023v1%2C2507.21021v1%2C2507.21018v1%2C2507.21017v1%2C2507.21016v1%2C2507.21015v1%2C2507.21009v1%2C2507.21004v2%2C2507.20999v1%2C2507.20998v1%2C2507.20997v1%2C2507.20996v1%2C2507.20994v1%2C2507.20993v1%2C2507.20987v2%2C2507.20984v2%2C2507.20980v1%2C2507.20977v1%2C2507.20976v1%2C2507.20975v1%2C2507.20973v1%2C2507.20968v1%2C2507.20967v1%2C2507.20966v1%2C2507.20964v1%2C2507.20963v1%2C2507.20960v1%2C2507.20958v1%2C2507.20957v1%2C2507.21203v1%2C2507.20956v1%2C2507.20954v1%2C2507.20953v1%2C2507.20951v1%2C2507.20941v1%2C2507.20939v1%2C2507.20936v1%2C2507.20934v1%2C2507.20930v2%2C2507.20929v1%2C2507.20925v1%2C2507.20924v1%2C2507.20923v1%2C2507.20920v1%2C2507.20919v1%2C2507.20917v1%2C2507.20913v1%2C2507.20907v1%2C2507.20906v2%2C2507.22086v1%2C2507.20900v1%2C2507.20894v1%2C2507.20892v1%2C2507.20890v1%2C2507.20888v1%2C2507.20884v2%2C2507.20881v1%2C2507.20880v1%2C2507.20879v1%2C2507.20873v1%2C2507.20872v1%2C2507.20871v1%2C2507.20870v1%2C2507.20862v1%2C2507.20861v1%2C2507.20860v1%2C2507.20859v1%2C2507.20858v1%2C2507.20855v1%2C2507.20854v1%2C2507.20853v1%2C2507.20850v1%2C2507.20849v1%2C2507.20842v1%2C2507.20840v1%2C2507.20838v1%2C2507.20836v1%2C2507.20834v1%2C2507.20832v1%2C2507.21202v1%2C2507.20810v1%2C2507.20809v1%2C2507.20808v1%2C2507.20805v1%2C2507.20804v1%2C2507.20800v1%2C2507.20798v1%2C2507.20796v1%2C2507.20786v1%2C2507.20784v1%2C2507.20783v1%2C2507.20782v1%2C2507.20776v1%2C2507.20774v1%2C2507.20772v1%2C2507.20766v2%2C2507.20765v1%2C2507.20764v1%2C2507.20763v1%2C2507.20762v1%2C2507.20758v1%2C2507.20757v1%2C2507.20755v1%2C2507.22171v1%2C2507.20753v1%2C2507.20752v1%2C2507.20749v1%2C2507.20746v1%2C2507.20745v1%2C2507.20740v1%2C2507.20737v1%2C2507.20729v1%2C2507.20728v1%2C2507.20721v1%2C2507.20718v1%2C2507.20714v1%2C2507.20711v1%2C2507.20708v1%2C2507.20704v1%2C2507.21200v1%2C2507.20703v1%2C2507.20700v1%2C2507.20689v1%2C2507.20680v1%2C2507.20678v1%2C2507.20673v1%2C2507.20670v1%2C2507.20666v1%2C2507.21199v1%2C2507.20658v1%2C2507.20650v1%2C2507.20644v1%2C2507.20643v1%2C2507.20641v1%2C2507.20632v1%2C2507.20630v1%2C2507.20629v1%2C2507.20627v1%2C2507.20623v1%2C2507.20622v1%2C2507.20620v1%2C2507.20614v1%2C2507.20613v1%2C2507.20608v1%2C2507.20601v1%2C2507.20592v1%2C2507.20590v2%2C2507.20589v1%2C2507.20582v1%2C2507.20579v1%2C2507.20578v1%2C2507.20577v1%2C2507.20576v1%2C2507.20575v1%2C2507.20574v1%2C2507.20573v1%2C2507.20571v1%2C2507.20568v1%2C2507.20566v1%2C2507.20564v1%2C2507.20562v1%2C2507.20560v1%2C2507.20557v1%2C2507.20548v1%2C2507.20546v1%2C2507.21198v1%2C2507.20542v1%2C2507.20541v1%2C2507.20538v1%2C2507.20536v2%2C2507.20534v1%2C2507.20533v1%2C2507.20531v1%2C2507.20529v1%2C2507.20528v1%2C2507.20527v2%2C2507.20526v1%2C2507.20525v2%2C2507.20520v1%2C2507.20519v1%2C2507.20518v1%2C2507.20516v1%2C2507.21197v2%2C2507.20513v1%2C2507.20512v1%2C2507.20511v2%2C2507.20509v1%2C2507.20507v1%2C2507.20506v1%2C2507.20505v1%2C2507.20503v1%2C2507.20499v1%2C2507.20498v1%2C2507.20494v1%2C2507.20491v1%2C2507.20490v1%2C2507.20480v1%2C2507.20478v1%2C2507.20469v2%2C2507.20463v1%2C2507.21196v1%2C2507.20460v1%2C2507.20459v1%2C2507.20454v1%2C2507.20453v1%2C2507.20452v1%2C2507.20451v1%2C2507.21195v1%2C2507.20449v1%2C2507.20447v1%2C2507.20446v1%2C2507.20445v1%2C2507.20444v1%2C2507.20443v1%29 "HTTP/2 200 OK"
+2025-07-31 21:09:54,698 - INFO - Inserting 282 new papers
+2025-07-31 21:09:55,205 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22categories_name%22%2C%22categories%22%2C%22authors%22%2C%22updated_date%22%2C%22abstract_url%22%2C%22abstract%22%2C%22published_date%22%2C%22arxiv_id%22%2C%22title%22%2C%22pdf_url%22%2C%22extracted_at%22 "HTTP/2 201 Created"
+2025-07-31 21:09:55,218 - INFO - Inserted batch of 100 papers
+2025-07-31 21:09:56,221 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22categories_name%22%2C%22categories%22%2C%22authors%22%2C%22updated_date%22%2C%22abstract_url%22%2C%22abstract%22%2C%22published_date%22%2C%22arxiv_id%22%2C%22title%22%2C%22pdf_url%22%2C%22extracted_at%22 "HTTP/2 201 Created"
+2025-07-31 21:09:56,261 - INFO - Inserted batch of 100 papers
+2025-07-31 21:09:57,208 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22categories_name%22%2C%22categories%22%2C%22authors%22%2C%22updated_date%22%2C%22abstract_url%22%2C%22abstract%22%2C%22published_date%22%2C%22arxiv_id%22%2C%22title%22%2C%22pdf_url%22%2C%22extracted_at%22 "HTTP/2 201 Created"
+2025-07-31 21:09:57,252 - INFO - Inserted batch of 82 papers
+2025-07-31 21:09:57,757 - INFO - Successfully loaded 282 new papers to Supabase
+2025-07-31 21:14:42,907 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-07-31 21:14:43,444 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-07-31 21:14:43,452 - INFO - Loaded taxonomy with 127 category mappings from Supabase
+2025-07-31 21:14:43,452 - INFO - Starting update of categories_name field for existing papers
+2025-07-31 21:14:43,656 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=id%2Ccategories&or=%28categories_name.is.null%2Ccategories_name.eq.%7B%7D%29 "HTTP/2 200 OK"
+2025-07-31 21:14:43,656 - INFO - No papers found that need categories_name updates
+2025-07-31 21:15:13,057 - INFO - Starting category name update for existing papers
+2025-07-31 21:15:13,135 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-07-31 21:15:13,423 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-07-31 21:15:13,430 - INFO - Loaded taxonomy with 127 category mappings from Supabase
+2025-07-31 21:15:13,430 - INFO - Starting update of categories_name field for existing papers
+2025-07-31 21:15:13,612 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=id%2Ccategories&or=%28categories_name.is.null%2Ccategories_name.eq.%7B%7D%29 "HTTP/2 200 OK"
+2025-07-31 21:15:13,612 - INFO - No papers found that need categories_name updates
+2025-07-31 21:15:13,612 - INFO - Category update completed. Updated 0 papers.
+2025-07-31 21:16:15,222 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-07-31 21:16:15,506 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-07-31 21:16:15,512 - INFO - Loaded taxonomy with 127 category mappings from Supabase
+2025-07-31 21:16:15,512 - INFO - Starting daily arXiv ETL pipeline for YESTERDAY'S PUBLICATIONS: 2025-07-30
+2025-07-31 21:16:15,512 - INFO - Note: arXiv publishes papers the day before they appear on the site
+2025-07-31 21:16:15,512 - INFO - Extracting papers from arXiv for date range: 202507300000 to 202507302359
+2025-07-31 21:16:15,513 - INFO - ArXiv query URL: http://export.arxiv.org/api/query?search_query=(cat:cs.AI OR cat:cs.LG OR cat:cs.CV OR cat:cs.CL OR cat:cs.NE OR cat:stat.ML OR cat:cs.RO OR cat:cs.IR) AND submittedDate:[202507300000 TO 202507302359]&start=0&max_results=2000&sortBy=submittedDate&sortOrder=descending
+2025-07-31 21:16:16,672 - INFO - Successfully extracted 205 papers from target date (2025-07-30)
+2025-07-31 21:16:16,672 - INFO - Filtered out 0 papers from other dates
+2025-07-31 21:16:17,078 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=%2A&limit=1 "HTTP/2 200 OK"
+2025-07-31 21:16:17,081 - INFO - Papers table already exists
+2025-07-31 21:16:17,081 - INFO - Loading 205 papers to Supabase
+2025-07-31 21:16:17,304 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=arxiv_id&arxiv_id=in.%282507.22887v1%2C2507.22885v1%2C2507.22886v2%2C2507.22880v1%2C2507.22879v2%2C2507.22878v1%2C2507.22877v1%2C2507.22876v1%2C2507.22873v1%2C2507.22872v1%2C2507.22859v1%2C2507.22857v1%2C2507.22855v1%2C2507.22854v1%2C2507.22853v1%2C2507.22849v1%2C2507.22847v1%2C2507.22844v1%2C2507.22842v1%2C2507.22840v1%2C2507.22832v1%2C2507.22829v1%2C2507.22828v1%2C2507.22827v1%2C2507.22825v1%2C2507.22824v1%2C2507.22817v1%2C2507.22813v1%2C2507.22811v1%2C2507.22805v1%2C2507.22802v1%2C2507.22798v1%2C2507.22792v1%2C2507.22791v1%2C2507.22789v2%2C2507.22787v1%2C2507.22786v1%2C2507.22782v2%2C2507.22781v1%2C2507.22776v1%2C2507.22774v1%2C2507.22772v1%2C2507.22769v1%2C2507.22767v1%2C2507.22766v1%2C2507.22760v1%2C2507.22758v1%2C2507.22753v1%2C2507.22752v1%2C2507.22746v1%2C2507.22744v1%2C2507.22742v1%2C2507.22733v1%2C2507.22729v1%2C2507.22720v1%2C2507.22716v1%2C2507.22711v1%2C2507.22710v1%2C2507.22699v1%2C2507.22692v1%2C2507.22691v1%2C2507.22687v1%2C2507.22685v1%2C2507.22676v1%2C2507.22675v1%2C2507.22671v1%2C2507.22668v1%2C2507.22665v1%2C2507.22664v1%2C2507.22659v1%2C2507.22653v2%2C2507.22650v1%2C2507.22647v1%2C2507.22640v1%2C2507.22635v1%2C2507.22633v2%2C2507.22632v1%2C2507.22629v1%2C2507.22627v1%2C2507.22626v1%2C2507.22623v1%2C2507.22619v1%2C2507.22617v1%2C2507.22615v1%2C2507.22612v1%2C2507.22610v1%2C2507.22608v1%2C2507.22607v2%2C2507.22606v1%2C2507.22604v1%2C2507.22603v1%2C2507.22601v1%2C2507.22587v1%2C2507.22581v2%2C2507.22580v1%2C2507.22577v1%2C2507.22576v1%2C2507.22570v1%2C2507.22568v1%2C2507.22567v1%2C2507.22565v1%2C2507.22564v1%2C2507.22558v1%2C2507.22556v1%2C2507.22554v1%2C2507.22553v1%2C2507.22546v1%2C2507.22545v1%2C2507.22544v1%2C2507.22543v1%2C2507.22542v1%2C2507.22539v1%2C2507.22533v1%2C2507.22530v2%2C2507.22529v1%2C2507.22527v1%2C2507.22524v1%2C2507.22523v1%2C2507.22522v1%2C2507.22520v1%2C2507.22514v1%2C2507.22512v1%2C2507.22504v1%2C2507.22501v1%2C2507.22500v1%2C2507.22499v1%2C2507.22498v2%2C2507.22493v1%2C2507.22488v1%2C2507.22485v1%2C2507.22481v1%2C2507.22480v1%2C2507.22478v1%2C2507.22477v2%2C2507.22473v1%2C2507.22469v1%2C2507.22467v1%2C2507.22465v1%2C2507.22464v1%2C2507.22462v1%2C2507.22459v1%2C2507.22457v1%2C2507.22454v1%2C2507.22448v1%2C2507.22447v1%2C2507.22446v1%2C2507.22445v1%2C2507.22440v1%2C2507.22438v1%2C2507.22434v1%2C2507.22433v1%2C2507.22432v1%2C2507.22431v1%2C2507.22429v1%2C2507.22428v1%2C2507.22426v1%2C2507.22424v1%2C2507.22423v1%2C2507.22421v1%2C2507.22420v1%2C2507.22419v1%2C2507.22418v1%2C2507.22412v1%2C2507.22411v1%2C2507.22410v1%2C2507.22407v1%2C2507.22404v1%2C2507.22398v1%2C2507.22396v1%2C2507.22393v1%2C2507.22389v1%2C2507.22387v1%2C2507.22385v1%2C2507.22380v1%2C2507.22378v1%2C2507.22371v1%2C2507.22370v1%2C2507.22369v1%2C2507.22367v1%2C2507.22365v1%2C2507.22361v1%2C2507.22360v1%2C2507.22359v2%2C2507.22358v1%2C2507.22356v1%2C2507.22353v1%2C2507.22349v1%2C2507.22346v1%2C2507.22345v1%2C2507.22343v1%2C2507.22342v1%2C2507.22339v1%2C2507.22338v1%2C2507.22337v1%2C2507.22336v1%2C2507.22330v1%2C2507.22326v1%2C2507.22324v1%2C2507.22321v1%2C2507.22317v1%2C2507.22316v1%2C2507.22313v1%2C2507.22311v1%2C2507.22303v2%2C2507.22299v1%29 "HTTP/2 200 OK"
+2025-07-31 21:16:17,305 - INFO - Inserting 205 new papers
+2025-07-31 21:16:17,816 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22extracted_at%22%2C%22arxiv_id%22%2C%22updated_date%22%2C%22abstract%22%2C%22categories%22%2C%22categories_name%22%2C%22published_date%22%2C%22pdf_url%22%2C%22abstract_url%22%2C%22title%22%2C%22authors%22 "HTTP/2 201 Created"
+2025-07-31 21:16:17,854 - INFO - Inserted batch of 100 papers
+2025-07-31 21:16:18,803 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22extracted_at%22%2C%22arxiv_id%22%2C%22updated_date%22%2C%22abstract%22%2C%22categories%22%2C%22categories_name%22%2C%22published_date%22%2C%22pdf_url%22%2C%22abstract_url%22%2C%22title%22%2C%22authors%22 "HTTP/2 201 Created"
+2025-07-31 21:16:18,836 - INFO - Inserted batch of 100 papers
+2025-07-31 21:16:19,531 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?columns=%22extracted_at%22%2C%22arxiv_id%22%2C%22updated_date%22%2C%22abstract%22%2C%22categories%22%2C%22categories_name%22%2C%22published_date%22%2C%22pdf_url%22%2C%22abstract_url%22%2C%22title%22%2C%22authors%22 "HTTP/2 201 Created"
+2025-07-31 21:16:19,532 - INFO - Inserted batch of 5 papers
+2025-07-31 21:16:20,037 - INFO - Successfully loaded 205 new papers to Supabase
+2025-07-31 21:16:20,038 - INFO - Starting update of categories_name field for existing papers
+2025-07-31 21:16:20,149 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/arxiv_papers?select=id%2Ccategories&or=%28categories_name.is.null%2Ccategories_name.eq.%7B%7D%29 "HTTP/2 200 OK"
+2025-07-31 21:16:20,150 - INFO - No papers found that need categories_name updates
+2025-07-31 21:16:20,150 - INFO - ETL pipeline completed successfully for 2025-07-30. Inserted 205 new papers and updated 0 existing papers with category names.
