@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 ArXiv AI Papers ETL Pipeline
-Extracts AI science papers from arXiv API and loads them into Supabase database.
+Extracts AI science papers from arXiv API, loads them into Supabase database,
+and generates AI summaries using Gemini API.
 """
 
 import os
@@ -10,13 +11,23 @@ import logging
 import feedparser
 import requests
 import json
+import tempfile
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
+from pathlib import Path
 from supabase import create_client, Client
 from dotenv import load_dotenv
 import time
 import re
+import threading
+
+# PDF processing imports
+import PyPDF2
+from io import BytesIO
+
+# Gemini AI imports
+import google.generativeai as genai
 
 # Load environment variables
 load_dotenv()
@@ -32,8 +43,41 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+class RateLimiter:
+    """Rate limiter for Gemini API to stay within free tier limits."""
+    
+    def __init__(self, max_requests_per_minute=15):
+        self.max_requests_per_minute = max_requests_per_minute
+        self.requests_made = []
+        self.lock = threading.Lock()
+    
+    def wait_if_needed(self):
+        """Wait if necessary to respect rate limits."""
+        with self.lock:
+            now = datetime.now()
+            
+            # Remove requests older than 1 minute
+            self.requests_made = [req_time for req_time in self.requests_made 
+                                if (now - req_time).total_seconds() < 60]
+            
+            # If we're at the limit, wait until we can make another request
+            if len(self.requests_made) >= self.max_requests_per_minute:
+                oldest_request = min(self.requests_made)
+                wait_time = 60 - (now - oldest_request).total_seconds()
+                if wait_time > 0:
+                    logger.info(f"Rate limit reached. Waiting {wait_time:.1f} seconds...")
+                    time.sleep(wait_time)
+                    # Clean up again after waiting
+                    now = datetime.now()
+                    self.requests_made = [req_time for req_time in self.requests_made 
+                                        if (now - req_time).total_seconds() < 60]
+            
+            # Record this request
+            self.requests_made.append(now)
+            logger.debug(f"API requests in last minute: {len(self.requests_made)}/{self.max_requests_per_minute}")
+
 class ArxivETL:
-    """ETL pipeline for extracting AI papers from arXiv and loading to Supabase."""
+    """ETL pipeline for extracting AI papers from arXiv, loading to Supabase, and generating AI summaries."""
     
     def __init__(self):
         """Initialize the ETL pipeline with Supabase client and arXiv API configuration."""
@@ -45,6 +89,24 @@ class ArxivETL:
             raise ValueError("Missing Supabase credentials in environment variables")
         
         self.supabase: Client = create_client(self.supabase_url, self.supabase_key)
+        
+        # Gemini AI configuration with rate limiting
+        self.gemini_api_key = os.getenv('GEMINI_API_KEY')
+        if not self.gemini_api_key or self.gemini_api_key == 'your_gemini_api_key_here':
+            logger.warning("Gemini API key not configured. PDF summarization will be skipped.")
+            self.gemini_enabled = False
+        else:
+            try:
+                genai.configure(api_key=self.gemini_api_key)
+                # Use Gemini 2.5 Flash Lite model (free tier)
+                self.gemini_model = genai.GenerativeModel('gemini-2.5-flash-lite')
+                self.gemini_enabled = True
+                # Initialize rate limiter for free tier: 15 requests per minute
+                self.rate_limiter = RateLimiter(max_requests_per_minute=15)
+                logger.info("Gemini 2.5 Flash Lite configured successfully with rate limiting (15 req/min)")
+            except Exception as e:
+                logger.error(f"Failed to configure Gemini AI: {str(e)}")
+                self.gemini_enabled = False
         
         # Load taxonomy for category name translation from Supabase
         self.taxonomy = self.load_taxonomy_from_supabase()
@@ -406,10 +468,15 @@ class ArxivETL:
             
             if not papers:
                 logger.info(f"No papers found for yesterday ({yesterday_str})")
-                # Still try to update existing papers' categories_name
+                # Still try to update existing papers' categories_name and process summaries
                 updated_count = self.update_categories_names()
                 logger.info(f"Updated {updated_count} existing papers with category names")
-                return updated_count
+                
+                # Process papers for summarization (rate limited to 5 papers for free tier)
+                summarized_count = self.process_papers_for_summarization()
+                logger.info(f"Generated summaries for {summarized_count} papers")
+                
+                return updated_count + summarized_count
             
             # Create table if needed
             self.create_papers_table_if_not_exists()
@@ -420,12 +487,263 @@ class ArxivETL:
             # Update existing papers' categories_name field
             updated_count = self.update_categories_names()
             
-            logger.info(f"ETL pipeline completed successfully for {yesterday_str}. Inserted {inserted_count} new papers and updated {updated_count} existing papers with category names.")
-            return inserted_count + updated_count
+            # Process papers for summarization (rate limited to 5 papers for free tier)
+            summarized_count = self.process_papers_for_summarization()
+            
+            logger.info(f"ETL pipeline completed successfully for {yesterday_str}.")
+            logger.info(f"Inserted {inserted_count} new papers, updated {updated_count} papers with category names, and generated summaries for {summarized_count} papers.")
+            
+            return inserted_count + updated_count + summarized_count
             
         except Exception as e:
             logger.error(f"ETL pipeline failed: {str(e)}")
             raise
+
+    def download_pdf(self, pdf_url: str) -> Optional[str]:
+        """Download PDF from URL and return the text content."""
+        try:
+            logger.debug(f"Downloading PDF from: {pdf_url}")
+            
+            # Download PDF with timeout and headers
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (compatible; ArxivETL/1.0; +https://example.com/bot)'
+            }
+            response = requests.get(pdf_url, headers=headers, timeout=30, stream=True)
+            response.raise_for_status()
+            
+            # Read PDF content
+            pdf_content = BytesIO(response.content)
+            pdf_reader = PyPDF2.PdfReader(pdf_content)
+            
+            # Extract text from all pages (limit to first 10 pages for efficiency)
+            text_content = ""
+            max_pages = min(10, len(pdf_reader.pages))
+            
+            for page_num in range(max_pages):
+                page = pdf_reader.pages[page_num]
+                text_content += page.extract_text() + "\n"
+            
+            if not text_content.strip():
+                logger.warning("No text extracted from PDF")
+                return None
+            
+            # Clean up the text
+            text_content = re.sub(r'\s+', ' ', text_content)  # Normalize whitespace
+            text_content = text_content.strip()
+            
+            logger.debug(f"Extracted {len(text_content)} characters from PDF")
+            return text_content
+            
+        except Exception as e:
+            logger.error(f"Error downloading/processing PDF {pdf_url}: {str(e)}")
+            return None
+    
+    def generate_summaries_with_gemini(self, paper_title: str, abstract: str, pdf_text: str) -> Optional[Dict[str, str]]:
+        """Generate summaries using Gemini AI."""
+        if not self.gemini_enabled:
+            logger.warning("Gemini AI not enabled, skipping summarization")
+            return None
+        
+        try:
+            # Wait if needed to respect rate limits
+            self.rate_limiter.wait_if_needed()
+            
+            # Prepare the content for Gemini (combine title, abstract, and PDF text)
+            # Limit PDF text to avoid token limits
+            max_pdf_length = 15000  # Adjust based on token limits
+            truncated_pdf = pdf_text[:max_pdf_length] if pdf_text else ""
+            
+            content = f"""
+Title: {paper_title}
+
+Abstract: {abstract}
+
+Paper Content (First part): {truncated_pdf}
+
+Please analyze this research paper and provide four outputs:
+
+1. EASY_TITLE: Create an easy-to-understand, engaging title that a general audience would find accessible and interesting.
+
+2. INTERMEDIATE_TITLE: Create a moderately technical title that captures the essence of the research while being accessible to readers with some technical background.
+
+3. BEGINNER_SUMMARY: Write a summary that explains this research in simple terms that anyone can understand. Focus on:
+   - What problem they're trying to solve
+   - What they did (in simple terms)
+   - What they found
+   - Why it matters to everyday people
+   Keep it conversational and avoid technical jargon.
+
+4. INTERMEDIATE_SUMMARY: Write a more detailed summary for readers with post-university education or intermediate technical knowledge. Include:
+   - The specific research problem and methodology
+   - Key technical findings and contributions
+   - Implications for the field
+   - Limitations and future work
+   Use appropriate technical terminology but keep it accessible to educated non-specialists.
+
+Format your response exactly like this:
+EASY_TITLE: [your easy title here]
+
+INTERMEDIATE_TITLE: [your intermediate title here]
+
+BEGINNER_SUMMARY: [your beginner summary here]
+
+INTERMEDIATE_SUMMARY: [your intermediate summary here]
+"""
+            
+            logger.info("Generating summaries with Gemini 2.5 Flash Lite")
+            response = self.gemini_model.generate_content(content)
+            
+            if not response.text:
+                logger.error("Empty response from Gemini API")
+                return None
+            
+            # Parse the response
+            summaries = self.parse_gemini_response(response.text)
+            if summaries:
+                logger.info("Successfully generated summaries with Gemini 2.5 Flash Lite")
+                return summaries
+            else:
+                logger.error("Failed to parse Gemini response")
+                return None
+                
+        except Exception as e:
+            logger.error(f"Error generating summaries with Gemini: {str(e)}")
+            return None
+    
+    def parse_gemini_response(self, response_text: str) -> Optional[Dict[str, str]]:
+        """Parse Gemini AI response to extract the four summaries."""
+        try:
+            # Extract each section using regex
+            easy_title_match = re.search(r'EASY_TITLE:\s*(.*?)(?=\n\n|\nINTERMEDIATE_TITLE:)', response_text, re.DOTALL)
+            intermediate_title_match = re.search(r'INTERMEDIATE_TITLE:\s*(.*?)(?=\n\n|\nBEGINNER_SUMMARY:)', response_text, re.DOTALL)
+            beginner_match = re.search(r'BEGINNER_SUMMARY:\s*(.*?)(?=\n\n|\nINTERMEDIATE_SUMMARY:)', response_text, re.DOTALL)
+            intermediate_match = re.search(r'INTERMEDIATE_SUMMARY:\s*(.*?)(?:\n\n|$)', response_text, re.DOTALL)
+            
+            if not all([easy_title_match, intermediate_title_match, beginner_match, intermediate_match]):
+                logger.error("Could not find all required sections in Gemini response")
+                logger.debug(f"Response text: {response_text[:500]}...")
+                return None
+            
+            summaries = {
+                'easy_title': easy_title_match.group(1).strip(),
+                'intermediate_title': intermediate_title_match.group(1).strip(),
+                'beginner_summary': beginner_match.group(1).strip(),
+                'intermediate_summary': intermediate_match.group(1).strip()
+            }
+            
+            # Validate that summaries are not empty
+            for key, value in summaries.items():
+                if not value or len(value) < 10:
+                    logger.error(f"Generated {key} is too short or empty")
+                    return None
+            
+            return summaries
+            
+        except Exception as e:
+            logger.error(f"Error parsing Gemini response: {str(e)}")
+            return None
+    
+    def save_summary_to_database(self, paper_id: int, arxiv_id: str, summaries: Dict[str, str]) -> bool:
+        """Save generated summaries to the summary_papers table."""
+        try:
+            summary_data = {
+                'arxiv_paper_id': paper_id,
+                'arxiv_id': arxiv_id,
+                'easy_title': summaries['easy_title'],
+                'intermediate_title': summaries['intermediate_title'],
+                'beginner_summary': summaries['beginner_summary'],
+                'intermediate_summary': summaries['intermediate_summary'],
+                'processing_status': 'completed',
+                'gemini_model': 'gemini-2.5-flash-lite'
+            }
+            
+            response = self.supabase.table('summary_papers').insert(summary_data).execute()
+            
+            if response.data:
+                logger.info(f"Successfully saved summary for paper {arxiv_id}")
+                return True
+            else:
+                logger.error(f"Failed to save summary for paper {arxiv_id}")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error saving summary to database: {str(e)}")
+            # Try to save error status
+            try:
+                error_data = {
+                    'arxiv_paper_id': paper_id,
+                    'arxiv_id': arxiv_id,
+                    'easy_title': 'Error during processing',
+                    'intermediate_title': 'Error during processing',
+                    'beginner_summary': 'Summary generation failed',
+                    'intermediate_summary': 'Summary generation failed',
+                    'processing_status': 'error',
+                    'processing_error': str(e),
+                    'gemini_model': 'gemini-2.5-flash-lite'
+                }
+                self.supabase.table('summary_papers').insert(error_data).execute()
+            except:
+                pass  # If we can't even save the error, just log it
+            return False
+    
+    def process_papers_for_summarization(self, limit: int = 5) -> int:
+        """Process papers that need summarization with Gemini AI."""
+        if not self.gemini_enabled:
+            logger.info("Gemini AI not enabled, skipping paper summarization")
+            return 0
+        
+        try:
+            logger.info("Finding papers that need summarization")
+            logger.info(f"Processing up to {limit} papers (rate limited to 15 req/min for free tier)")
+            
+            # Get papers that need summarization
+            papers_response = self.supabase.table('v_papers_needing_summaries').select('*').limit(limit).execute()
+            
+            if not papers_response.data:
+                logger.info("No papers found that need summarization")
+                return 0
+            
+            logger.info(f"Found {len(papers_response.data)} papers to process")
+            processed_count = 0
+            
+            for i, paper in enumerate(papers_response.data, 1):
+                try:
+                    paper_id = paper['id']
+                    arxiv_id = paper['arxiv_id']
+                    title = paper['title']
+                    abstract = paper['abstract']
+                    pdf_url = paper['pdf_url']
+                    
+                    logger.info(f"Processing paper {i}/{len(papers_response.data)}: {arxiv_id}")
+                    
+                    # Download and extract PDF text
+                    pdf_text = self.download_pdf(pdf_url)
+                    if not pdf_text:
+                        logger.warning(f"Could not extract text from PDF for {arxiv_id}, using abstract only")
+                        pdf_text = ""
+                    
+                    # Generate summaries with Gemini (rate limiting handled inside the method)
+                    summaries = self.generate_summaries_with_gemini(title, abstract, pdf_text)
+                    
+                    if summaries:
+                        # Save to database
+                        if self.save_summary_to_database(paper_id, arxiv_id, summaries):
+                            processed_count += 1
+                    
+                    # Progress update
+                    if i % 5 == 0:
+                        logger.info(f"Progress: {i}/{len(papers_response.data)} papers processed, {processed_count} successful")
+                    
+                except Exception as e:
+                    logger.error(f"Error processing paper {paper.get('arxiv_id', 'unknown')}: {str(e)}")
+                    continue
+            
+            logger.info(f"Successfully processed {processed_count} papers for summarization")
+            return processed_count
+            
+        except Exception as e:
+            logger.error(f"Error in process_papers_for_summarization: {str(e)}")
+            return 0
 
 def main():
     """Main function to run the ETL pipeline."""

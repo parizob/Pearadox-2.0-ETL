@@ -1,6 +1,6 @@
-# ArXiv AI Papers ETL Pipeline
+# ArXiv AI Papers ETL Pipeline with AI Summarization
 
-A comprehensive ETL (Extract, Transform, Load) pipeline that extracts AI science papers from the arXiv API and loads them into a Supabase database. This pipeline is designed to run daily and capture **ONLY** the latest AI research papers from **YESTERDAY** (arXiv's publication pattern).
+A comprehensive ETL (Extract, Transform, Load) pipeline that extracts AI science papers from arXiv API, loads them into a Supabase database, and generates AI-powered summaries using Google's Gemini API. This pipeline is designed to run daily and capture **ONLY** the latest AI research papers from **YESTERDAY** (arXiv's publication pattern).
 
 ## Features
 
@@ -8,11 +8,41 @@ A comprehensive ETL (Extract, Transform, Load) pipeline that extracts AI science
 - **Automated Daily Extraction**: Fetches AI papers from arXiv API daily for yesterday's date
 - **Comprehensive AI Coverage**: Targets multiple AI categories (cs.AI, cs.LG, cs.CV, cs.CL, etc.)
 - **Category Name Translation**: Translates category IDs to full names using taxonomy.json
+- **AI-Powered Summarization**: Uses Google Gemini API to generate four types of summaries
+- **PDF Processing**: Downloads and extracts text from research papers
 - **Strict Date Filtering**: Additional post-processing to ensure only target date papers are included
 - **Duplicate Prevention**: Avoids inserting duplicate papers
 - **Robust Error Handling**: Comprehensive logging and error recovery
 - **Flexible Scheduling**: Can be run manually, scheduled, or as a one-time job
 - **Database Integration**: Direct integration with Supabase
+
+## AI Summarization Features
+
+The pipeline now includes advanced AI summarization using Google's Gemini 2.5 Flash Lite API:
+
+### Four Types of Summaries Generated:
+1. **Easy Title**: Simplified, engaging title for general audience
+2. **Intermediate Title**: Moderately technical title for readers with some background
+3. **Beginner Summary**: Plain-language explanation for anyone to understand
+4. **Intermediate Summary**: Detailed technical summary for educated readers
+
+### PDF Processing:
+- Downloads PDFs temporarily (not stored permanently)
+- Extracts text content from first 10 pages
+- Combines with title and abstract for comprehensive analysis
+- Respects API rate limits and handles errors gracefully
+
+### Rate Limiting for Free Tier:
+- **Model**: Gemini 2.5 Flash Lite (free tier)
+- **Limits**: 15 requests per minute, 1000 requests per day
+- **Built-in Protection**: Automatic rate limiting to stay within free limits
+- **Default Processing**: 5 papers per run (adjustable with `--limit` parameter)
+
+### Database Storage:
+- Summaries stored in separate `summary_papers` table
+- Links to original papers via foreign key relationship
+- Tracks processing status and error handling
+- Prevents duplicate summarization
 
 ## Important: arXiv Publication Pattern
 
@@ -75,42 +105,75 @@ pip install -r requirements.txt
 
 ### 2. Environment Configuration
 
-The `.env` file is already configured with your Supabase credentials:
+Update your `.env` file with the required credentials:
 
 ```env
 SUPABASE_URL=https://ullqyuvcyvaaiihmntnw.supabase.co
-SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_ANON_KEY=your_supabase_anon_key
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
+
+**Get your Gemini API key from**: https://makersuite.google.com/app/apikey
 
 ### 3. Database Setup
 
-The table will be created automatically on first run, but you can also manually create it using the provided SQL schema:
+Create the tables by running these SQL scripts in your Supabase SQL editor:
 
 ```bash
-# Run the SQL in your Supabase SQL editor
+# Create the main papers table
 cat create_table.sql
+
+# Create the summaries table (new installations)
+cat create_summary_papers_table.sql
+
+# OR if you have an existing summary_papers table, run the migration instead:
+cat migrate_summary_papers_table.sql
 ```
+
+**For Existing Installations**: If you already have a `summary_papers` table with the old field names (`layman_summary`, `university_summary`), use the migration script to update to the new structure with beginner/intermediate terminology and add the `intermediate_title` field.
 
 ## Usage
 
 ### Manual One-time Run
 
 ```bash
-# Run ETL for YESTERDAY'S papers (default - arXiv's latest publications)
+# Run ETL for YESTERDAY'S papers with AI summarization (default)
 python run_once.py
 
 # Update existing papers with category names (no new paper extraction)
 python run_once.py --update-categories
 
-# Fetch papers for a specific date
+# Fetch papers for a specific date (includes summarization)
 python run_once.py --specific-date 2025-01-15
 
-# Test mode - fetch papers from last 7 days (ending yesterday)
+# Test mode - fetch papers from last 7 days (includes summarization)
 python run_once.py --test
 
-# Fetch papers from last N days (ending yesterday)
+# Fetch papers from last N days (includes summarization)
 python run_once.py --days-back 3
 ```
+
+### AI Summarization
+
+```bash
+# Process papers for AI summarization (standalone) - respects free tier limits
+python process_summaries.py
+
+# Process up to 3 papers for summarization (custom limit)
+python process_summaries.py --limit 3
+
+# Enable debug logging for summarization
+python process_summaries.py --debug
+
+# Summarization happens automatically during regular ETL runs (5 papers max per run)
+python run_once.py  # Includes paper extraction + summarization
+```
+
+**Rate Limiting Notes:**
+- Free tier allows 15 requests/minute, 1000/day
+- Default limit is 5 papers per run to stay well within limits
+- Pipeline automatically waits between requests to respect rate limits
+- Processing time scales with number of papers due to rate limiting
 
 ### Category Name Updates
 
@@ -125,16 +188,34 @@ python run_once.py  # Updates existing papers after inserting new ones
 ### Scheduled Daily Run
 
 ```bash
-# Start the scheduler (runs daily at 9:00 AM for yesterday's publications)
+# Start the scheduler (runs daily with full pipeline including AI summarization)
 python scheduler.py
 ```
 
 ### Direct ETL Run
 
 ```bash
-# Run the main ETL script directly (yesterday's papers + category updates)
+# Run the main ETL script directly (papers + categories + AI summaries)
 python arxiv_etl.py
 ```
+
+## AI Summarization Workflow
+
+The complete workflow now includes:
+
+1. **Paper Extraction**: Download papers from arXiv for target date
+2. **Category Translation**: Convert category IDs to human-readable names  
+3. **Database Storage**: Save papers to `arxiv_papers` table
+4. **PDF Processing**: Download and extract text from PDFs (temporary)
+5. **AI Summarization**: Generate summaries using Gemini API
+6. **Summary Storage**: Save summaries to `summary_papers` table
+
+### Processing Limits:
+- **Daily ETL**: Processes up to 5 papers for summarization per run (respects free tier)
+- **Standalone**: Configurable limit with `--limit` parameter (default: 5)
+- **Rate Limiting**: Automatic 15 requests/minute limit enforcement
+- **Free Tier Protection**: Built-in safeguards to stay within 1000 requests/day
+- **Error Handling**: Failed summaries logged and marked in database
 
 ## arXiv Publication Pattern & Filtering
 

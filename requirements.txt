@@ -3,4 +3,7 @@ feedparser==6.0.10
 supabase==2.3.4
 python-dotenv==1.0.0
 schedule==1.2.0
-xmltodict==0.13.0 
+xmltodict==0.13.0
+google-generativeai==0.8.3
+PyPDF2==3.0.1
+pypdf==4.0.1 
