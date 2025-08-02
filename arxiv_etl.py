@@ -538,22 +538,23 @@ class ArxivETL:
             logger.error(f"Error downloading/processing PDF {pdf_url}: {str(e)}")
             return None
     
-    def generate_summaries_with_gemini(self, paper_title: str, abstract: str, pdf_text: str) -> Optional[Dict[str, str]]:
-        """Generate summaries using Gemini AI."""
+    def generate_summaries_with_gemini(self, paper_title: str, abstract: str, pdf_text: str, max_retries: int = 2) -> Optional[Dict[str, str]]:
+        """Generate summaries using Gemini AI with retry logic for parsing failures."""
         if not self.gemini_enabled:
             logger.warning("Gemini AI not enabled, skipping summarization")
             return None
         
-        try:
-            # Wait if needed to respect rate limits
-            self.rate_limiter.wait_if_needed()
-            
-            # Prepare the content for Gemini (combine title, abstract, and PDF text)
-            # Limit PDF text to avoid token limits
-            max_pdf_length = 15000  # Adjust based on token limits
-            truncated_pdf = pdf_text[:max_pdf_length] if pdf_text else ""
-            
-            content = f"""
+        for attempt in range(max_retries + 1):
+            try:
+                # Wait if needed to respect rate limits
+                self.rate_limiter.wait_if_needed()
+                
+                # Prepare the content for Gemini (combine title, abstract, and PDF text)
+                # Limit PDF text to avoid token limits
+                max_pdf_length = 15000  # Adjust based on token limits
+                truncated_pdf = pdf_text[:max_pdf_length] if pdf_text else ""
+                
+                content = f"""
 Title: {paper_title}
 
 Abstract: {abstract}
@@ -598,61 +599,147 @@ BEGINNER_SUMMARY: [your 150-200 word beginner summary here]
 INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
 """
 
-            logger.info("Generating summaries with Gemini 2.5 Flash Lite")
-            response = self.gemini_model.generate_content(content)
-            
-            if not response.text:
-                logger.error("Empty response from Gemini API")
-                return None
-            
-            # Parse the response
-            summaries = self.parse_gemini_response(response.text)
-            if summaries:
-                logger.info("Successfully generated summaries with Gemini 2.5 Flash Lite")
-                return summaries
-            else:
-                logger.error("Failed to parse Gemini response")
-                return None
+                attempt_msg = f" (attempt {attempt + 1}/{max_retries + 1})" if attempt > 0 else ""
+                logger.info(f"Generating summaries with Gemini 2.5 Flash Lite{attempt_msg}")
+                response = self.gemini_model.generate_content(content)
                 
-        except Exception as e:
-            logger.error(f"Error generating summaries with Gemini: {str(e)}")
-            return None
+                if not response.text:
+                    logger.error("Empty response from Gemini API")
+                    if attempt < max_retries:
+                        logger.info(f"Retrying due to empty response...")
+                        continue
+                    return None
+                
+                # Parse the response
+                summaries = self.parse_gemini_response(response.text)
+                if summaries:
+                    success_msg = f"Successfully generated summaries with Gemini 2.5 Flash Lite"
+                    if attempt > 0:
+                        success_msg += f" on attempt {attempt + 1}"
+                    logger.info(success_msg)
+                    return summaries
+                else:
+                    if attempt < max_retries:
+                        logger.warning(f"Parsing failed on attempt {attempt + 1}, retrying...")
+                        continue
+                    return None
+                    
+            except Exception as e:
+                logger.error(f"Error generating summaries with Gemini (attempt {attempt + 1}): {str(e)}")
+                if attempt < max_retries:
+                    logger.info(f"Retrying due to exception...")
+                    continue
+                return None
+        
+        return None
     
     def parse_gemini_response(self, response_text: str) -> Optional[Dict[str, str]]:
-        """Parse Gemini AI response to extract the six summaries."""
+        """Parse Gemini AI response to extract the six summaries with improved error handling."""
         try:
-            # Extract each section using regex
-            easy_title_match = re.search(r'BEGINNER_TITLE:\s*(.*?)(?=\n\n|INTERMEDIATE_TITLE:)', response_text, re.DOTALL)
-            intermediate_title_match = re.search(r'INTERMEDIATE_TITLE:\s*(.*?)(?=\n\n|BEGINNER_OVERVIEW:)', response_text, re.DOTALL)
-            beginner_overview_match = re.search(r'BEGINNER_OVERVIEW:\s*(.*?)(?=\n\n|INTERMEDIATE_OVERVIEW:)', response_text, re.DOTALL)
-            intermediate_overview_match = re.search(r'INTERMEDIATE_OVERVIEW:\s*(.*?)(?=\n\n|BEGINNER_SUMMARY:)', response_text, re.DOTALL)
-            beginner_summary_match = re.search(r'BEGINNER_SUMMARY:\s*(.*?)(?=\n\n|INTERMEDIATE_SUMMARY:)', response_text, re.DOTALL)
-            intermediate_summary_match = re.search(r'INTERMEDIATE_SUMMARY:\s*(.*?)(?:\n\n|$)', response_text, re.DOTALL)
+            # Clean up the response text
+            response_text = response_text.strip()
             
-            if not all([easy_title_match, intermediate_title_match, beginner_overview_match, intermediate_overview_match, beginner_summary_match, intermediate_summary_match]):
-                logger.error("Could not find all required sections in Gemini response")
-                logger.debug(f"Response text: {response_text[:500]}...")
-                return None
-            
-            summaries = {
-                'beginner_title': easy_title_match.group(1).strip(),
-                'intermediate_title': intermediate_title_match.group(1).strip(),
-                'beginner_overview': beginner_overview_match.group(1).strip(),
-                'intermediate_overview': intermediate_overview_match.group(1).strip(),
-                'beginner_summary': beginner_summary_match.group(1).strip(),
-                'intermediate_summary': intermediate_summary_match.group(1).strip()
+            # More flexible regex patterns that handle various formatting
+            patterns = {
+                'beginner_title': [
+                    r'BEGINNER_TITLE:\s*(.*?)(?=\n\s*INTERMEDIATE_TITLE:|$)',
+                    r'BEGINNER_TITLE:\s*(.*?)(?=\n\n|\nINTERMEDIATE)',
+                    r'BEGINNER_TITLE:\s*(.*?)(?=INTERMEDIATE_TITLE:)',
+                    r'BEGINNER_TITLE:\s*(.*?)(?=\n)',  # Fallback: just get the line
+                ],
+                'intermediate_title': [
+                    r'INTERMEDIATE_TITLE:\s*(.*?)(?=\n\s*BEGINNER_OVERVIEW:|$)',
+                    r'INTERMEDIATE_TITLE:\s*(.*?)(?=\n\n|\nBEGINNER_OVERVIEW)',
+                    r'INTERMEDIATE_TITLE:\s*(.*?)(?=BEGINNER_OVERVIEW:)',
+                    r'INTERMEDIATE_TITLE:\s*(.*?)(?=\n)',  # Fallback: just get the line
+                ],
+                'beginner_overview': [
+                    r'BEGINNER_OVERVIEW:\s*(.*?)(?=\n\s*INTERMEDIATE_OVERVIEW:|$)',
+                    r'BEGINNER_OVERVIEW:\s*(.*?)(?=\n\n|\nINTERMEDIATE_OVERVIEW)',
+                    r'BEGINNER_OVERVIEW:\s*(.*?)(?=INTERMEDIATE_OVERVIEW:)',
+                    r'BEGINNER_OVERVIEW:\s*(.*?)(?=\n)',  # Fallback: just get the line
+                ],
+                'intermediate_overview': [
+                    r'INTERMEDIATE_OVERVIEW:\s*(.*?)(?=\n\s*BEGINNER_SUMMARY:|$)',
+                    r'INTERMEDIATE_OVERVIEW:\s*(.*?)(?=\n\n|\nBEGINNER_SUMMARY)',
+                    r'INTERMEDIATE_OVERVIEW:\s*(.*?)(?=BEGINNER_SUMMARY:)',
+                    r'INTERMEDIATE_OVERVIEW:\s*(.*?)(?=\n)',  # Fallback: just get the line
+                    # Alternative formats Gemini might use
+                    r'INTERMEDIATE OVERVIEW:\s*(.*?)(?=\n\s*BEGINNER_SUMMARY:|$)',
+                    r'Intermediate Overview:\s*(.*?)(?=\n\s*BEGINNER_SUMMARY:|$)',
+                ],
+                'beginner_summary': [
+                    r'BEGINNER_SUMMARY:\s*(.*?)(?=\n\s*INTERMEDIATE_SUMMARY:|$)',
+                    r'BEGINNER_SUMMARY:\s*(.*?)(?=\n\n|\nINTERMEDIATE_SUMMARY)',
+                    r'BEGINNER_SUMMARY:\s*(.*?)(?=INTERMEDIATE_SUMMARY:)',
+                    # Try with different spacing and formatting
+                    r'BEGINNER_SUMMARY:\s*(.*?)(?=\n\s*INTERMEDIATE)',
+                ],
+                'intermediate_summary': [
+                    r'INTERMEDIATE_SUMMARY:\s*(.*?)(?:\n\n|$)',
+                    r'INTERMEDIATE_SUMMARY:\s*(.*?)$',
+                    # Since this is usually last, try to get everything after the header
+                    r'INTERMEDIATE_SUMMARY:\s*(.*)',
+                ]
             }
             
-            # Validate that summaries are not empty
+            summaries = {}
+            
+            # Try multiple regex patterns for each field
+            for field_name, regex_list in patterns.items():
+                extracted_content = None
+                
+                for regex_pattern in regex_list:
+                    match = re.search(regex_pattern, response_text, re.DOTALL | re.IGNORECASE)
+                    if match:
+                        extracted_content = match.group(1).strip()
+                        if extracted_content and len(extracted_content) > 10:  # Valid content
+                            break
+                
+                # Special handling for intermediate_overview which seems to be the problem
+                if not extracted_content and field_name == 'intermediate_overview':
+                    # Try alternative searches for this specific field
+                    alternative_patterns = [
+                        r'(?:INTERMEDIATE_OVERVIEW|INTERMEDIATE OVERVIEW|Intermediate Overview):\s*(.*?)(?=\n\s*(?:BEGINNER_SUMMARY|Beginner Summary)|$)',
+                        r'(?:INTERMEDIATE_OVERVIEW|INTERMEDIATE OVERVIEW|Intermediate Overview):\s*(.*?)(?=\n)',
+                        # Look for content between beginner_overview and beginner_summary
+                        r'BEGINNER_OVERVIEW:.*?\n\s*(.*?)(?=\n\s*(?:BEGINNER_SUMMARY|Beginner Summary))',
+                    ]
+                    
+                    for alt_pattern in alternative_patterns:
+                        match = re.search(alt_pattern, response_text, re.DOTALL | re.IGNORECASE)
+                        if match:
+                            extracted_content = match.group(1).strip()
+                            # Clean up the content if it contains headers
+                            if extracted_content.startswith(('INTERMEDIATE', 'Intermediate')):
+                                # Extract just the content after any header
+                                content_match = re.search(r'(?:INTERMEDIATE_OVERVIEW|INTERMEDIATE OVERVIEW|Intermediate Overview):\s*(.*)', extracted_content, re.DOTALL)
+                                if content_match:
+                                    extracted_content = content_match.group(1).strip()
+                            if extracted_content and len(extracted_content) > 10:
+                                logger.info(f"Found {field_name} using alternative pattern")
+                                break
+                
+                if not extracted_content:
+                    logger.error(f"Could not extract {field_name} from Gemini response")
+                    logger.debug(f"Full response for debugging:\n{response_text}")
+                    return None
+                
+                summaries[field_name] = extracted_content
+            
+            # Final validation
             for key, value in summaries.items():
                 if not value or len(value) < 10:
-                    logger.error(f"Generated {key} is too short or empty")
+                    logger.error(f"Generated {key} is too short or empty: '{value}'")
                     return None
             
+            logger.info(f"Successfully parsed all 6 sections from Gemini response")
             return summaries
             
         except Exception as e:
             logger.error(f"Error parsing Gemini response: {str(e)}")
+            logger.debug(f"Response text length: {len(response_text)}")
+            logger.debug(f"Response preview: {response_text[:500]}...")
             return None
     
     def save_summary_to_database(self, paper_id: int, arxiv_id: str, summaries: Dict[str, str]) -> bool:
@@ -721,6 +808,7 @@ INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
             
             logger.info(f"Found {len(papers_response.data)} papers to process")
             processed_count = 0
+            retry_count = 0
             
             for i, paper in enumerate(papers_response.data, 1):
                 try:
@@ -738,13 +826,18 @@ INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
                         logger.warning(f"Could not extract text from PDF for {arxiv_id}, using abstract only")
                         pdf_text = ""
                     
-                    # Generate summaries with Gemini (rate limiting handled inside the method)
-                    summaries = self.generate_summaries_with_gemini(title, abstract, pdf_text)
+                    # Generate summaries with Gemini (includes retry logic)
+                    summaries = self.generate_summaries_with_gemini(title, abstract, pdf_text, max_retries=2)
                     
                     if summaries:
                         # Save to database
                         if self.save_summary_to_database(paper_id, arxiv_id, summaries):
                             processed_count += 1
+                            logger.info(f"✅ Successfully processed paper {arxiv_id}")
+                        else:
+                            logger.error(f"❌ Failed to save summary for paper {arxiv_id}")
+                    else:
+                        logger.error(f"❌ Failed to generate summaries for paper {arxiv_id}")
                     
                     # Progress update
                     if i % 5 == 0:
@@ -754,7 +847,13 @@ INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
                     logger.error(f"Error processing paper {paper.get('arxiv_id', 'unknown')}: {str(e)}")
                     continue
             
-            logger.info(f"Successfully processed {processed_count} papers for summarization")
+            success_rate = (processed_count / len(papers_response.data)) * 100
+            logger.info(f"Successfully processed {processed_count}/{len(papers_response.data)} papers ({success_rate:.1f}% success rate)")
+            
+            if processed_count < len(papers_response.data):
+                failed_count = len(papers_response.data) - processed_count
+                logger.warning(f"{failed_count} papers failed processing - check logs for details")
+            
             return processed_count
             
         except Exception as e:
