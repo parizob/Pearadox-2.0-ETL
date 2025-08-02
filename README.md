@@ -20,11 +20,13 @@ A comprehensive ETL (Extract, Transform, Load) pipeline that extracts AI science
 
 The pipeline now includes advanced AI summarization using Google's Gemini 2.5 Flash Lite API:
 
-### Four Types of Summaries Generated:
-1. **Easy Title**: Simplified, engaging title for general audience
+### Six Types of AI-Generated Content:
+1. **Beginner Title**: Simple, engaging title for general audience (no technical jargon)
 2. **Intermediate Title**: Moderately technical title for readers with some background
-3. **Beginner Summary**: Plain-language explanation for anyone to understand
-4. **Intermediate Summary**: Detailed technical summary for educated readers
+3. **Beginner Overview**: One-sentence explanation in the simplest terms for anyone
+4. **Intermediate Overview**: One-sentence technical summary for informed readers
+5. **Beginner Summary**: 150-200 word plain-language explanation for general audience
+6. **Intermediate Summary**: 150-200 word detailed technical summary for educated readers
 
 ### PDF Processing:
 - Downloads PDFs temporarily (not stored permanently)
@@ -35,8 +37,8 @@ The pipeline now includes advanced AI summarization using Google's Gemini 2.5 Fl
 ### Rate Limiting for Free Tier:
 - **Model**: Gemini 2.5 Flash Lite (free tier)
 - **Limits**: 15 requests per minute, 1000 requests per day
-- **Built-in Protection**: Automatic rate limiting to stay within free limits
-- **Default Processing**: 5 papers per run (adjustable with `--limit` parameter)
+- **Smart Rate Limiting**: Automatically waits between requests to respect limits
+- **Default Processing**: 5 papers per run to stay well within daily quota
 
 ### Database Storage:
 - Summaries stored in separate `summary_papers` table
@@ -207,8 +209,11 @@ The complete workflow now includes:
 2. **Category Translation**: Convert category IDs to human-readable names  
 3. **Database Storage**: Save papers to `arxiv_papers` table
 4. **PDF Processing**: Download and extract text from PDFs (temporary)
-5. **AI Summarization**: Generate summaries using Gemini API
-6. **Summary Storage**: Save summaries to `summary_papers` table
+5. **AI Summarization**: Generate 6 outputs using Gemini 2.5 Flash Lite:
+   - 2 titles (beginner/intermediate)
+   - 2 one-sentence overviews (beginner/intermediate)
+   - 2 detailed summaries (beginner/intermediate, 150-200 words each)
+6. **Summary Storage**: Save all 6 outputs to `summary_papers` table
 
 ### Processing Limits:
 - **Daily ETL**: Processes up to 5 papers for summarization per run (respects free tier)

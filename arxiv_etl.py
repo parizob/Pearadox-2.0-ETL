@@ -560,36 +560,44 @@ Abstract: {abstract}
 
 Paper Content (First part): {truncated_pdf}
 
-Please analyze this research paper and provide four outputs:
+Please analyze this research paper and provide six outputs with specific requirements:
 
-1. EASY_TITLE: Create an easy-to-understand, engaging title that a general audience would find accessible and interesting.
+1. BEGINNER_TITLE: Create a simple, engaging title that anyone can understand. Make it accessible and interesting for a general audience without technical jargon.
 
 2. INTERMEDIATE_TITLE: Create a moderately technical title that captures the essence of the research while being accessible to readers with some technical background.
 
-3. BEGINNER_SUMMARY: Write a summary that explains this research in simple terms that anyone can understand. Focus on:
+3. BEGINNER_OVERVIEW: Write exactly ONE SENTENCE that explains what this research is about in the simplest terms possible. This should be clear and engaging for anyone to understand.
+
+4. INTERMEDIATE_OVERVIEW: Write exactly ONE SENTENCE that summarizes the research for readers with technical knowledge, including key technical concepts but keeping it concise.
+
+5. BEGINNER_SUMMARY: Write a 150-200 word summary that explains this research in simple terms. Focus on:
    - What problem they're trying to solve
    - What they did (in simple terms)
    - What they found
    - Why it matters to everyday people
-   Keep it conversational and avoid technical jargon.
+   Keep it conversational and avoid technical jargon. Target exactly 150-200 words.
 
-4. INTERMEDIATE_SUMMARY: Write a more detailed summary for readers with post-university education or intermediate technical knowledge. Include:
+6. INTERMEDIATE_SUMMARY: Write a 150-200 word summary for readers with post-university education or technical knowledge. Include:
    - The specific research problem and methodology
    - Key technical findings and contributions
    - Implications for the field
    - Limitations and future work
-   Use appropriate technical terminology but keep it accessible to educated non-specialists.
+   Use appropriate technical terminology but keep it accessible. Target exactly 150-200 words.
 
 Format your response exactly like this:
-EASY_TITLE: [your easy title here]
+BEGINNER_TITLE: [your beginner title here]
 
 INTERMEDIATE_TITLE: [your intermediate title here]
 
-BEGINNER_SUMMARY: [your beginner summary here]
+BEGINNER_OVERVIEW: [your one-sentence beginner overview here]
 
-INTERMEDIATE_SUMMARY: [your intermediate summary here]
+INTERMEDIATE_OVERVIEW: [your one-sentence intermediate overview here]
+
+BEGINNER_SUMMARY: [your 150-200 word beginner summary here]
+
+INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
 """
-            
+
             logger.info("Generating summaries with Gemini 2.5 Flash Lite")
             response = self.gemini_model.generate_content(content)
             
@@ -611,24 +619,28 @@ INTERMEDIATE_SUMMARY: [your intermediate summary here]
             return None
     
     def parse_gemini_response(self, response_text: str) -> Optional[Dict[str, str]]:
-        """Parse Gemini AI response to extract the four summaries."""
+        """Parse Gemini AI response to extract the six summaries."""
         try:
             # Extract each section using regex
-            easy_title_match = re.search(r'EASY_TITLE:\s*(.*?)(?=\n\n|\nINTERMEDIATE_TITLE:)', response_text, re.DOTALL)
-            intermediate_title_match = re.search(r'INTERMEDIATE_TITLE:\s*(.*?)(?=\n\n|\nBEGINNER_SUMMARY:)', response_text, re.DOTALL)
-            beginner_match = re.search(r'BEGINNER_SUMMARY:\s*(.*?)(?=\n\n|\nINTERMEDIATE_SUMMARY:)', response_text, re.DOTALL)
-            intermediate_match = re.search(r'INTERMEDIATE_SUMMARY:\s*(.*?)(?:\n\n|$)', response_text, re.DOTALL)
+            easy_title_match = re.search(r'BEGINNER_TITLE:\s*(.*?)(?=\n\n|INTERMEDIATE_TITLE:)', response_text, re.DOTALL)
+            intermediate_title_match = re.search(r'INTERMEDIATE_TITLE:\s*(.*?)(?=\n\n|BEGINNER_OVERVIEW:)', response_text, re.DOTALL)
+            beginner_overview_match = re.search(r'BEGINNER_OVERVIEW:\s*(.*?)(?=\n\n|INTERMEDIATE_OVERVIEW:)', response_text, re.DOTALL)
+            intermediate_overview_match = re.search(r'INTERMEDIATE_OVERVIEW:\s*(.*?)(?=\n\n|BEGINNER_SUMMARY:)', response_text, re.DOTALL)
+            beginner_summary_match = re.search(r'BEGINNER_SUMMARY:\s*(.*?)(?=\n\n|INTERMEDIATE_SUMMARY:)', response_text, re.DOTALL)
+            intermediate_summary_match = re.search(r'INTERMEDIATE_SUMMARY:\s*(.*?)(?:\n\n|$)', response_text, re.DOTALL)
             
-            if not all([easy_title_match, intermediate_title_match, beginner_match, intermediate_match]):
+            if not all([easy_title_match, intermediate_title_match, beginner_overview_match, intermediate_overview_match, beginner_summary_match, intermediate_summary_match]):
                 logger.error("Could not find all required sections in Gemini response")
                 logger.debug(f"Response text: {response_text[:500]}...")
                 return None
             
             summaries = {
-                'easy_title': easy_title_match.group(1).strip(),
+                'beginner_title': easy_title_match.group(1).strip(),
                 'intermediate_title': intermediate_title_match.group(1).strip(),
-                'beginner_summary': beginner_match.group(1).strip(),
-                'intermediate_summary': intermediate_match.group(1).strip()
+                'beginner_overview': beginner_overview_match.group(1).strip(),
+                'intermediate_overview': intermediate_overview_match.group(1).strip(),
+                'beginner_summary': beginner_summary_match.group(1).strip(),
+                'intermediate_summary': intermediate_summary_match.group(1).strip()
             }
             
             # Validate that summaries are not empty
@@ -649,8 +661,10 @@ INTERMEDIATE_SUMMARY: [your intermediate summary here]
             summary_data = {
                 'arxiv_paper_id': paper_id,
                 'arxiv_id': arxiv_id,
-                'easy_title': summaries['easy_title'],
+                'beginner_title': summaries['beginner_title'],
                 'intermediate_title': summaries['intermediate_title'],
+                'beginner_overview': summaries['beginner_overview'],
+                'intermediate_overview': summaries['intermediate_overview'],
                 'beginner_summary': summaries['beginner_summary'],
                 'intermediate_summary': summaries['intermediate_summary'],
                 'processing_status': 'completed',
@@ -673,8 +687,10 @@ INTERMEDIATE_SUMMARY: [your intermediate summary here]
                 error_data = {
                     'arxiv_paper_id': paper_id,
                     'arxiv_id': arxiv_id,
-                    'easy_title': 'Error during processing',
+                    'beginner_title': 'Error during processing',
                     'intermediate_title': 'Error during processing',
+                    'beginner_overview': 'Error during processing',
+                    'intermediate_overview': 'Error during processing',
                     'beginner_summary': 'Summary generation failed',
                     'intermediate_summary': 'Summary generation failed',
                     'processing_status': 'error',
