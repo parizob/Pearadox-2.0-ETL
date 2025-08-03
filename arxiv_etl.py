@@ -563,13 +563,19 @@ Paper Content (First part): {truncated_pdf}
 
 Please analyze this research paper and provide six outputs with specific requirements:
 
+**IMPORTANT INSTRUCTIONS:**
+- You MUST include all 6 sections below, in the exact order, with the exact section headers.
+- Never skip any section, even if you have to repeat or rephrase content.
+- If you cannot generate a section, write: Not provided
+- If you skip a section, the response will be rejected and you will be asked to try again.
+
 1. BEGINNER_TITLE: Create a simple, engaging title that anyone can understand. Make it accessible and interesting for a general audience without technical jargon.
 
 2. INTERMEDIATE_TITLE: Create a moderately technical title that captures the essence of the research while being accessible to readers with some technical background.
 
 3. BEGINNER_OVERVIEW: Write exactly ONE SENTENCE that explains what this research is about in the simplest terms possible. This should be clear and engaging for anyone to understand.
 
-4. INTERMEDIATE_OVERVIEW: Write exactly ONE SENTENCE that summarizes the research for readers with technical knowledge, including key technical concepts but keeping it concise.
+4. INTERMEDIATE_OVERVIEW: Write exactly ONE SENTENCE that summarizes the research for readers with technical knowledge, including key technical concepts but keeping it concise. **Do not skip this section.**
 
 5. BEGINNER_SUMMARY: Write a 150-200 word summary that explains this research in simple terms. Focus on:
    - What problem they're trying to solve
