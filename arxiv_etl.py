@@ -563,11 +563,29 @@ Paper Content (First part): {truncated_pdf}
 
 Please analyze this research paper and provide six outputs with specific requirements:
 
-**IMPORTANT INSTRUCTIONS:**
+**CRITICAL FORMATTING INSTRUCTIONS:**
 - You MUST include all 6 sections below, in the exact order, with the exact section headers.
+- Each section MUST start on a new line with the exact header format shown below.
 - Never skip any section, even if you have to repeat or rephrase content.
 - If you cannot generate a section, write: Not provided
-- If you skip a section, the response will be rejected and you will be asked to try again.
+- If you skip a section or use wrong formatting, the response will be rejected.
+- DO NOT merge sections together or include section content within other sections.
+
+**REQUIRED EXACT FORMAT:**
+
+BEGINNER_TITLE: [your beginner title here]
+
+INTERMEDIATE_TITLE: [your intermediate title here]
+
+BEGINNER_OVERVIEW: [your one-sentence beginner overview here]
+
+INTERMEDIATE_OVERVIEW: [your one-sentence intermediate overview here]
+
+BEGINNER_SUMMARY: [your 150-200 word beginner summary here]
+
+INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
+
+**CONTENT REQUIREMENTS:**
 
 1. BEGINNER_TITLE: Create a simple, engaging title that anyone can understand. Make it accessible and interesting for a general audience without technical jargon.
 
@@ -591,18 +609,20 @@ Please analyze this research paper and provide six outputs with specific require
    - Limitations and future work
    Use appropriate technical terminology but keep it accessible. Target exactly 150-200 words.
 
-Format your response exactly like this:
-BEGINNER_TITLE: [your beginner title here]
+**EXAMPLE OF CORRECT FORMAT:**
+BEGINNER_TITLE: Scientists Create Smart Computer That Learns Like Humans
 
-INTERMEDIATE_TITLE: [your intermediate title here]
+INTERMEDIATE_TITLE: Novel Neural Architecture Demonstrates Human-Like Learning Patterns
 
-BEGINNER_OVERVIEW: [your one-sentence beginner overview here]
+BEGINNER_OVERVIEW: Researchers built a computer program that learns new tasks the same way people do.
 
-INTERMEDIATE_OVERVIEW: [your one-sentence intermediate overview here]
+INTERMEDIATE_OVERVIEW: This study presents a neural network architecture that mimics human cognitive learning mechanisms through attention-based feature selection.
 
-BEGINNER_SUMMARY: [your 150-200 word beginner summary here]
+BEGINNER_SUMMARY: [150-200 words explaining in simple terms]
 
-INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
+INTERMEDIATE_SUMMARY: [150-200 words with technical details]
+
+**NOW PROVIDE YOUR RESPONSE IN THE EXACT FORMAT ABOVE:**
 """
 
                 attempt_msg = f" (attempt {attempt + 1}/{max_retries + 1})" if attempt > 0 else ""
