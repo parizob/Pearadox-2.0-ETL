@@ -27,13 +27,16 @@ def run_etl_job():
     try:
         etl = ArxivETL()
         result = etl.run_daily_etl()
-        logger.info(f"Scheduled ETL job completed successfully. Inserted {result} new papers.")
+        logger.info(f"Scheduled ETL job completed successfully. Processed {result} papers (new + updated + summarized).")
+        return result
     except Exception as e:
         logger.error(f"Scheduled ETL job failed: {str(e)}")
+        return 0
 
 def main():
     """Main scheduler function."""
     logger.info("Starting ArXiv ETL scheduler")
+    logger.info("Note: ETL is weekday-aware - fetches Friday papers on Monday, previous day otherwise")
     
     # Schedule the job to run daily at 9:00 AM
     schedule.every().day.at("09:00").do(run_etl_job)
@@ -44,6 +47,7 @@ def main():
     # schedule.every(6).hours.do(run_etl_job)  # Every 6 hours
     
     logger.info("Scheduler configured to run daily at 09:00")
+    logger.info("ArXiv publishes papers Monday-Friday only")
     
     try:
         while True:

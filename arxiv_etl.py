@@ -177,11 +177,21 @@ class ArxivETL:
         return category_names
     
     def get_today_date_range(self) -> tuple:
-        """Get the date range for yesterday's papers (arXiv publishes papers the day before)."""
-        yesterday = datetime.now() - timedelta(days=1)
-        # Use yesterday's date since arXiv publishes papers the day before
-        start_date = yesterday.strftime('%Y%m%d0000')  # Start of yesterday
-        end_date = yesterday.strftime('%Y%m%d2359')   # End of yesterday
+        """Get the date range for the latest published papers (arXiv only publishes on weekdays)."""
+        today = datetime.now()
+        
+        # arXiv only publishes papers Monday through Friday
+        # On Monday, we want Friday's papers (3 days back)
+        # On other days, we want the previous day's papers
+        if today.weekday() == 0:  # Monday = 0
+            target_date = today - timedelta(days=3)  # Friday
+            logger.info("Monday detected: fetching Friday's publications")
+        else:
+            target_date = today - timedelta(days=1)  # Previous day
+        
+        # Use target date since arXiv publishes papers the day before they appear
+        start_date = target_date.strftime('%Y%m%d0000')  # Start of target date
+        end_date = target_date.strftime('%Y%m%d2359')   # End of target date
         return start_date, end_date
     
     def is_paper_from_today(self, paper_date: str) -> bool:
@@ -453,21 +463,30 @@ class ArxivETL:
             return 0
     
     def run_daily_etl(self):
-        """Run the complete ETL pipeline for yesterday's papers (arXiv's latest publications)."""
-        yesterday = datetime.now() - timedelta(days=1)
-        yesterday_str = yesterday.strftime('%Y-%m-%d')
-        logger.info(f"Starting daily arXiv ETL pipeline for YESTERDAY'S PUBLICATIONS: {yesterday_str}")
-        logger.info("Note: arXiv publishes papers the day before they appear on the site")
+        """Run the complete ETL pipeline for the latest published papers (weekday-aware)."""
+        today = datetime.now()
+        
+        # Determine target date based on weekday logic
+        if today.weekday() == 0:  # Monday
+            target_date = today - timedelta(days=3)  # Friday
+            date_description = "FRIDAY'S PUBLICATIONS (weekend skip)"
+        else:
+            target_date = today - timedelta(days=1)  # Previous day
+            date_description = "PREVIOUS DAY'S PUBLICATIONS"
+        
+        target_str = target_date.strftime('%Y-%m-%d')
+        logger.info(f"Starting daily arXiv ETL pipeline for {date_description}: {target_str}")
+        logger.info("Note: arXiv only publishes papers Monday through Friday")
         
         try:
-            # Get yesterday's date range
+            # Get target date range
             start_date, end_date = self.get_today_date_range()
             
-            # Extract papers from arXiv (will be filtered to yesterday only)
+            # Extract papers from arXiv (will be filtered to target date only)
             papers = self.extract_papers_from_arxiv(start_date, end_date, start_date[:8])
             
             if not papers:
-                logger.info(f"No papers found for yesterday ({yesterday_str})")
+                logger.info(f"No papers found for target date ({target_str})")
                 # Still try to update existing papers' categories_name and process summaries
                 updated_count = self.update_categories_names()
                 logger.info(f"Updated {updated_count} existing papers with category names")
@@ -490,7 +509,7 @@ class ArxivETL:
             # Process papers for summarization (rate limited to 5 papers for free tier)
             summarized_count = self.process_papers_for_summarization()
             
-            logger.info(f"ETL pipeline completed successfully for {yesterday_str}.")
+            logger.info(f"ETL pipeline completed successfully for {target_str}.")
             logger.info(f"Inserted {inserted_count} new papers, updated {updated_count} papers with category names, and generated summaries for {summarized_count} papers.")
             
             return inserted_count + updated_count + summarized_count

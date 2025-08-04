@@ -80,11 +80,18 @@ def main():
             
             print(f"ETL completed. Inserted {result} new papers and updated {updated_count} papers with category names.")
         else:
-            # Run normal daily ETL - yesterday's papers (arXiv default)
-            yesterday = datetime.now() - timedelta(days=1)
-            print(f"Fetching papers from yesterday: {yesterday.strftime('%Y-%m-%d')} (arXiv's latest publications)")
+            # Run normal daily ETL - weekday-aware (Friday on Monday, previous day otherwise)
+            today = datetime.now()
+            if today.weekday() == 0:  # Monday
+                target_date = today - timedelta(days=3)  # Friday
+                date_description = "Friday (weekend skip)"
+            else:
+                target_date = today - timedelta(days=1)  # Previous day
+                date_description = "previous day"
+            
+            print(f"Fetching papers from {date_description}: {target_date.strftime('%Y-%m-%d')} (arXiv's latest publications)")
             result = etl.run_daily_etl()
-            print(f"Daily ETL completed. Processed {result} papers total (new + updated).")
+            print(f"Daily ETL completed. Processed {result} papers total (new + updated + summarized).")
         
         return 0
         
