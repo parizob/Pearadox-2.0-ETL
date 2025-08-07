@@ -518,6 +518,30 @@ class ArxivETL:
             logger.error(f"ETL pipeline failed: {str(e)}")
             raise
 
+    def clean_text_for_utf8(self, text: str) -> str:
+        """Clean text to handle UTF-8 encoding issues and surrogates."""
+        if not text:
+            return ""
+        
+        try:
+            # Remove surrogates and invalid UTF-8 characters
+            cleaned_text = text.encode("utf-8", "ignore").decode("utf-8", "ignore")
+            
+            # Remove any remaining problematic characters
+            cleaned_text = re.sub(r'[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x9f]', '', cleaned_text)
+            
+            # Normalize whitespace
+            cleaned_text = re.sub(r'\s+', ' ', cleaned_text)
+            
+            return cleaned_text.strip()
+        except Exception as e:
+            logger.warning(f"Error cleaning text: {str(e)}")
+            # Fallback: try to return a basic cleaned version
+            try:
+                return ''.join(char for char in text if ord(char) < 127)
+            except:
+                return "Text cleaning failed"
+
     def download_pdf(self, pdf_url: str) -> Optional[str]:
         """Download PDF from URL and return the text content."""
         try:
@@ -539,16 +563,23 @@ class ArxivETL:
             max_pages = min(10, len(pdf_reader.pages))
             
             for page_num in range(max_pages):
-                page = pdf_reader.pages[page_num]
-                text_content += page.extract_text() + "\n"
+                try:
+                    page = pdf_reader.pages[page_num]
+                    page_text = page.extract_text()
+                    if page_text:
+                        # Clean each page's text for UTF-8 issues
+                        cleaned_page_text = self.clean_text_for_utf8(page_text)
+                        text_content += cleaned_page_text + "\n"
+                except Exception as e:
+                    logger.warning(f"Error extracting text from page {page_num}: {str(e)}")
+                    continue
             
             if not text_content.strip():
                 logger.warning("No text extracted from PDF")
                 return None
             
-            # Clean up the text
-            text_content = re.sub(r'\s+', ' ', text_content)  # Normalize whitespace
-            text_content = text_content.strip()
+            # Final cleanup of the combined text
+            text_content = self.clean_text_for_utf8(text_content)
             
             logger.debug(f"Extracted {len(text_content)} characters from PDF")
             return text_content
@@ -568,15 +599,20 @@ class ArxivETL:
                 # Wait if needed to respect rate limits
                 self.rate_limiter.wait_if_needed()
                 
+                # Clean all input text to prevent UTF-8 encoding issues
+                cleaned_title = self.clean_text_for_utf8(paper_title)
+                cleaned_abstract = self.clean_text_for_utf8(abstract)
+                cleaned_pdf_text = self.clean_text_for_utf8(pdf_text) if pdf_text else ""
+                
                 # Prepare the content for Gemini (combine title, abstract, and PDF text)
                 # Limit PDF text to avoid token limits
                 max_pdf_length = 15000  # Adjust based on token limits
-                truncated_pdf = pdf_text[:max_pdf_length] if pdf_text else ""
+                truncated_pdf = cleaned_pdf_text[:max_pdf_length] if cleaned_pdf_text else ""
                 
                 content = f"""
-Title: {paper_title}
+Title: {cleaned_title}
 
-Abstract: {abstract}
+Abstract: {cleaned_abstract}
 
 Paper Content (First part): {truncated_pdf}
 
@@ -646,6 +682,14 @@ INTERMEDIATE_SUMMARY: [150-200 words with technical details]
 
                 attempt_msg = f" (attempt {attempt + 1}/{max_retries + 1})" if attempt > 0 else ""
                 logger.info(f"Generating summaries with Gemini 2.5 Flash Lite{attempt_msg}")
+                
+                # Additional safety: ensure content is properly encoded
+                try:
+                    content_bytes = content.encode('utf-8', 'ignore')
+                    content = content_bytes.decode('utf-8', 'ignore')
+                except Exception as encoding_error:
+                    logger.warning(f"Content encoding issue: {str(encoding_error)}")
+                
                 response = self.gemini_model.generate_content(content)
                 
                 if not response.text:
