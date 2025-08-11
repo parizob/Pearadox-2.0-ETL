@@ -23,5 +23,13 @@ jobs:
         # Add your dependencies here, e.g.
         # pip install -r requirements.txt
 
+    - name: Create .env file
+      run: |
+        echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+        echo "GOOGLE_SHEET_ID=${{ secrets.GOOGLE_SHEET_ID }}" >> .env
+        echo "GOOGLE_SHEET_NAME=${{ secrets.GOOGLE_SHEET_NAME }}" >> .env
+        echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
+        echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
+
     - name: Run arxiv_etl.py
       run: python3 arxiv_etl.py
