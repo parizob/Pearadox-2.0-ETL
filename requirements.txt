@@ -1,4 +1,4 @@
-requests==2.31.0
+requests==2.32.0
 feedparser==6.0.10
 supabase==2.3.4
 python-dotenv==1.0.0
