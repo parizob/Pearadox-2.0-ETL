@@ -1,0 +1,27 @@
+name: Run process_summaries.py daily at 1:30 AM EST
+
+on:
+  schedule:
+    - cron: '30 6 * * *'  # 6:30 AM UTC = 1:30 AM EST every day
+
+jobs:
+  run-process-summaries:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # Add your dependencies here if needed
+        # pip install -r requirements.txt
+
+    - name: Run process_summaries.py
+      run: python3 process_summaries.py
