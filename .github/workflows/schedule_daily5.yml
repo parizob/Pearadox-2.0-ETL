@@ -3,7 +3,7 @@ name: Run daily5.py daily at 6 AM EST
 on:
   schedule:
     - cron: '0 11 * * *'  # 11:00 AM UTC = 6:00 AM EST every day
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   run-daily5:
@@ -23,14 +23,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Create .env file
+    - name: Create .env file (non-JSON secrets)
       run: |
         echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
         echo "GOOGLE_SPREADSHEET_ID=${{ secrets.GOOGLE_SHEET_ID }}" >> .env
         echo "GOOGLE_WORKSHEET_NAME=${{ secrets.GOOGLE_SHEET_NAME }}" >> .env
         echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
         echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
-        echo "GOOGLE_CREDENTIALS_JSON=${{ secrets.GOOGLE_CREDENTIALS_JSON }}" >> .env
+
+    - name: Create Google credentials file
+      run: |
+        echo '${{ secrets.GOOGLE_CREDENTIALS_JSON }}' > credentials.json
 
     - name: Run daily5.py
       run: python3 daily5.py
