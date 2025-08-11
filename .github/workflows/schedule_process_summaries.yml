@@ -2,21 +2,27 @@ name: Run process_summaries.py daily at 1:30 AM EST
 on:
   schedule:
     - cron: '30 6 * * *'  # 6:30 AM UTC = 1:30 AM EST every day
+  workflow_dispatch: 
+
 jobs:
   run-process-summaries:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+
     - name: Set up Python 3.x
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         # Add your dependencies here if needed
         # pip install -r requirements.txt
+
     - name: Create .env file
       run: |
         echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
@@ -24,5 +30,6 @@ jobs:
         echo "GOOGLE_SHEET_NAME=${{ secrets.GOOGLE_SHEET_NAME }}" >> .env
         echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
         echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
+        
     - name: Run process_summaries.py
       run: python3 process_summaries.py

@@ -3,6 +3,7 @@ name: Run arxiv_etl.py daily at 1 AM EST
 on:
   schedule:
     - cron: '0 6 * * *'  # 6:00 AM UTC = 1:00 AM EST every day
+  workflow_dispatch: 
 
 jobs:
   run-arxiv-etl:
