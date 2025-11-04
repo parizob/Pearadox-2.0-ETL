@@ -177,43 +177,38 @@ class ArxivETL:
         return category_names
     
     def get_today_date_range(self) -> tuple:
-        """Get the date range for the latest published papers (arXiv only publishes on weekdays)."""
-        today = datetime.now()
+        """Get the date range for papers from August 30 to September 3, 2025."""
+        # Set specific date range: August 30, 2025 to September 3, 2025
+        start_date_dt = datetime(2025, 8, 30)
+        end_date_dt = datetime(2025, 9, 3)
         
-        # arXiv only publishes papers Monday through Friday
-        # On Monday, we want Friday's papers (3 days back)
-        # On other days, we want the previous day's papers
-        if today.weekday() == 0:  # Monday = 0
-            target_date = today - timedelta(days=3)  # Friday
-            logger.info("Monday detected: fetching Friday's publications")
-        else:
-            target_date = today - timedelta(days=1)  # Previous day
+        start_date = start_date_dt.strftime('%Y%m%d0000')  # Start from August 30
+        end_date = end_date_dt.strftime('%Y%m%d2359')     # Through September 3
         
-        # Use target date since arXiv publishes papers the day before they appear
-        start_date = target_date.strftime('%Y%m%d0000')  # Start of target date
-        end_date = target_date.strftime('%Y%m%d2359')   # End of target date
+        logger.info(f"Fetching papers from August 30, 2025 through September 3, 2025")
+        logger.info(f"Date range: {start_date} to {end_date}")
         return start_date, end_date
     
-    def is_paper_from_today(self, paper_date: str) -> bool:
-        """Check if a paper is actually from today's date."""
+    def is_paper_in_date_range(self, paper_date: str) -> bool:
+        """Check if a paper is within the target date range (Aug 30 - Sep 3, 2025)."""
         try:
             # Parse the paper's published date
             paper_dt = datetime.strptime(paper_date, '%Y-%m-%dT%H:%M:%SZ')
-            today = datetime.now().date()
+            start_date = datetime(2025, 8, 30).date()
+            end_date = datetime(2025, 9, 3).date()
             paper_date_only = paper_dt.date()
             
-            return paper_date_only == today
+            return start_date <= paper_date_only <= end_date
         except Exception as e:
             logger.warning(f"Could not parse date {paper_date}: {str(e)}")
             return False
     
     def build_arxiv_query(self, start_date: str, end_date: str, max_results: int = 2000) -> str:
-        """Build arXiv API query for AI papers submitted today only."""
-        # Build category query - more restrictive for today only
+        """Build arXiv API query for AI papers from August 30 to September 3, 2025."""
+        # Build category query for AI-related categories
         category_query = ' OR '.join([f'cat:{cat}' for cat in self.ai_categories])
         
-        # For current date, we'll be more restrictive and rely on post-filtering
-        # Use only the main AI categories for the query
+        # Query for papers in the specified date range
         query = f"({category_query}) AND submittedDate:[{start_date} TO {end_date}]"
         
         # Build full URL - increase max_results since we'll filter more aggressively
@@ -463,30 +458,19 @@ class ArxivETL:
             return 0
     
     def run_daily_etl(self):
-        """Run the complete ETL pipeline for the latest published papers (weekday-aware)."""
-        today = datetime.now()
-        
-        # Determine target date based on weekday logic
-        if today.weekday() == 0:  # Monday
-            target_date = today - timedelta(days=3)  # Friday
-            date_description = "FRIDAY'S PUBLICATIONS (weekend skip)"
-        else:
-            target_date = today - timedelta(days=1)  # Previous day
-            date_description = "PREVIOUS DAY'S PUBLICATIONS"
-        
-        target_str = target_date.strftime('%Y-%m-%d')
-        logger.info(f"Starting daily arXiv ETL pipeline for {date_description}: {target_str}")
-        logger.info("Note: arXiv only publishes papers Monday through Friday")
+        """Run the ETL pipeline to extract papers from August 30 to September 3, 2025."""
+        logger.info("Starting arXiv ETL pipeline for papers from August 30 to September 3, 2025")
+        logger.info("Note: This covers a specific 5-day window targeting papers like 2509.02547")
         
         try:
             # Get target date range
             start_date, end_date = self.get_today_date_range()
             
-            # Extract papers from arXiv (will be filtered to target date only)
+            # Extract papers from arXiv (August 30 - September 3, 2025)
             papers = self.extract_papers_from_arxiv(start_date, end_date, start_date[:8])
             
             if not papers:
-                logger.info(f"No papers found for target date ({target_str})")
+                logger.info("No papers found in the August 30 - September 3, 2025 date range")
                 # Still try to update existing papers' categories_name and process summaries
                 updated_count = self.update_categories_names()
                 logger.info(f"Updated {updated_count} existing papers with category names")
@@ -509,7 +493,7 @@ class ArxivETL:
             # Process papers for summarization (rate limited to 5 papers for free tier)
             summarized_count = self.process_papers_for_summarization()
             
-            logger.info(f"ETL pipeline completed successfully for {target_str}.")
+            logger.info("ETL pipeline completed successfully for August 30 - September 3, 2025 papers.")
             logger.info(f"Inserted {inserted_count} new papers, updated {updated_count} papers with category names, and generated summaries for {summarized_count} papers.")
             
             return inserted_count + updated_count + summarized_count

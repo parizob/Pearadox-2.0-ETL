@@ -7,6 +7,7 @@ Retrieves 5 summarized AI papers from Supabase and writes them to a Google Sheet
 import os
 import sys
 import logging
+import re
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 from supabase import create_client, Client
@@ -27,6 +28,43 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+def generate_slug(title: str, arxiv_id: str) -> str:
+    """
+    Generate a URL slug from paper title and arxiv ID.
+    Replicates the JavaScript generateSlug function from the frontend.
+    
+    Args:
+        title: The paper title
+        arxiv_id: The arxiv ID
+        
+    Returns:
+        A URL-friendly slug in the format: {arxiv_id}-{truncated-title}
+    """
+    # Convert to lowercase
+    clean_title = title.lower()
+    
+    # Remove special characters (keep only word chars, spaces, and hyphens)
+    clean_title = re.sub(r'[^\w\s-]', '', clean_title)
+    
+    # Replace spaces with hyphens
+    clean_title = re.sub(r'\s+', '-', clean_title)
+    
+    # Replace multiple hyphens with single hyphen
+    clean_title = re.sub(r'-+', '-', clean_title)
+    
+    # Strip leading/trailing hyphens
+    clean_title = clean_title.strip('-')
+    
+    # Limit length for better URLs (truncate at 60 chars, avoiding partial words)
+    if len(clean_title) > 60:
+        truncated = clean_title[:60]
+        # Remove partial word at the end (everything after the last hyphen)
+        truncated = re.sub(r'-[^-]*$', '', truncated)
+        clean_title = truncated
+    
+    # Return slug in format: arxiv_id-title
+    return f"{arxiv_id}-{clean_title}"
 
 class ArxivToGSheet:
     """Export ArXiv summarized papers to Google Sheets."""
@@ -158,7 +196,8 @@ class ArxivToGSheet:
                 'Abstract',
                 'PDF URL',
                 'ArXiv URL',
-                'Processing Date'
+                'Processing Date',
+                'Pearadox URL'
             ]
             
             formatted_data = [headers]
@@ -200,9 +239,17 @@ class ArxivToGSheet:
                         return ''
                     return text[:max_length] + '...' if len(text) > max_length else text
                 
+                # Generate Pearadox URL
+                arxiv_id = arxiv_paper.get('arxiv_id', '')
+                title = arxiv_paper.get('title', '')
+                pearadox_url = ''
+                if arxiv_id and title:
+                    slug = generate_slug(title, arxiv_id)
+                    pearadox_url = f"https://pearadox.app/article/{slug}"
+                
                 row = [
-                    arxiv_paper.get('arxiv_id', ''),
-                    truncate_text(arxiv_paper.get('title', ''), 100),
+                    arxiv_id,
+                    truncate_text(title, 100),
                     truncate_text(paper.get('beginner_title', ''), 100),
                     truncate_text(paper.get('intermediate_title', ''), 100),
                     published_date,
@@ -215,7 +262,8 @@ class ArxivToGSheet:
                     truncate_text(arxiv_paper.get('abstract', '')),
                     arxiv_paper.get('pdf_url', ''),
                     arxiv_paper.get('abstract_url', ''),
-                    processing_date
+                    processing_date,
+                    pearadox_url
                 ]
                 
                 formatted_data.append(row)
@@ -260,7 +308,7 @@ class ArxivToGSheet:
             
             # Format the header row
             if data:
-                self.worksheet.format('A1:O1', {
+                self.worksheet.format('A1:P1', {
                     'backgroundColor': {'red': 0.8, 'green': 0.8, 'blue': 0.8},
                     'textFormat': {'bold': True}
                 })
