@@ -474,49 +474,97 @@ REMEMBER: The "correct_answer" field is REQUIRED and must be exactly one of thes
 def main():
     """Main function to run the quiz generator."""
     import argparse
+    from datetime import datetime as dt, timezone
     
     parser = argparse.ArgumentParser(
         description='Generate quiz questions for ArXiv paper summaries',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Generate 5 quizzes from most recent papers
+  # Auto mode: Generate quizzes for today's papers (if max date = today)
   python3 generate_quiz.py
-  
-  # Generate 10 quizzes from most recent papers
-  python3 generate_quiz.py --limit 10
   
   # Generate quizzes for ALL papers created on a specific date
   python3 generate_quiz.py --date 2025-11-03
   
-  # Generate quizzes for papers from specific date (with limit as fallback)
-  python3 generate_quiz.py --date 2025-11-03 --limit 20
+  # Legacy: Generate N quizzes from most recent papers
+  python3 generate_quiz.py --limit 10 --legacy
         """
     )
     parser.add_argument('--limit', type=int, default=5, 
-                       help='Number of quizzes to generate (default: 5). IGNORED when --date is used.')
+                       help='Number of quizzes to generate (default: 5). Only used with --legacy flag.')
     parser.add_argument('--date', type=str, default=None,
                        help='Generate quizzes for ALL papers created on this date (YYYY-MM-DD). Processes ALL papers from that date, no limit applied.')
+    parser.add_argument('--legacy', action='store_true',
+                       help='Use legacy mode: generate N most recent papers instead of auto date detection.')
     
     args = parser.parse_args()
     
     try:
         generator = QuizGenerator()
         
+        # Determine which mode to run
         if args.date:
-            print(f"\nGenerating quizzes for papers created on {args.date}...")
+            # Explicit date mode
+            target_date = args.date
+            print(f"\nGenerating quizzes for papers created on {target_date}...")
+        elif args.legacy:
+            # Legacy mode: N most recent papers
+            print(f"\nLegacy mode: Generating up to {args.limit} quizzes from recent papers...")
+            generated_count = generator.generate_quizzes_for_papers(
+                limit=args.limit,
+                target_date=None
+            )
+            print(f"\n✓ Successfully generated {generated_count} quiz questions")
+            return 0
         else:
-            print(f"\nGenerating up to {args.limit} quizzes from recent papers...")
+            # AUTO MODE: Check max date in summary_papers and run for today if it matches
+            logger.info("Running in AUTO mode: checking max date in summary_papers")
+            print("\nAUTO MODE: Checking for papers from today...")
+            
+            # Get max date from summary_papers
+            max_date_response = generator.supabase.table('summary_papers').select(
+                'created_at'
+            ).eq('processing_status', 'completed').order('created_at', desc=True).limit(1).execute()
+            
+            if not max_date_response.data:
+                logger.warning("No papers found in summary_papers table")
+                print("\n⚠ No papers found in summary_papers table")
+                return 0
+            
+            # Extract date from max created_at
+            max_created_at = max_date_response.data[0]['created_at']
+            if 'T' in max_created_at:
+                max_date = max_created_at.split('T')[0]
+            else:
+                max_date = max_created_at.split(' ')[0] if ' ' in max_created_at else max_created_at[:10]
+            
+            # Get current date (UTC to match database)
+            current_date = dt.now(timezone.utc).strftime('%Y-%m-%d')
+            
+            logger.info(f"Max date in summary_papers: {max_date}")
+            logger.info(f"Current date (UTC): {current_date}")
+            
+            if max_date != current_date:
+                logger.info(f"Max date ({max_date}) does not equal current date ({current_date}). Skipping quiz generation.")
+                print(f"\n⚠ No papers from today yet.")
+                print(f"   Max date in database: {max_date}")
+                print(f"   Current date: {current_date}")
+                print(f"\n✓ Script will run when papers from {current_date} are available.")
+                return 0
+            
+            # Max date equals current date, proceed with quiz generation
+            target_date = current_date
+            logger.info(f"Max date equals current date. Generating quizzes for {target_date}")
+            print(f"\n✓ Papers from today found! Generating quizzes for {target_date}...")
         
+        # Generate quizzes for target_date
         generated_count = generator.generate_quizzes_for_papers(
             limit=args.limit,
-            target_date=args.date
+            target_date=target_date
         )
         
-        if args.date:
-            print(f"\n✓ Successfully generated {generated_count} quiz questions for papers from {args.date}")
-        else:
-            print(f"\n✓ Successfully generated {generated_count} quiz questions")
+        print(f"\n✓ Successfully generated {generated_count} quiz questions for papers from {target_date}")
         return 0
         
     except Exception as e:
