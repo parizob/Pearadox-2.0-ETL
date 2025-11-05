@@ -99,21 +99,26 @@ class QuizGenerator:
             logger.error(f"Failed to initialize Gemini AI: {str(e)}")
             raise
     
-    def get_papers_needing_quizzes(self, limit: int = 5) -> List[Dict[str, Any]]:
+    def get_papers_needing_quizzes(self, limit: int = 5, target_date: Optional[str] = None) -> List[Dict[str, Any]]:
         """
         Retrieve papers from summary_papers that don't have quizzes yet.
         
         Args:
             limit: Maximum number of papers to retrieve (default: 5)
+            target_date: Optional date filter in YYYY-MM-DD format (e.g., '2025-11-03')
+                        Will match papers created on this date regardless of time
             
         Returns:
             List of paper dictionaries with summary data
         """
         try:
-            logger.info(f"Retrieving up to {limit} papers needing quizzes from Supabase")
+            if target_date:
+                logger.info(f"Retrieving papers created on {target_date} needing quizzes from Supabase")
+            else:
+                logger.info(f"Retrieving up to {limit} papers needing quizzes from Supabase")
             
-            # Query summary_papers table and check for existing quizzes
-            response = self.supabase.table('summary_papers').select(
+            # Build the query
+            query = self.supabase.table('summary_papers').select(
                 """
                 id,
                 arxiv_paper_id,
@@ -124,11 +129,91 @@ class QuizGenerator:
                 processing_status,
                 created_at
                 """
-            ).eq('processing_status', 'completed').order('created_at', desc=True).limit(limit * 2).execute()
+            ).eq('processing_status', 'completed')
+            
+            # Add date filter if specified
+            if target_date:
+                # Validate date format
+                from datetime import datetime as dt
+                try:
+                    # Validate the date format
+                    dt.strptime(target_date, '%Y-%m-%d')
+                    
+                    logger.info(f"Filtering for papers where date(created_at) = {target_date}")
+                    
+                    # Use PostgreSQL's date casting to compare only the date part
+                    # This uses a direct filter that compares YYYY-MM-DD regardless of time/timezone
+                    # We need to use a custom filter with the ::date cast
+                    # Since Supabase doesn't support ::date in the Python client directly,
+                    # we'll query all recent papers and filter in Python
+                    
+                    # For now, let's get papers from a wider range and filter in Python
+                    # Calculate date range to be safe with timezones
+                    start_timestamp = f"{target_date}T00:00:00"
+                    end_timestamp = f"{target_date}T23:59:59.999999"
+                    
+                    # Also account for timezone offsets (papers might be stored in UTC)
+                    # Get papers from the previous day to next day to be safe
+                    import datetime
+                    date_obj = dt.strptime(target_date, '%Y-%m-%d')
+                    prev_day = (date_obj - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+                    next_day = (date_obj + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+                    
+                    logger.info(f"Querying papers from {prev_day} to {next_day} (to handle timezones)")
+                    
+                    # Query with wider range
+                    query = query.gte('created_at', f"{prev_day}T00:00:00").lt('created_at', f"{next_day}T00:00:00")
+                    
+                except ValueError as e:
+                    logger.error(f"Invalid date format: {target_date}. Use YYYY-MM-DD format.")
+                    raise ValueError(f"Invalid date format: {target_date}. Expected YYYY-MM-DD (e.g., 2025-11-03)")
+            
+            # Order and execute query
+            # If date filtering, don't apply a limit (get all papers from that date)
+            # Otherwise use limit * 2 to account for papers that already have quizzes
+            if target_date:
+                # Set a very high limit to get ALL papers from the specified date
+                # Supabase has a default limit of ~1000, so we set a high value
+                # This ensures we get all papers without pagination
+                response = query.order('created_at', desc=True).limit(10000).execute()
+                logger.info(f"Query executed with limit=10000 to retrieve all papers from {target_date}")
+            else:
+                # Apply limit for recent papers query
+                response = query.order('created_at', desc=True).limit(limit * 2).execute()
             
             if not response.data:
-                logger.warning("No completed summary papers found in database")
+                if target_date:
+                    logger.warning(f"No completed summary papers found for date {target_date}")
+                else:
+                    logger.warning("No completed summary papers found in database")
                 return []
+            
+            logger.info(f"Found {len(response.data)} completed papers in database")
+            
+            # If using date filter, filter results to exact date (handling timezone)
+            if target_date and response.data:
+                from datetime import datetime as dt
+                filtered_papers = []
+                for paper in response.data:
+                    created_at = paper.get('created_at', '')
+                    if created_at:
+                        # Extract just the date part from the timestamp
+                        # Handle formats like: 2025-11-03T12:34:56+00:00 or 2025-11-03T12:34:56.123456+00:00
+                        try:
+                            # Parse the timestamp and extract date
+                            if 'T' in created_at:
+                                date_part = created_at.split('T')[0]
+                            else:
+                                date_part = created_at.split(' ')[0] if ' ' in created_at else created_at[:10]
+                            
+                            if date_part == target_date:
+                                filtered_papers.append(paper)
+                        except Exception as e:
+                            logger.warning(f"Could not parse date from created_at: {created_at}")
+                            continue
+                
+                response.data = filtered_papers
+                logger.info(f"After date filtering: {len(response.data)} papers match {target_date}")
             
             # Filter out papers that already have quizzes
             papers_without_quizzes = []
@@ -140,7 +225,8 @@ class QuizGenerator:
                 
                 if not quiz_check.data:
                     papers_without_quizzes.append(paper)
-                    if len(papers_without_quizzes) >= limit:
+                    # Only apply limit if not using date filter
+                    if not target_date and len(papers_without_quizzes) >= limit:
                         break
             
             logger.info(f"Found {len(papers_without_quizzes)} papers without quizzes")
@@ -324,24 +410,31 @@ REMEMBER: The "correct_answer" field is REQUIRED and must be exactly one of thes
             logger.error(f"Error saving quiz to database for paper {paper.get('arxiv_id')}: {str(e)}")
             return False
     
-    def generate_quizzes_for_papers(self, limit: int = 5) -> int:
+    def generate_quizzes_for_papers(self, limit: int = 5, target_date: Optional[str] = None) -> int:
         """
         Main method to generate quizzes for papers without them.
         
         Args:
             limit: Maximum number of quizzes to generate (default: 5)
+            target_date: Optional date filter in YYYY-MM-DD format (e.g., '2025-11-03')
             
         Returns:
             Number of quizzes successfully generated
         """
         try:
-            logger.info(f"Starting quiz generation for up to {limit} papers")
+            if target_date:
+                logger.info(f"Starting quiz generation for papers created on {target_date}")
+            else:
+                logger.info(f"Starting quiz generation for up to {limit} papers")
             
             # Get papers needing quizzes
-            papers = self.get_papers_needing_quizzes(limit)
+            papers = self.get_papers_needing_quizzes(limit, target_date)
             
             if not papers:
-                logger.info("No papers found that need quizzes")
+                if target_date:
+                    logger.info(f"No papers found that need quizzes for date {target_date}")
+                else:
+                    logger.info("No papers found that need quizzes")
                 return 0
             
             logger.info(f"Found {len(papers)} papers to generate quizzes for")
@@ -382,22 +475,53 @@ def main():
     """Main function to run the quiz generator."""
     import argparse
     
-    parser = argparse.ArgumentParser(description='Generate quiz questions for ArXiv paper summaries')
+    parser = argparse.ArgumentParser(
+        description='Generate quiz questions for ArXiv paper summaries',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Generate 5 quizzes from most recent papers
+  python3 generate_quiz.py
+  
+  # Generate 10 quizzes from most recent papers
+  python3 generate_quiz.py --limit 10
+  
+  # Generate quizzes for ALL papers created on a specific date
+  python3 generate_quiz.py --date 2025-11-03
+  
+  # Generate quizzes for papers from specific date (with limit as fallback)
+  python3 generate_quiz.py --date 2025-11-03 --limit 20
+        """
+    )
     parser.add_argument('--limit', type=int, default=5, 
-                       help='Number of quizzes to generate (default: 5)')
+                       help='Number of quizzes to generate (default: 5). IGNORED when --date is used.')
+    parser.add_argument('--date', type=str, default=None,
+                       help='Generate quizzes for ALL papers created on this date (YYYY-MM-DD). Processes ALL papers from that date, no limit applied.')
     
     args = parser.parse_args()
     
     try:
         generator = QuizGenerator()
-        generated_count = generator.generate_quizzes_for_papers(limit=args.limit)
         
-        print(f"\nSuccessfully generated {generated_count} quiz questions")
+        if args.date:
+            print(f"\nGenerating quizzes for papers created on {args.date}...")
+        else:
+            print(f"\nGenerating up to {args.limit} quizzes from recent papers...")
+        
+        generated_count = generator.generate_quizzes_for_papers(
+            limit=args.limit,
+            target_date=args.date
+        )
+        
+        if args.date:
+            print(f"\n✓ Successfully generated {generated_count} quiz questions for papers from {args.date}")
+        else:
+            print(f"\n✓ Successfully generated {generated_count} quiz questions")
         return 0
         
     except Exception as e:
         logger.error(f"Quiz generation failed: {str(e)}")
-        print(f"\nQuiz generation failed: {str(e)}")
+        print(f"\n✗ Quiz generation failed: {str(e)}")
         return 1
 
 if __name__ == "__main__":

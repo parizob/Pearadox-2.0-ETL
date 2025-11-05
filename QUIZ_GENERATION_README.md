@@ -66,6 +66,21 @@ python3 generate_quiz.py --limit 10
 python3 generate_quiz.py --limit 1
 ```
 
+### Generate for Specific Date
+
+Generate quizzes for ALL papers created on a specific date:
+
+```bash
+# Generate quizzes for all papers from November 3rd, 2025
+python3 generate_quiz.py --date 2025-11-03
+
+# The date format is YYYY-MM-DD
+# This will process ALL papers created on that date (ignores --limit)
+# Automatically skips papers that already have quizzes
+```
+
+**Note:** The `--date` parameter works with the `created_at` field in `summary_papers` table, which is a `timestamptz` field. The script correctly handles the timestamp by matching the entire day (00:00:00 to 23:59:59.999999).
+
 ### View Help
 
 ```bash
@@ -78,9 +93,10 @@ python3 generate_quiz.py --help
 
 The script:
 - Queries `summary_papers` table for completed summaries
-- Orders by `created_at` (most recent first)
+- **Without `--date`**: Orders by `created_at` (most recent first) and returns up to the specified limit (default: 5)
+- **With `--date`**: Filters papers where `created_at` matches the specified date (entire day from 00:00:00 to 23:59:59.999999)
 - Filters out papers that already have quizzes
-- Returns up to the specified limit (default: 5)
+- Returns matching papers for quiz generation
 
 ### 2. Quiz Generation
 
