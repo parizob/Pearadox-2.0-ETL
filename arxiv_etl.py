@@ -177,34 +177,51 @@ class ArxivETL:
         return category_names
     
     def get_today_date_range(self) -> tuple:
-        """Get the date range for papers from August 30 to September 3, 2025."""
-        # Set specific date range: August 30, 2025 to September 3, 2025
-        start_date_dt = datetime(2025, 8, 30)
-        end_date_dt = datetime(2025, 9, 3)
+        """Get the date range for papers from the previous publication day."""
+        from datetime import timedelta
         
-        start_date = start_date_dt.strftime('%Y%m%d0000')  # Start from August 30
-        end_date = end_date_dt.strftime('%Y%m%d2359')     # Through September 3
+        today = datetime.now()
         
-        logger.info(f"Fetching papers from August 30, 2025 through September 3, 2025")
+        # Determine target date based on day of week
+        # If Monday (weekday 0), get Friday's papers (3 days ago)
+        # Otherwise, get yesterday's papers (1 day ago)
+        if today.weekday() == 0:  # Monday
+            target_date = today - timedelta(days=3)  # Friday
+            day_description = "FRIDAY'S PUBLICATIONS (weekend skip)"
+        else:
+            target_date = today - timedelta(days=1)  # Yesterday
+            day_description = "PREVIOUS DAY'S PUBLICATIONS"
+        
+        # Set date range for target date (00:00 to 23:59)
+        start_date = target_date.strftime('%Y%m%d0000')
+        end_date = target_date.strftime('%Y%m%d2359')
+        
+        logger.info(f"Fetching papers from {day_description}: {target_date.strftime('%Y-%m-%d')}")
         logger.info(f"Date range: {start_date} to {end_date}")
         return start_date, end_date
     
     def is_paper_in_date_range(self, paper_date: str) -> bool:
-        """Check if a paper is within the target date range (Aug 30 - Sep 3, 2025)."""
+        """Check if a paper is from the target date (yesterday or Friday if Monday)."""
+        from datetime import timedelta
         try:
             # Parse the paper's published date
             paper_dt = datetime.strptime(paper_date, '%Y-%m-%dT%H:%M:%SZ')
-            start_date = datetime(2025, 8, 30).date()
-            end_date = datetime(2025, 9, 3).date()
             paper_date_only = paper_dt.date()
             
-            return start_date <= paper_date_only <= end_date
+            # Determine target date based on day of week
+            today = datetime.now()
+            if today.weekday() == 0:  # Monday
+                target_date = (today - timedelta(days=3)).date()  # Friday
+            else:
+                target_date = (today - timedelta(days=1)).date()  # Yesterday
+            
+            return paper_date_only == target_date
         except Exception as e:
             logger.warning(f"Could not parse date {paper_date}: {str(e)}")
             return False
     
     def build_arxiv_query(self, start_date: str, end_date: str, max_results: int = 2000) -> str:
-        """Build arXiv API query for AI papers from August 30 to September 3, 2025."""
+        """Build arXiv API query for AI papers from today."""
         # Build category query for AI-related categories
         category_query = ' OR '.join([f'cat:{cat}' for cat in self.ai_categories])
         
@@ -458,19 +475,26 @@ class ArxivETL:
             return 0
     
     def run_daily_etl(self):
-        """Run the ETL pipeline to extract papers from August 30 to September 3, 2025."""
-        logger.info("Starting arXiv ETL pipeline for papers from August 30 to September 3, 2025")
-        logger.info("Note: This covers a specific 5-day window targeting papers like 2509.02547")
+        """Run the ETL pipeline to extract papers from previous publication day."""
+        from datetime import timedelta
+        
+        today = datetime.now()
+        if today.weekday() == 0:  # Monday
+            target_date = today - timedelta(days=3)  # Friday
+            logger.info(f"Starting daily arXiv ETL pipeline for FRIDAY'S PUBLICATIONS (weekend skip): {target_date.strftime('%Y-%m-%d')}")
+        else:
+            target_date = today - timedelta(days=1)  # Yesterday
+            logger.info(f"Starting daily arXiv ETL pipeline for PREVIOUS DAY'S PUBLICATIONS: {target_date.strftime('%Y-%m-%d')}")
         
         try:
             # Get target date range
             start_date, end_date = self.get_today_date_range()
             
-            # Extract papers from arXiv (August 30 - September 3, 2025)
+            # Extract papers from arXiv for today
             papers = self.extract_papers_from_arxiv(start_date, end_date, start_date[:8])
             
             if not papers:
-                logger.info("No papers found in the August 30 - September 3, 2025 date range")
+                logger.info("No papers found for today")
                 # Still try to update existing papers' categories_name and process summaries
                 updated_count = self.update_categories_names()
                 logger.info(f"Updated {updated_count} existing papers with category names")

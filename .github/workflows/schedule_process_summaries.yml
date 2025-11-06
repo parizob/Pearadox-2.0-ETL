@@ -1,7 +1,7 @@
 name: Run process_summaries.py daily at 1:30 AM EST
 on:
   schedule:
-    - cron: '30 6 * * *'  # 6:30 AM UTC = 1:30 AM EST every day
+    - cron: '30 6 * * 1-5'  # 6:30 AM UTC = 1:30 AM EST Monday-Friday only
   workflow_dispatch: 
 
 jobs:
