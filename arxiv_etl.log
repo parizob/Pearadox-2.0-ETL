@@ -40639,3 +40639,65 @@ INTERMEDIATE_SUMMARY: This paper addresses the critical need for robots to accur
 2025-11-06 18:21:04,888 - ERROR - Error in process_papers_for_summarization: {'message': 'canceling statement due to statement timeout', 'code': '57014', 'hint': None, 'details': None}
 2025-11-06 18:21:04,888 - INFO - ETL pipeline completed successfully for August 30 - September 3, 2025 papers.
 2025-11-06 18:21:04,888 - INFO - Inserted 211 new papers, updated 0 papers with category names, and generated summaries for 0 papers.
+2025-11-06 18:22:56,962 - INFO - Gemini 2.5 Flash Lite configured successfully with rate limiting (15 req/min)
+2025-11-06 18:22:56,963 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-11-06 18:22:57,612 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-11-06 18:22:57,618 - INFO - Loaded taxonomy with 156 category mappings from Supabase
+2025-11-06 18:22:58,150 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-06 18:22:58,151 - INFO - Finding papers that need summarization
+2025-11-06 18:22:58,151 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-06 18:22:58,283 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-06 18:22:58,284 - INFO - Found 15 papers to process
+2025-11-06 18:22:58,285 - INFO - Processing paper 1/15: 2511.03725v1
+2025-11-06 18:22:59,792 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-06 18:23:00,157 - ERROR - Error generating summaries with Gemini (attempt 1): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:00,158 - INFO - Retrying due to exception...
+2025-11-06 18:23:00,164 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 2/3)
+2025-11-06 18:23:00,297 - ERROR - Error generating summaries with Gemini (attempt 2): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:00,297 - INFO - Retrying due to exception...
+2025-11-06 18:23:00,305 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 3/3)
+2025-11-06 18:23:00,456 - ERROR - Error generating summaries with Gemini (attempt 3): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:00,457 - ERROR - ❌ Failed to generate summaries for paper 2511.03725v1
+2025-11-06 18:23:00,457 - INFO - Processing paper 2/15: 2511.03724v1
+2025-11-06 18:23:01,037 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-06 18:23:01,156 - ERROR - Error generating summaries with Gemini (attempt 1): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:01,156 - INFO - Retrying due to exception...
+2025-11-06 18:23:01,159 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 2/3)
+2025-11-06 18:23:01,315 - ERROR - Error generating summaries with Gemini (attempt 2): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:01,316 - INFO - Retrying due to exception...
+2025-11-06 18:23:01,321 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 3/3)
+2025-11-06 18:23:01,443 - ERROR - Error generating summaries with Gemini (attempt 3): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:01,443 - ERROR - ❌ Failed to generate summaries for paper 2511.03724v1
+2025-11-06 18:23:01,444 - INFO - Processing paper 3/15: 2511.03718v1
+2025-11-06 18:23:02,159 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-06 18:23:02,273 - ERROR - Error generating summaries with Gemini (attempt 1): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:02,273 - INFO - Retrying due to exception...
+2025-11-06 18:23:02,278 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 2/3)
+2025-11-06 18:23:02,436 - ERROR - Error generating summaries with Gemini (attempt 2): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:02,436 - INFO - Retrying due to exception...
+2025-11-06 18:23:02,444 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 3/3)
+2025-11-06 18:23:02,564 - ERROR - Error generating summaries with Gemini (attempt 3): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:02,564 - ERROR - ❌ Failed to generate summaries for paper 2511.03718v1
+2025-11-06 18:23:02,564 - INFO - Processing paper 4/15: 2511.03710v1
+2025-11-06 18:23:03,467 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-06 18:23:03,586 - ERROR - Error generating summaries with Gemini (attempt 1): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:03,586 - INFO - Retrying due to exception...
+2025-11-06 18:23:03,590 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 2/3)
+2025-11-06 18:23:03,728 - ERROR - Error generating summaries with Gemini (attempt 2): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:03,729 - INFO - Retrying due to exception...
+2025-11-06 18:23:03,738 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 3/3)
+2025-11-06 18:23:03,854 - ERROR - Error generating summaries with Gemini (attempt 3): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:03,855 - ERROR - ❌ Failed to generate summaries for paper 2511.03710v1
+2025-11-06 18:23:03,855 - INFO - Processing paper 5/15: 2511.03708v1
+2025-11-06 18:23:04,579 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-06 18:23:04,703 - ERROR - Error generating summaries with Gemini (attempt 1): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:04,703 - INFO - Retrying due to exception...
+2025-11-06 18:23:04,706 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 2/3)
+2025-11-06 18:23:04,860 - ERROR - Error generating summaries with Gemini (attempt 2): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:04,860 - INFO - Retrying due to exception...
+2025-11-06 18:23:04,866 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 3/3)
+2025-11-06 18:23:04,986 - ERROR - Error generating summaries with Gemini (attempt 3): 403 Your API key was reported as leaked. Please use another API key.
+2025-11-06 18:23:04,987 - ERROR - ❌ Failed to generate summaries for paper 2511.03708v1
+2025-11-06 18:23:04,987 - INFO - Progress: 5/15 papers processed, 0 successful
+2025-11-06 18:23:04,987 - INFO - Processing paper 6/15: 2511.03699v1
+2025-11-06 18:23:05,611 - INFO - Rate limit reached. Waiting 54.2 seconds...

@@ -46,7 +46,7 @@ logger = logging.getLogger(__name__)
 class RateLimiter:
     """Rate limiter for Gemini API to stay within free tier limits."""
     
-    def __init__(self, max_requests_per_minute=15):
+    def __init__(self, max_requests_per_minute=10):
         self.max_requests_per_minute = max_requests_per_minute
         self.requests_made = []
         self.lock = threading.Lock()
@@ -101,9 +101,9 @@ class ArxivETL:
                 # Use Gemini 2.5 Flash Lite model (free tier)
                 self.gemini_model = genai.GenerativeModel('gemini-2.5-flash-lite')
                 self.gemini_enabled = True
-                # Initialize rate limiter for free tier: 15 requests per minute
-                self.rate_limiter = RateLimiter(max_requests_per_minute=15)
-                logger.info("Gemini 2.5 Flash Lite configured successfully with rate limiting (15 req/min)")
+                # Initialize rate limiter for free tier: 10 requests per minute
+                self.rate_limiter = RateLimiter(max_requests_per_minute=10)
+                logger.info("Gemini 2.5 Flash Lite configured successfully with rate limiting (10 req/min)")
             except Exception as e:
                 logger.error(f"Failed to configure Gemini AI: {str(e)}")
                 self.gemini_enabled = False

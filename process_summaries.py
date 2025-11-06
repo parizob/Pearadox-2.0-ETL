@@ -58,7 +58,7 @@ def main():
         batch_num = 1
         
         print(f"🔄 Processing in batches of {batch_size} papers with 1-minute intervals")
-        print(f"⏱️  Rate limit: 15 requests per minute (free tier)")
+        print(f"⏱️  Rate limit: 10 requests per minute (free tier)")
         
         while True:
             batch_start_time = time.time()

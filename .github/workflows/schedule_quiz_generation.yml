@@ -2,7 +2,7 @@ name: Run generate_quiz.py daily at 2 AM EST
 
 on:
   schedule:
-    - cron: '0 7 * * 1-5'  # 7:00 AM UTC = 2:00 AM EST Monday-Friday only
+    - cron: '0 8 * * 1-5'  # 7:00 AM UTC = 2:00 AM EST Monday-Friday only
   workflow_dispatch: 
 
 jobs:
