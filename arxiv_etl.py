@@ -517,7 +517,17 @@ class ArxivETL:
             # Process papers for summarization (rate limited to 5 papers for free tier)
             summarized_count = self.process_papers_for_summarization()
             
-            logger.info("ETL pipeline completed successfully for August 30 - September 3, 2025 papers.")
+            # Log completion message with target date
+            from datetime import timedelta
+            today = datetime.now()
+            if today.weekday() == 0:  # Monday
+                target_date = today - timedelta(days=3)  # Friday
+                date_desc = f"Friday's papers ({target_date.strftime('%Y-%m-%d')})"
+            else:
+                target_date = today - timedelta(days=1)  # Yesterday
+                date_desc = f"previous day's papers ({target_date.strftime('%Y-%m-%d')})"
+            
+            logger.info(f"ETL pipeline completed successfully for {date_desc}.")
             logger.info(f"Inserted {inserted_count} new papers, updated {updated_count} papers with category names, and generated summaries for {summarized_count} papers.")
             
             return inserted_count + updated_count + summarized_count
