@@ -42404,3 +42404,2090 @@ INTERMEDIATE_SUMMARY: This paper addresses the critical need for robots to accur
 2025-11-06 18:58:37,623 - INFO - Successfully processed 13/13 papers (100.0% success rate)
 2025-11-06 18:58:37,760 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 200 OK"
 2025-11-06 18:58:37,763 - INFO - Summarization process completed. Processed 208 papers in 13 batches.
+2025-11-07 08:21:50,590 - INFO - Gemini 2.5 Flash Lite configured successfully with rate limiting (10 req/min)
+2025-11-07 08:21:50,590 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-11-07 08:21:51,882 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-11-07 08:21:51,892 - INFO - Loaded taxonomy with 156 category mappings from Supabase
+2025-11-07 08:21:53,999 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:21:54,003 - INFO - Finding papers that need summarization
+2025-11-07 08:21:54,003 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:21:54,207 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:21:54,212 - INFO - Found 15 papers to process
+2025-11-07 08:21:54,213 - INFO - Processing paper 1/15: 2511.04681v1
+2025-11-07 08:21:56,964 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:00,624 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:00,624 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:00,968 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:00,971 - INFO - Successfully saved summary for paper 2511.04681v1
+2025-11-07 08:22:00,971 - INFO - ✅ Successfully processed paper 2511.04681v1
+2025-11-07 08:22:00,971 - INFO - Processing paper 2/15: 2511.04680v1
+2025-11-07 08:22:01,495 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:04,311 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:04,311 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:04,435 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:04,438 - INFO - Successfully saved summary for paper 2511.04680v1
+2025-11-07 08:22:04,438 - INFO - ✅ Successfully processed paper 2511.04680v1
+2025-11-07 08:22:04,438 - INFO - Processing paper 3/15: 2511.04679v1
+2025-11-07 08:22:05,512 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:08,596 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:08,597 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:08,707 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:08,710 - INFO - Successfully saved summary for paper 2511.04679v1
+2025-11-07 08:22:08,710 - INFO - ✅ Successfully processed paper 2511.04679v1
+2025-11-07 08:22:08,710 - INFO - Processing paper 4/15: 2511.04678v1
+2025-11-07 08:22:09,683 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:12,523 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:12,524 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:12,646 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:12,649 - INFO - Successfully saved summary for paper 2511.04678v1
+2025-11-07 08:22:12,649 - INFO - ✅ Successfully processed paper 2511.04678v1
+2025-11-07 08:22:12,650 - INFO - Processing paper 5/15: 2511.04675v1
+2025-11-07 08:22:14,593 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:17,371 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:17,371 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:17,475 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:17,477 - INFO - Successfully saved summary for paper 2511.04675v1
+2025-11-07 08:22:17,478 - INFO - ✅ Successfully processed paper 2511.04675v1
+2025-11-07 08:22:17,478 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:22:17,478 - INFO - Processing paper 6/15: 2511.04671v1
+2025-11-07 08:22:20,594 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:23,320 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:23,321 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:23,492 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:23,494 - INFO - Successfully saved summary for paper 2511.04671v1
+2025-11-07 08:22:23,494 - INFO - ✅ Successfully processed paper 2511.04671v1
+2025-11-07 08:22:23,494 - INFO - Processing paper 7/15: 2511.04670v1
+2025-11-07 08:22:25,071 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:28,458 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:28,459 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:28,567 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:28,570 - INFO - Successfully saved summary for paper 2511.04670v1
+2025-11-07 08:22:28,570 - INFO - ✅ Successfully processed paper 2511.04670v1
+2025-11-07 08:22:28,570 - INFO - Processing paper 8/15: 2511.04668v1
+2025-11-07 08:22:29,432 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:32,331 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:32,332 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:32,441 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:32,444 - INFO - Successfully saved summary for paper 2511.04668v1
+2025-11-07 08:22:32,444 - INFO - ✅ Successfully processed paper 2511.04668v1
+2025-11-07 08:22:32,444 - INFO - Processing paper 9/15: 2511.04667v1
+2025-11-07 08:22:33,022 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:36,135 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:36,135 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:36,245 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:36,248 - INFO - Successfully saved summary for paper 2511.04667v1
+2025-11-07 08:22:36,248 - INFO - ✅ Successfully processed paper 2511.04667v1
+2025-11-07 08:22:36,248 - INFO - Processing paper 10/15: 2511.04666v1
+2025-11-07 08:22:37,251 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:40,405 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:22:40,406 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:40,521 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:22:40,524 - INFO - Successfully saved summary for paper 2511.04666v1
+2025-11-07 08:22:40,524 - INFO - ✅ Successfully processed paper 2511.04666v1
+2025-11-07 08:22:40,524 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:22:40,525 - INFO - Processing paper 11/15: 2511.04665v1
+2025-11-07 08:22:42,219 - INFO - Rate limit reached. Waiting 14.7 seconds...
+2025-11-07 08:22:56,978 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:22:59,999 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:00,004 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:00,260 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:00,263 - INFO - Successfully saved summary for paper 2511.04665v1
+2025-11-07 08:23:00,263 - INFO - ✅ Successfully processed paper 2511.04665v1
+2025-11-07 08:23:00,264 - INFO - Processing paper 12/15: 2511.04664v1
+2025-11-07 08:23:01,263 - INFO - Rate limit reached. Waiting 0.2 seconds...
+2025-11-07 08:23:01,510 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:04,790 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:04,791 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:04,895 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:04,898 - INFO - Successfully saved summary for paper 2511.04664v1
+2025-11-07 08:23:04,898 - INFO - ✅ Successfully processed paper 2511.04664v1
+2025-11-07 08:23:04,899 - INFO - Processing paper 13/15: 2511.04662v1
+2025-11-07 08:23:06,481 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:09,896 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:09,896 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:10,066 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:10,068 - INFO - Successfully saved summary for paper 2511.04662v1
+2025-11-07 08:23:10,068 - INFO - ✅ Successfully processed paper 2511.04662v1
+2025-11-07 08:23:10,069 - INFO - Processing paper 14/15: 2511.04659v1
+2025-11-07 08:23:11,498 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:14,445 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:14,446 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:14,568 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:14,571 - INFO - Successfully saved summary for paper 2511.04659v1
+2025-11-07 08:23:14,571 - INFO - ✅ Successfully processed paper 2511.04659v1
+2025-11-07 08:23:14,571 - INFO - Processing paper 15/15: 2511.04655v1
+2025-11-07 08:23:16,163 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:19,396 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:19,397 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:19,506 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:19,509 - INFO - Successfully saved summary for paper 2511.04655v1
+2025-11-07 08:23:19,509 - INFO - ✅ Successfully processed paper 2511.04655v1
+2025-11-07 08:23:19,509 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:23:19,509 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:23:19,676 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:23:19,678 - INFO - Finding papers that need summarization
+2025-11-07 08:23:19,679 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:23:19,823 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:23:19,826 - INFO - Found 15 papers to process
+2025-11-07 08:23:19,826 - INFO - Processing paper 1/15: 2511.04654v1
+2025-11-07 08:23:20,200 - INFO - Rate limit reached. Waiting 0.4 seconds...
+2025-11-07 08:23:20,603 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:23,352 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:23,353 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:23,458 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:23,460 - INFO - Successfully saved summary for paper 2511.04654v1
+2025-11-07 08:23:23,461 - INFO - ✅ Successfully processed paper 2511.04654v1
+2025-11-07 08:23:23,461 - INFO - Processing paper 2/15: 2511.04653v1
+2025-11-07 08:23:24,159 - INFO - Rate limit reached. Waiting 0.9 seconds...
+2025-11-07 08:23:25,085 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:27,738 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:27,739 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:27,847 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:27,850 - INFO - Successfully saved summary for paper 2511.04653v1
+2025-11-07 08:23:27,851 - INFO - ✅ Successfully processed paper 2511.04653v1
+2025-11-07 08:23:27,851 - INFO - Processing paper 3/15: 2511.04652v1
+2025-11-07 08:23:31,351 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:34,533 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:34,534 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:35,226 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:35,228 - INFO - Successfully saved summary for paper 2511.04652v1
+2025-11-07 08:23:35,228 - INFO - ✅ Successfully processed paper 2511.04652v1
+2025-11-07 08:23:35,229 - INFO - Processing paper 4/15: 2511.04647v1
+2025-11-07 08:23:35,788 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:38,603 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:38,604 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:38,712 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:38,715 - INFO - Successfully saved summary for paper 2511.04647v1
+2025-11-07 08:23:38,715 - INFO - ✅ Successfully processed paper 2511.04647v1
+2025-11-07 08:23:38,715 - INFO - Processing paper 5/15: 2511.04646v1
+2025-11-07 08:23:40,725 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:43,404 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:23:43,406 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:23:43,503 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:23:43,507 - INFO - Successfully saved summary for paper 2511.04646v1
+2025-11-07 08:23:43,507 - INFO - ✅ Successfully processed paper 2511.04646v1
+2025-11-07 08:23:43,508 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:23:43,508 - INFO - Processing paper 6/15: 2511.04643v1
+2025-11-07 08:23:44,125 - INFO - Rate limit reached. Waiting 12.8 seconds...
+2025-11-07 08:23:56,977 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:00,210 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:00,210 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:00,376 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:00,377 - INFO - Successfully saved summary for paper 2511.04643v1
+2025-11-07 08:24:00,378 - INFO - ✅ Successfully processed paper 2511.04643v1
+2025-11-07 08:24:00,378 - INFO - Processing paper 7/15: 2511.04641v1
+2025-11-07 08:24:12,091 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:14,540 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:14,541 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:14,816 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:14,819 - INFO - Successfully saved summary for paper 2511.04641v1
+2025-11-07 08:24:14,819 - INFO - ✅ Successfully processed paper 2511.04641v1
+2025-11-07 08:24:14,819 - INFO - Processing paper 8/15: 2511.04638v1
+2025-11-07 08:24:15,777 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:18,558 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:18,558 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:18,681 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:18,683 - INFO - Successfully saved summary for paper 2511.04638v1
+2025-11-07 08:24:18,683 - INFO - ✅ Successfully processed paper 2511.04638v1
+2025-11-07 08:24:18,683 - INFO - Processing paper 9/15: 2511.04628v1
+2025-11-07 08:24:19,170 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:21,759 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:21,759 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:21,863 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:21,865 - INFO - Successfully saved summary for paper 2511.04628v1
+2025-11-07 08:24:21,865 - INFO - ✅ Successfully processed paper 2511.04628v1
+2025-11-07 08:24:21,866 - INFO - Processing paper 10/15: 2511.04622v1
+2025-11-07 08:24:22,606 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:25,053 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:25,054 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:25,158 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:25,161 - INFO - Successfully saved summary for paper 2511.04622v1
+2025-11-07 08:24:25,161 - INFO - ✅ Successfully processed paper 2511.04622v1
+2025-11-07 08:24:25,161 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:24:25,161 - INFO - Processing paper 11/15: 2511.04619v1
+2025-11-07 08:24:25,786 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:28,268 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:28,268 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:28,372 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:28,373 - INFO - Successfully saved summary for paper 2511.04619v1
+2025-11-07 08:24:28,374 - INFO - ✅ Successfully processed paper 2511.04619v1
+2025-11-07 08:24:28,374 - INFO - Processing paper 12/15: 2511.04615v1
+2025-11-07 08:24:30,415 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:33,661 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:33,662 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:33,834 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:33,837 - INFO - Successfully saved summary for paper 2511.04615v1
+2025-11-07 08:24:33,837 - INFO - ✅ Successfully processed paper 2511.04615v1
+2025-11-07 08:24:33,837 - INFO - Processing paper 13/15: 2511.04611v1
+2025-11-07 08:24:35,062 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:37,850 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:37,851 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:37,960 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:37,961 - INFO - Successfully saved summary for paper 2511.04611v1
+2025-11-07 08:24:37,961 - INFO - ✅ Successfully processed paper 2511.04611v1
+2025-11-07 08:24:37,961 - INFO - Processing paper 14/15: 2511.04601v1
+2025-11-07 08:24:39,164 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:42,137 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:42,138 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:42,241 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:42,244 - INFO - Successfully saved summary for paper 2511.04601v1
+2025-11-07 08:24:42,244 - INFO - ✅ Successfully processed paper 2511.04601v1
+2025-11-07 08:24:42,245 - INFO - Processing paper 15/15: 2511.04599v1
+2025-11-07 08:24:51,158 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:54,240 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:54,240 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:54,411 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:54,413 - INFO - Successfully saved summary for paper 2511.04599v1
+2025-11-07 08:24:54,414 - INFO - ✅ Successfully processed paper 2511.04599v1
+2025-11-07 08:24:54,414 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:24:54,414 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:24:54,564 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:24:54,567 - INFO - Finding papers that need summarization
+2025-11-07 08:24:54,567 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:24:54,701 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:24:54,706 - INFO - Found 15 papers to process
+2025-11-07 08:24:54,706 - INFO - Processing paper 1/15: 2511.04598v1
+2025-11-07 08:24:55,210 - INFO - Rate limit reached. Waiting 1.8 seconds...
+2025-11-07 08:24:56,985 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:59,746 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:24:59,747 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:24:59,917 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:24:59,920 - INFO - Successfully saved summary for paper 2511.04598v1
+2025-11-07 08:24:59,920 - INFO - ✅ Successfully processed paper 2511.04598v1
+2025-11-07 08:24:59,920 - INFO - Processing paper 2/15: 2511.04595v1
+2025-11-07 08:25:00,557 - INFO - Rate limit reached. Waiting 11.5 seconds...
+2025-11-07 08:25:12,104 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:14,938 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:14,939 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:15,109 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:15,112 - INFO - Successfully saved summary for paper 2511.04595v1
+2025-11-07 08:25:15,112 - INFO - ✅ Successfully processed paper 2511.04595v1
+2025-11-07 08:25:15,112 - INFO - Processing paper 3/15: 2511.04593v1
+2025-11-07 08:25:15,948 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:18,634 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:18,635 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:18,945 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:18,948 - INFO - Successfully saved summary for paper 2511.04593v1
+2025-11-07 08:25:18,949 - INFO - ✅ Successfully processed paper 2511.04593v1
+2025-11-07 08:25:18,949 - INFO - Processing paper 4/15: 2511.04594v1
+2025-11-07 08:25:19,657 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:22,550 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:22,550 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:22,649 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:22,652 - INFO - Successfully saved summary for paper 2511.04594v1
+2025-11-07 08:25:22,652 - INFO - ✅ Successfully processed paper 2511.04594v1
+2025-11-07 08:25:22,652 - INFO - Processing paper 5/15: 2511.04590v1
+2025-11-07 08:25:23,361 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:26,185 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:26,185 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:26,288 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:26,291 - INFO - Successfully saved summary for paper 2511.04590v1
+2025-11-07 08:25:26,292 - INFO - ✅ Successfully processed paper 2511.04590v1
+2025-11-07 08:25:26,292 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:25:26,292 - INFO - Processing paper 6/15: 2511.04588v1
+2025-11-07 08:25:27,048 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:29,859 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:29,860 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:29,976 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:29,978 - INFO - Successfully saved summary for paper 2511.04588v1
+2025-11-07 08:25:29,979 - INFO - ✅ Successfully processed paper 2511.04588v1
+2025-11-07 08:25:29,979 - INFO - Processing paper 7/15: 2511.04584v1
+2025-11-07 08:25:30,508 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:33,721 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:33,722 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:33,821 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:33,822 - INFO - Successfully saved summary for paper 2511.04584v1
+2025-11-07 08:25:33,823 - INFO - ✅ Successfully processed paper 2511.04584v1
+2025-11-07 08:25:33,823 - INFO - Processing paper 8/15: 2511.04583v1
+2025-11-07 08:25:34,621 - INFO - Rate limit reached. Waiting 0.4 seconds...
+2025-11-07 08:25:35,075 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:37,943 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:37,944 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:38,054 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:38,056 - INFO - Successfully saved summary for paper 2511.04583v1
+2025-11-07 08:25:38,057 - INFO - ✅ Successfully processed paper 2511.04583v1
+2025-11-07 08:25:38,057 - INFO - Processing paper 9/15: 2511.04576v1
+2025-11-07 08:25:38,661 - INFO - Rate limit reached. Waiting 0.5 seconds...
+2025-11-07 08:25:39,175 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:42,429 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:42,430 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:42,542 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:42,545 - INFO - Successfully saved summary for paper 2511.04576v1
+2025-11-07 08:25:42,545 - INFO - ✅ Successfully processed paper 2511.04576v1
+2025-11-07 08:25:42,545 - INFO - Processing paper 10/15: 2511.04573v1
+2025-11-07 08:25:43,230 - INFO - Rate limit reached. Waiting 7.9 seconds...
+2025-11-07 08:25:51,167 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:54,520 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:25:54,522 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:25:54,711 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:25:54,714 - INFO - Successfully saved summary for paper 2511.04573v1
+2025-11-07 08:25:54,714 - INFO - ✅ Successfully processed paper 2511.04573v1
+2025-11-07 08:25:54,714 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:25:54,715 - INFO - Processing paper 11/15: 2511.04570v1
+2025-11-07 08:25:56,542 - INFO - Rate limit reached. Waiting 0.4 seconds...
+2025-11-07 08:25:56,981 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:00,413 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:00,413 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:00,580 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:00,583 - INFO - Successfully saved summary for paper 2511.04570v1
+2025-11-07 08:26:00,583 - INFO - ✅ Successfully processed paper 2511.04570v1
+2025-11-07 08:26:00,583 - INFO - Processing paper 12/15: 2511.04568v1
+2025-11-07 08:26:01,230 - INFO - Rate limit reached. Waiting 10.9 seconds...
+2025-11-07 08:26:12,106 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:24,807 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:24,808 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:25,013 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:25,015 - INFO - Successfully saved summary for paper 2511.04568v1
+2025-11-07 08:26:25,016 - INFO - ✅ Successfully processed paper 2511.04568v1
+2025-11-07 08:26:25,016 - INFO - Processing paper 13/15: 2511.04567v1
+2025-11-07 08:26:26,466 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:29,104 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:29,105 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:29,231 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:29,234 - INFO - Successfully saved summary for paper 2511.04567v1
+2025-11-07 08:26:29,234 - INFO - ✅ Successfully processed paper 2511.04567v1
+2025-11-07 08:26:29,234 - INFO - Processing paper 14/15: 2511.04564v1
+2025-11-07 08:26:30,053 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:32,724 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:32,725 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:32,845 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:32,845 - INFO - Successfully saved summary for paper 2511.04564v1
+2025-11-07 08:26:32,845 - INFO - ✅ Successfully processed paper 2511.04564v1
+2025-11-07 08:26:32,845 - INFO - Processing paper 15/15: 2511.04560v1
+2025-11-07 08:26:33,284 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:36,547 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:36,547 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:36,646 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:36,649 - INFO - Successfully saved summary for paper 2511.04560v1
+2025-11-07 08:26:36,649 - INFO - ✅ Successfully processed paper 2511.04560v1
+2025-11-07 08:26:36,649 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:26:36,649 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:26:36,809 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:26:36,812 - INFO - Finding papers that need summarization
+2025-11-07 08:26:36,813 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:26:36,949 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:26:36,953 - INFO - Found 15 papers to process
+2025-11-07 08:26:36,953 - INFO - Processing paper 1/15: 2511.04557v1
+2025-11-07 08:26:37,777 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:40,579 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:40,580 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:40,675 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:40,677 - INFO - Successfully saved summary for paper 2511.04557v1
+2025-11-07 08:26:40,677 - INFO - ✅ Successfully processed paper 2511.04557v1
+2025-11-07 08:26:40,677 - INFO - Processing paper 2/15: 2511.04556v1
+2025-11-07 08:26:41,528 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:44,418 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:44,419 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:44,520 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:44,523 - INFO - Successfully saved summary for paper 2511.04556v1
+2025-11-07 08:26:44,523 - INFO - ✅ Successfully processed paper 2511.04556v1
+2025-11-07 08:26:44,523 - INFO - Processing paper 3/15: 2511.04555v1
+2025-11-07 08:26:45,284 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:48,310 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:48,311 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:48,412 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:48,415 - INFO - Successfully saved summary for paper 2511.04555v1
+2025-11-07 08:26:48,415 - INFO - ✅ Successfully processed paper 2511.04555v1
+2025-11-07 08:26:48,415 - INFO - Processing paper 4/15: 2511.04552v1
+2025-11-07 08:26:49,392 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:52,797 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:26:52,798 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:26:52,899 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:26:52,902 - INFO - Successfully saved summary for paper 2511.04552v1
+2025-11-07 08:26:52,902 - INFO - ✅ Successfully processed paper 2511.04552v1
+2025-11-07 08:26:52,902 - INFO - Processing paper 5/15: 2511.04550v1
+2025-11-07 08:26:53,583 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:04,569 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:04,569 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:05,050 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:05,052 - INFO - Successfully saved summary for paper 2511.04550v1
+2025-11-07 08:27:05,052 - INFO - ✅ Successfully processed paper 2511.04550v1
+2025-11-07 08:27:05,052 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:27:05,053 - INFO - Processing paper 6/15: 2511.04541v1
+2025-11-07 08:27:05,792 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:08,775 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:08,776 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:08,874 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:08,874 - INFO - Successfully saved summary for paper 2511.04541v1
+2025-11-07 08:27:08,874 - INFO - ✅ Successfully processed paper 2511.04541v1
+2025-11-07 08:27:08,874 - INFO - Processing paper 7/15: 2511.04539v1
+2025-11-07 08:27:09,839 - INFO - Rate limit reached. Waiting 2.3 seconds...
+2025-11-07 08:27:12,112 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:14,450 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:14,451 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:14,700 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:14,702 - INFO - Successfully saved summary for paper 2511.04539v1
+2025-11-07 08:27:14,703 - INFO - ✅ Successfully processed paper 2511.04539v1
+2025-11-07 08:27:14,703 - INFO - Processing paper 8/15: 2511.04538v1
+2025-11-07 08:27:15,303 - INFO - Rate limit reached. Waiting 11.2 seconds...
+2025-11-07 08:27:26,479 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:29,440 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:29,441 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:29,617 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:29,620 - INFO - Successfully saved summary for paper 2511.04538v1
+2025-11-07 08:27:29,620 - INFO - ✅ Successfully processed paper 2511.04538v1
+2025-11-07 08:27:29,620 - INFO - Processing paper 9/15: 2511.04534v1
+2025-11-07 08:27:30,269 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:32,874 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:32,875 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:32,972 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:32,975 - INFO - Successfully saved summary for paper 2511.04534v1
+2025-11-07 08:27:32,975 - INFO - ✅ Successfully processed paper 2511.04534v1
+2025-11-07 08:27:32,976 - INFO - Processing paper 10/15: 2511.04528v1
+2025-11-07 08:27:33,351 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:36,569 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:36,570 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:36,669 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:36,672 - INFO - Successfully saved summary for paper 2511.04528v1
+2025-11-07 08:27:36,672 - INFO - ✅ Successfully processed paper 2511.04528v1
+2025-11-07 08:27:36,672 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:27:36,672 - INFO - Processing paper 11/15: 2511.04527v1
+2025-11-07 08:27:37,596 - INFO - Rate limit reached. Waiting 0.2 seconds...
+2025-11-07 08:27:37,786 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:40,592 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:40,593 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:40,691 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:40,694 - INFO - Successfully saved summary for paper 2511.04527v1
+2025-11-07 08:27:40,695 - INFO - ✅ Successfully processed paper 2511.04527v1
+2025-11-07 08:27:40,695 - INFO - Processing paper 12/15: 2511.04525v1
+2025-11-07 08:27:41,342 - INFO - Rate limit reached. Waiting 0.2 seconds...
+2025-11-07 08:27:41,535 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:44,680 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:44,681 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:44,794 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:44,797 - INFO - Successfully saved summary for paper 2511.04525v1
+2025-11-07 08:27:44,797 - INFO - ✅ Successfully processed paper 2511.04525v1
+2025-11-07 08:27:44,797 - INFO - Processing paper 13/15: 2511.04522v1
+2025-11-07 08:27:45,432 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:48,165 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:48,165 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:48,257 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:48,260 - INFO - Successfully saved summary for paper 2511.04522v1
+2025-11-07 08:27:48,260 - INFO - ✅ Successfully processed paper 2511.04522v1
+2025-11-07 08:27:48,260 - INFO - Processing paper 14/15: 2511.04520v1
+2025-11-07 08:27:49,287 - INFO - Rate limit reached. Waiting 0.1 seconds...
+2025-11-07 08:27:49,400 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:52,280 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:52,280 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:52,379 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:52,382 - INFO - Successfully saved summary for paper 2511.04520v1
+2025-11-07 08:27:52,382 - INFO - ✅ Successfully processed paper 2511.04520v1
+2025-11-07 08:27:52,382 - INFO - Processing paper 15/15: 2511.04518v1
+2025-11-07 08:27:53,267 - INFO - Rate limit reached. Waiting 0.3 seconds...
+2025-11-07 08:27:53,598 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:56,767 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:27:56,768 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:27:56,866 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:27:56,869 - INFO - Successfully saved summary for paper 2511.04518v1
+2025-11-07 08:27:56,869 - INFO - ✅ Successfully processed paper 2511.04518v1
+2025-11-07 08:27:56,869 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:27:56,869 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:27:57,014 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:27:57,017 - INFO - Finding papers that need summarization
+2025-11-07 08:27:57,017 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:27:57,137 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:27:57,140 - INFO - Found 15 papers to process
+2025-11-07 08:27:57,141 - INFO - Processing paper 1/15: 2511.04514v1
+2025-11-07 08:27:59,877 - INFO - Rate limit reached. Waiting 5.9 seconds...
+2025-11-07 08:28:05,799 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:09,051 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:09,052 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:09,271 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:09,274 - INFO - Successfully saved summary for paper 2511.04514v1
+2025-11-07 08:28:09,274 - INFO - ✅ Successfully processed paper 2511.04514v1
+2025-11-07 08:28:09,274 - INFO - Processing paper 2/15: 2511.04510v1
+2025-11-07 08:28:10,972 - INFO - Rate limit reached. Waiting 1.1 seconds...
+2025-11-07 08:28:12,119 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:14,888 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:14,888 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:15,064 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:15,067 - INFO - Successfully saved summary for paper 2511.04510v1
+2025-11-07 08:28:15,067 - INFO - ✅ Successfully processed paper 2511.04510v1
+2025-11-07 08:28:15,067 - INFO - Processing paper 3/15: 2511.04506v1
+2025-11-07 08:28:16,092 - INFO - Rate limit reached. Waiting 10.4 seconds...
+2025-11-07 08:28:26,483 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:29,568 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:29,568 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:29,757 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:29,759 - INFO - Successfully saved summary for paper 2511.04506v1
+2025-11-07 08:28:29,759 - INFO - ✅ Successfully processed paper 2511.04506v1
+2025-11-07 08:28:29,760 - INFO - Processing paper 4/15: 2511.04505v1
+2025-11-07 08:28:30,283 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:32,805 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:32,805 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:32,913 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:32,916 - INFO - Successfully saved summary for paper 2511.04505v1
+2025-11-07 08:28:32,917 - INFO - ✅ Successfully processed paper 2511.04505v1
+2025-11-07 08:28:32,917 - INFO - Processing paper 5/15: 2511.04502v1
+2025-11-07 08:28:33,560 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:37,626 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:37,626 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:37,721 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:37,723 - INFO - Successfully saved summary for paper 2511.04502v1
+2025-11-07 08:28:37,723 - INFO - ✅ Successfully processed paper 2511.04502v1
+2025-11-07 08:28:37,723 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:28:37,724 - INFO - Processing paper 6/15: 2511.04500v1
+2025-11-07 08:28:38,453 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:41,163 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:41,164 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:41,274 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:41,277 - INFO - Successfully saved summary for paper 2511.04500v1
+2025-11-07 08:28:41,278 - INFO - ✅ Successfully processed paper 2511.04500v1
+2025-11-07 08:28:41,278 - INFO - Processing paper 7/15: 2511.04499v1
+2025-11-07 08:28:41,831 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:45,560 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:45,561 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:45,663 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:45,667 - INFO - Successfully saved summary for paper 2511.04499v1
+2025-11-07 08:28:45,667 - INFO - ✅ Successfully processed paper 2511.04499v1
+2025-11-07 08:28:45,667 - INFO - Processing paper 8/15: 2511.04495v1
+2025-11-07 08:28:46,132 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:49,270 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:49,270 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:49,703 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:49,706 - INFO - Successfully saved summary for paper 2511.04495v1
+2025-11-07 08:28:49,706 - INFO - ✅ Successfully processed paper 2511.04495v1
+2025-11-07 08:28:49,707 - INFO - Processing paper 9/15: 2511.04494v1
+2025-11-07 08:28:50,362 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:53,336 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:53,337 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:53,439 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:53,441 - INFO - Successfully saved summary for paper 2511.04494v1
+2025-11-07 08:28:53,441 - INFO - ✅ Successfully processed paper 2511.04494v1
+2025-11-07 08:28:53,442 - INFO - Processing paper 10/15: 2511.04491v1
+2025-11-07 08:28:54,131 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:58,991 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:28:58,993 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:28:59,158 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:28:59,159 - INFO - Successfully saved summary for paper 2511.04491v1
+2025-11-07 08:28:59,160 - INFO - ✅ Successfully processed paper 2511.04491v1
+2025-11-07 08:28:59,160 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:28:59,160 - INFO - Processing paper 11/15: 2511.04485v1
+2025-11-07 08:28:59,974 - INFO - Rate limit reached. Waiting 5.8 seconds...
+2025-11-07 08:29:05,810 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:08,960 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:08,960 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:09,131 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:09,133 - INFO - Successfully saved summary for paper 2511.04485v1
+2025-11-07 08:29:09,134 - INFO - ✅ Successfully processed paper 2511.04485v1
+2025-11-07 08:29:09,134 - INFO - Processing paper 12/15: 2511.04484v1
+2025-11-07 08:29:09,836 - INFO - Rate limit reached. Waiting 2.3 seconds...
+2025-11-07 08:29:12,122 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:15,296 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:15,296 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:15,467 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:15,470 - INFO - Successfully saved summary for paper 2511.04484v1
+2025-11-07 08:29:15,470 - INFO - ✅ Successfully processed paper 2511.04484v1
+2025-11-07 08:29:15,470 - INFO - Processing paper 13/15: 2511.04481v1
+2025-11-07 08:29:16,083 - INFO - Rate limit reached. Waiting 10.4 seconds...
+2025-11-07 08:29:26,489 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:29,449 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:29,451 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:29,634 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:29,637 - INFO - Successfully saved summary for paper 2511.04481v1
+2025-11-07 08:29:29,637 - INFO - ✅ Successfully processed paper 2511.04481v1
+2025-11-07 08:29:29,637 - INFO - Processing paper 14/15: 2511.04479v1
+2025-11-07 08:29:30,922 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:33,853 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:33,853 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:33,968 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:33,970 - INFO - Successfully saved summary for paper 2511.04479v1
+2025-11-07 08:29:33,971 - INFO - ✅ Successfully processed paper 2511.04479v1
+2025-11-07 08:29:33,971 - INFO - Processing paper 15/15: 2511.04478v1
+2025-11-07 08:29:34,681 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:37,784 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:37,786 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:37,878 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:37,881 - INFO - Successfully saved summary for paper 2511.04478v1
+2025-11-07 08:29:37,882 - INFO - ✅ Successfully processed paper 2511.04478v1
+2025-11-07 08:29:37,882 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:29:37,882 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:29:38,030 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:29:38,033 - INFO - Finding papers that need summarization
+2025-11-07 08:29:38,033 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:29:38,151 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:29:38,154 - INFO - Found 15 papers to process
+2025-11-07 08:29:38,154 - INFO - Processing paper 1/15: 2511.04476v1
+2025-11-07 08:29:38,865 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:41,668 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:41,669 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:41,770 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:41,773 - INFO - Successfully saved summary for paper 2511.04476v1
+2025-11-07 08:29:41,773 - INFO - ✅ Successfully processed paper 2511.04476v1
+2025-11-07 08:29:41,773 - INFO - Processing paper 2/15: 2511.04474v1
+2025-11-07 08:29:42,890 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:45,390 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:45,391 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:45,499 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:45,500 - INFO - Successfully saved summary for paper 2511.04474v1
+2025-11-07 08:29:45,501 - INFO - ✅ Successfully processed paper 2511.04474v1
+2025-11-07 08:29:45,501 - INFO - Processing paper 3/15: 2511.04473v1
+2025-11-07 08:29:47,174 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:50,522 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:50,522 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:50,721 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:50,724 - INFO - Successfully saved summary for paper 2511.04473v1
+2025-11-07 08:29:50,724 - INFO - ✅ Successfully processed paper 2511.04473v1
+2025-11-07 08:29:50,724 - INFO - Processing paper 4/15: 2511.04469v1
+2025-11-07 08:29:51,299 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:54,242 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:54,243 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:54,365 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:54,368 - INFO - Successfully saved summary for paper 2511.04469v1
+2025-11-07 08:29:54,368 - INFO - ✅ Successfully processed paper 2511.04469v1
+2025-11-07 08:29:54,368 - INFO - Processing paper 5/15: 2511.04465v1
+2025-11-07 08:29:55,075 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:58,009 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:29:58,010 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:29:58,114 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:29:58,116 - INFO - Successfully saved summary for paper 2511.04465v1
+2025-11-07 08:29:58,117 - INFO - ✅ Successfully processed paper 2511.04465v1
+2025-11-07 08:29:58,117 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:29:58,117 - INFO - Processing paper 6/15: 2511.04464v1
+2025-11-07 08:30:00,258 - INFO - Rate limit reached. Waiting 5.5 seconds...
+2025-11-07 08:30:05,815 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:30:08,186 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:30:08,187 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:30:08,346 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:30:08,349 - INFO - Successfully saved summary for paper 2511.04464v1
+2025-11-07 08:30:08,349 - INFO - ✅ Successfully processed paper 2511.04464v1
+2025-11-07 08:30:08,349 - INFO - Processing paper 7/15: 2511.04461v1
+2025-11-07 08:30:09,077 - INFO - Rate limit reached. Waiting 3.0 seconds...
+2025-11-07 08:30:12,130 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:30:14,994 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:30:14,995 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:30:15,160 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:30:15,162 - INFO - Successfully saved summary for paper 2511.04461v1
+2025-11-07 08:30:15,162 - INFO - ✅ Successfully processed paper 2511.04461v1
+2025-11-07 08:30:15,162 - INFO - Processing paper 8/15: 2511.04460v1
+2025-11-07 08:31:24,505 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:27,728 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:31:27,728 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:28,525 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:31:28,527 - INFO - Successfully saved summary for paper 2511.04460v1
+2025-11-07 08:31:28,528 - INFO - ✅ Successfully processed paper 2511.04460v1
+2025-11-07 08:31:28,528 - INFO - Processing paper 9/15: 2511.04456v1
+2025-11-07 08:31:29,571 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:32,226 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:31:32,226 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:32,511 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:31:32,514 - INFO - Successfully saved summary for paper 2511.04456v1
+2025-11-07 08:31:32,514 - INFO - ✅ Successfully processed paper 2511.04456v1
+2025-11-07 08:31:32,514 - INFO - Processing paper 10/15: 2511.04454v1
+2025-11-07 08:31:33,328 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:36,097 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:31:36,098 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:36,339 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:31:36,359 - INFO - Successfully saved summary for paper 2511.04454v1
+2025-11-07 08:31:36,359 - INFO - ✅ Successfully processed paper 2511.04454v1
+2025-11-07 08:31:36,359 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:31:36,359 - INFO - Processing paper 11/15: 2511.04451v1
+2025-11-07 08:31:37,057 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:40,179 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:31:40,179 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:40,378 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:31:40,381 - INFO - Successfully saved summary for paper 2511.04451v1
+2025-11-07 08:31:40,381 - INFO - ✅ Successfully processed paper 2511.04451v1
+2025-11-07 08:31:40,382 - INFO - Processing paper 12/15: 2511.04450v1
+2025-11-07 08:31:45,418 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:48,430 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:31:48,431 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:48,780 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:31:48,783 - INFO - Successfully saved summary for paper 2511.04450v1
+2025-11-07 08:31:48,783 - INFO - ✅ Successfully processed paper 2511.04450v1
+2025-11-07 08:31:48,784 - INFO - Processing paper 13/15: 2511.04445v1
+2025-11-07 08:31:50,931 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:53,874 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:31:53,875 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:54,060 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:31:54,062 - INFO - Successfully saved summary for paper 2511.04445v1
+2025-11-07 08:31:54,063 - INFO - ✅ Successfully processed paper 2511.04445v1
+2025-11-07 08:31:54,063 - INFO - Processing paper 14/15: 2511.04439v1
+2025-11-07 08:31:54,670 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:57,990 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:31:57,991 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:31:58,089 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:31:58,092 - INFO - Successfully saved summary for paper 2511.04439v1
+2025-11-07 08:31:58,092 - INFO - ✅ Successfully processed paper 2511.04439v1
+2025-11-07 08:31:58,093 - INFO - Processing paper 15/15: 2511.04437v1
+2025-11-07 08:31:58,853 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:02,068 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:02,070 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:02,175 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:02,178 - INFO - Successfully saved summary for paper 2511.04437v1
+2025-11-07 08:32:02,178 - INFO - ✅ Successfully processed paper 2511.04437v1
+2025-11-07 08:32:02,179 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:32:02,179 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:32:04,181 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:32:04,183 - INFO - Finding papers that need summarization
+2025-11-07 08:32:04,184 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:32:04,317 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:32:04,320 - INFO - Found 15 papers to process
+2025-11-07 08:32:04,321 - INFO - Processing paper 1/15: 2511.04432v1
+2025-11-07 08:32:04,882 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:07,516 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:07,517 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:07,614 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:07,617 - INFO - Successfully saved summary for paper 2511.04432v1
+2025-11-07 08:32:07,617 - INFO - ✅ Successfully processed paper 2511.04432v1
+2025-11-07 08:32:07,617 - INFO - Processing paper 2/15: 2511.04427v1
+2025-11-07 08:32:08,652 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:11,124 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:11,125 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:11,226 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:11,229 - INFO - Successfully saved summary for paper 2511.04427v1
+2025-11-07 08:32:11,229 - INFO - ✅ Successfully processed paper 2511.04427v1
+2025-11-07 08:32:11,229 - INFO - Processing paper 3/15: 2511.04426v1
+2025-11-07 08:32:14,439 - INFO - Rate limit reached. Waiting 10.1 seconds...
+2025-11-07 08:32:24,515 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:27,445 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:27,446 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:27,613 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:27,615 - INFO - Successfully saved summary for paper 2511.04426v1
+2025-11-07 08:32:27,615 - INFO - ✅ Successfully processed paper 2511.04426v1
+2025-11-07 08:32:27,616 - INFO - Processing paper 4/15: 2511.04422v1
+2025-11-07 08:32:28,253 - INFO - Rate limit reached. Waiting 1.3 seconds...
+2025-11-07 08:32:29,579 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:32,192 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:32,192 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:32,302 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:32,305 - INFO - Successfully saved summary for paper 2511.04422v1
+2025-11-07 08:32:32,305 - INFO - ✅ Successfully processed paper 2511.04422v1
+2025-11-07 08:32:32,305 - INFO - Processing paper 5/15: 2511.04421v1
+2025-11-07 08:32:33,423 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:36,513 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:36,513 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:36,624 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:36,626 - INFO - Successfully saved summary for paper 2511.04421v1
+2025-11-07 08:32:36,627 - INFO - ✅ Successfully processed paper 2511.04421v1
+2025-11-07 08:32:36,627 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:32:36,627 - INFO - Processing paper 6/15: 2511.04418v1
+2025-11-07 08:32:37,682 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:40,768 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:40,769 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:40,888 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:40,891 - INFO - Successfully saved summary for paper 2511.04418v1
+2025-11-07 08:32:40,891 - INFO - ✅ Successfully processed paper 2511.04418v1
+2025-11-07 08:32:40,891 - INFO - Processing paper 7/15: 2511.04406v1
+2025-11-07 08:32:41,779 - INFO - Rate limit reached. Waiting 3.6 seconds...
+2025-11-07 08:32:45,428 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:50,418 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:50,419 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:50,744 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:50,746 - INFO - Successfully saved summary for paper 2511.04406v1
+2025-11-07 08:32:50,746 - INFO - ✅ Successfully processed paper 2511.04406v1
+2025-11-07 08:32:50,746 - INFO - Processing paper 8/15: 2511.04403v1
+2025-11-07 08:32:51,723 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:54,355 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:54,356 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:54,457 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:54,459 - INFO - Successfully saved summary for paper 2511.04403v1
+2025-11-07 08:32:54,459 - INFO - ✅ Successfully processed paper 2511.04403v1
+2025-11-07 08:32:54,459 - INFO - Processing paper 9/15: 2511.04401v1
+2025-11-07 08:32:55,211 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:58,517 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:32:58,518 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:32:58,633 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:32:58,636 - INFO - Successfully saved summary for paper 2511.04401v1
+2025-11-07 08:32:58,636 - INFO - ✅ Successfully processed paper 2511.04401v1
+2025-11-07 08:32:58,636 - INFO - Processing paper 10/15: 2511.04394v1
+2025-11-07 08:32:59,250 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:02,182 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:33:02,183 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:02,297 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:33:02,300 - INFO - Successfully saved summary for paper 2511.04394v1
+2025-11-07 08:33:02,300 - INFO - ✅ Successfully processed paper 2511.04394v1
+2025-11-07 08:33:02,300 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:33:02,300 - INFO - Processing paper 11/15: 2511.04393v1
+2025-11-07 08:33:03,152 - INFO - Rate limit reached. Waiting 1.7 seconds...
+2025-11-07 08:33:04,894 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:08,354 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:33:08,355 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:08,530 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:33:08,533 - INFO - Successfully saved summary for paper 2511.04393v1
+2025-11-07 08:33:08,533 - INFO - ✅ Successfully processed paper 2511.04393v1
+2025-11-07 08:33:08,533 - INFO - Processing paper 12/15: 2511.04388v1
+2025-11-07 08:33:09,390 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:13,230 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:33:13,230 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:13,596 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:33:13,599 - INFO - Successfully saved summary for paper 2511.04388v1
+2025-11-07 08:33:13,599 - INFO - ✅ Successfully processed paper 2511.04388v1
+2025-11-07 08:33:13,599 - INFO - Processing paper 13/15: 2511.04384v1
+2025-11-07 08:33:14,081 - INFO - Rate limit reached. Waiting 10.4 seconds...
+2025-11-07 08:33:24,514 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:27,794 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:33:27,795 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:27,960 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:33:27,963 - INFO - Successfully saved summary for paper 2511.04384v1
+2025-11-07 08:33:27,963 - INFO - ✅ Successfully processed paper 2511.04384v1
+2025-11-07 08:33:27,963 - INFO - Processing paper 14/15: 2511.04381v1
+2025-11-07 08:33:29,599 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:33,164 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:33:33,166 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:33,333 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:33:33,335 - INFO - Successfully saved summary for paper 2511.04381v1
+2025-11-07 08:33:33,336 - INFO - ✅ Successfully processed paper 2511.04381v1
+2025-11-07 08:33:33,336 - INFO - Processing paper 15/15: 2511.04376v1
+2025-11-07 08:33:34,182 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:37,332 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:33:37,332 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:37,435 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:33:37,438 - INFO - Successfully saved summary for paper 2511.04376v1
+2025-11-07 08:33:37,438 - INFO - ✅ Successfully processed paper 2511.04376v1
+2025-11-07 08:33:37,438 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:33:37,438 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:33:37,601 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:33:37,604 - INFO - Finding papers that need summarization
+2025-11-07 08:33:37,604 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:33:37,747 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:33:37,752 - INFO - Found 15 papers to process
+2025-11-07 08:33:37,752 - INFO - Processing paper 1/15: 2511.04375v1
+2025-11-07 08:33:38,662 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:41,721 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:33:41,722 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:33:41,813 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:33:41,816 - INFO - Successfully saved summary for paper 2511.04375v1
+2025-11-07 08:33:41,816 - INFO - ✅ Successfully processed paper 2511.04375v1
+2025-11-07 08:33:41,816 - INFO - Processing paper 2/15: 2511.04361v1
+2025-11-07 08:33:42,206 - INFO - Rate limit reached. Waiting 3.2 seconds...
+2025-11-07 08:37:24,636 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:31,089 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:37:31,091 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:31,581 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:37:31,584 - INFO - Successfully saved summary for paper 2511.04361v1
+2025-11-07 08:37:31,584 - INFO - ✅ Successfully processed paper 2511.04361v1
+2025-11-07 08:37:31,585 - INFO - Processing paper 3/15: 2511.04357v1
+2025-11-07 08:37:32,721 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:36,264 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:37:36,265 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:36,374 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:37:36,377 - INFO - Successfully saved summary for paper 2511.04357v1
+2025-11-07 08:37:36,377 - INFO - ✅ Successfully processed paper 2511.04357v1
+2025-11-07 08:37:36,377 - INFO - Processing paper 4/15: 2511.04355v1
+2025-11-07 08:37:36,798 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:39,931 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:37:39,931 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:40,069 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:37:40,071 - INFO - Successfully saved summary for paper 2511.04355v1
+2025-11-07 08:37:40,071 - INFO - ✅ Successfully processed paper 2511.04355v1
+2025-11-07 08:37:40,071 - INFO - Processing paper 5/15: 2511.04349v1
+2025-11-07 08:37:40,890 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:44,183 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:37:44,183 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:44,349 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:37:44,351 - INFO - Successfully saved summary for paper 2511.04349v1
+2025-11-07 08:37:44,352 - INFO - ✅ Successfully processed paper 2511.04349v1
+2025-11-07 08:37:44,352 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:37:44,352 - INFO - Processing paper 6/15: 2511.04347v1
+2025-11-07 08:37:53,227 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:56,375 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:37:56,376 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:37:56,545 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:37:56,547 - INFO - Successfully saved summary for paper 2511.04347v1
+2025-11-07 08:37:56,547 - INFO - ✅ Successfully processed paper 2511.04347v1
+2025-11-07 08:37:56,548 - INFO - Processing paper 7/15: 2511.04344v1
+2025-11-07 08:37:57,011 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:00,019 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:00,019 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:00,117 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:00,120 - INFO - Successfully saved summary for paper 2511.04344v1
+2025-11-07 08:38:00,120 - INFO - ✅ Successfully processed paper 2511.04344v1
+2025-11-07 08:38:00,121 - INFO - Processing paper 8/15: 2511.04341v1
+2025-11-07 08:38:00,937 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:04,288 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:04,288 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:04,398 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:04,400 - INFO - Successfully saved summary for paper 2511.04341v1
+2025-11-07 08:38:04,400 - INFO - ✅ Successfully processed paper 2511.04341v1
+2025-11-07 08:38:04,400 - INFO - Processing paper 9/15: 2511.04334v1
+2025-11-07 08:38:06,026 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:08,981 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:08,982 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:09,081 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:09,084 - INFO - Successfully saved summary for paper 2511.04334v1
+2025-11-07 08:38:09,084 - INFO - ✅ Successfully processed paper 2511.04334v1
+2025-11-07 08:38:09,085 - INFO - Processing paper 10/15: 2511.04333v1
+2025-11-07 08:38:09,913 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:12,404 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:12,405 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:12,513 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:12,516 - INFO - Successfully saved summary for paper 2511.04333v1
+2025-11-07 08:38:12,516 - INFO - ✅ Successfully processed paper 2511.04333v1
+2025-11-07 08:38:12,516 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:38:12,516 - INFO - Processing paper 11/15: 2511.04332v1
+2025-11-07 08:38:13,252 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:15,956 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:15,957 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:16,062 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:16,064 - INFO - Successfully saved summary for paper 2511.04332v1
+2025-11-07 08:38:16,065 - INFO - ✅ Successfully processed paper 2511.04332v1
+2025-11-07 08:38:16,065 - INFO - Processing paper 12/15: 2511.04328v1
+2025-11-07 08:38:16,594 - INFO - Rate limit reached. Waiting 8.0 seconds...
+2025-11-07 08:38:24,641 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:27,896 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:27,897 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:28,067 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:28,070 - INFO - Successfully saved summary for paper 2511.04328v1
+2025-11-07 08:38:28,070 - INFO - ✅ Successfully processed paper 2511.04328v1
+2025-11-07 08:38:28,070 - INFO - Processing paper 13/15: 2511.04321v1
+2025-11-07 08:38:29,481 - INFO - Rate limit reached. Waiting 3.2 seconds...
+2025-11-07 08:38:32,736 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:35,926 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:35,927 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:36,094 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:36,096 - INFO - Successfully saved summary for paper 2511.04321v1
+2025-11-07 08:38:36,096 - INFO - ✅ Successfully processed paper 2511.04321v1
+2025-11-07 08:38:36,097 - INFO - Processing paper 14/15: 2511.04320v1
+2025-11-07 08:38:37,088 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:40,623 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:40,624 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:40,722 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:40,723 - INFO - Successfully saved summary for paper 2511.04320v1
+2025-11-07 08:38:40,723 - INFO - ✅ Successfully processed paper 2511.04320v1
+2025-11-07 08:38:40,723 - INFO - Processing paper 15/15: 2511.04317v1
+2025-11-07 08:38:41,889 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:44,638 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:44,639 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:44,738 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:44,741 - INFO - Successfully saved summary for paper 2511.04317v1
+2025-11-07 08:38:44,741 - INFO - ✅ Successfully processed paper 2511.04317v1
+2025-11-07 08:38:44,741 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:38:44,741 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:38:44,883 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:38:44,887 - INFO - Finding papers that need summarization
+2025-11-07 08:38:44,887 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:38:45,023 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:38:45,028 - INFO - Found 15 papers to process
+2025-11-07 08:38:45,028 - INFO - Processing paper 1/15: 2511.04316v1
+2025-11-07 08:38:45,758 - INFO - Rate limit reached. Waiting 7.5 seconds...
+2025-11-07 08:38:53,241 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:56,034 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:38:56,035 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:38:56,213 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:38:56,216 - INFO - Successfully saved summary for paper 2511.04316v1
+2025-11-07 08:38:56,216 - INFO - ✅ Successfully processed paper 2511.04316v1
+2025-11-07 08:38:56,216 - INFO - Processing paper 2/15: 2511.04312v1
+2025-11-07 08:38:59,235 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:11,868 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:39:11,869 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:12,038 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:39:12,040 - INFO - Successfully saved summary for paper 2511.04312v1
+2025-11-07 08:39:12,040 - INFO - ✅ Successfully processed paper 2511.04312v1
+2025-11-07 08:39:12,040 - INFO - Processing paper 3/15: 2511.04309v1
+2025-11-07 08:39:13,421 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:16,136 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:39:16,137 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:16,683 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:39:16,686 - INFO - Successfully saved summary for paper 2511.04309v1
+2025-11-07 08:39:16,686 - INFO - ✅ Successfully processed paper 2511.04309v1
+2025-11-07 08:39:16,686 - INFO - Processing paper 4/15: 2511.04307v1
+2025-11-07 08:39:17,246 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:19,828 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:39:19,828 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:19,927 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:39:19,930 - INFO - Successfully saved summary for paper 2511.04307v1
+2025-11-07 08:39:19,930 - INFO - ✅ Successfully processed paper 2511.04307v1
+2025-11-07 08:39:19,931 - INFO - Processing paper 5/15: 2511.04304v1
+2025-11-07 08:39:20,988 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:27,866 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:39:27,868 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:28,025 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:39:28,028 - INFO - Successfully saved summary for paper 2511.04304v1
+2025-11-07 08:39:28,028 - INFO - ✅ Successfully processed paper 2511.04304v1
+2025-11-07 08:39:28,028 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:39:28,028 - INFO - Processing paper 6/15: 2511.04301v1
+2025-11-07 08:39:36,270 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:39,484 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:39:39,485 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:39:39,668 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:39:39,671 - INFO - Successfully saved summary for paper 2511.04301v1
+2025-11-07 08:39:39,671 - INFO - ✅ Successfully processed paper 2511.04301v1
+2025-11-07 08:39:39,671 - INFO - Processing paper 7/15: 2511.04291v1
+2025-11-07 08:39:40,426 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:49:54,537 - INFO - Gemini 2.5 Flash Lite configured successfully with rate limiting (10 req/min)
+2025-11-07 08:49:54,537 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-11-07 08:49:55,346 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-11-07 08:49:55,356 - INFO - Loaded taxonomy with 156 category mappings from Supabase
+2025-11-07 08:49:56,548 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:49:56,552 - INFO - Finding papers that need summarization
+2025-11-07 08:49:56,552 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:49:56,700 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:49:56,704 - INFO - Found 15 papers to process
+2025-11-07 08:49:56,704 - INFO - Processing paper 1/15: 2511.04291v1
+2025-11-07 08:49:57,583 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:00,580 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:00,580 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:00,707 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:00,709 - INFO - Successfully saved summary for paper 2511.04291v1
+2025-11-07 08:50:00,709 - INFO - ✅ Successfully processed paper 2511.04291v1
+2025-11-07 08:50:00,709 - INFO - Processing paper 2/15: 2511.04288v1
+2025-11-07 08:50:02,053 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:05,543 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:05,544 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:05,652 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:05,653 - INFO - Successfully saved summary for paper 2511.04288v1
+2025-11-07 08:50:05,653 - INFO - ✅ Successfully processed paper 2511.04288v1
+2025-11-07 08:50:05,653 - INFO - Processing paper 3/15: 2511.04286v1
+2025-11-07 08:50:06,927 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:10,082 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:10,086 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:10,188 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:10,190 - INFO - Successfully saved summary for paper 2511.04286v1
+2025-11-07 08:50:10,191 - INFO - ✅ Successfully processed paper 2511.04286v1
+2025-11-07 08:50:10,191 - INFO - Processing paper 4/15: 2511.04285v1
+2025-11-07 08:50:10,983 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:13,732 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:13,733 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:13,837 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:13,839 - INFO - Successfully saved summary for paper 2511.04285v1
+2025-11-07 08:50:13,839 - INFO - ✅ Successfully processed paper 2511.04285v1
+2025-11-07 08:50:13,839 - INFO - Processing paper 5/15: 2511.04283v1
+2025-11-07 08:50:14,921 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:18,026 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:18,026 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:18,128 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:18,129 - INFO - Successfully saved summary for paper 2511.04283v1
+2025-11-07 08:50:18,129 - INFO - ✅ Successfully processed paper 2511.04283v1
+2025-11-07 08:50:18,129 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:50:18,129 - INFO - Processing paper 6/15: 2511.04281v1
+2025-11-07 08:50:19,327 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:22,322 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:22,323 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:22,434 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:22,437 - INFO - Successfully saved summary for paper 2511.04281v1
+2025-11-07 08:50:22,437 - INFO - ✅ Successfully processed paper 2511.04281v1
+2025-11-07 08:50:22,438 - INFO - Processing paper 7/15: 2511.04275v1
+2025-11-07 08:50:23,092 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:27,529 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:27,529 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:27,871 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:27,873 - INFO - Successfully saved summary for paper 2511.04275v1
+2025-11-07 08:50:27,874 - INFO - ✅ Successfully processed paper 2511.04275v1
+2025-11-07 08:50:27,874 - INFO - Processing paper 8/15: 2511.04260v1
+2025-11-07 08:50:28,982 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:31,903 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:31,903 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:32,022 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:32,024 - INFO - Successfully saved summary for paper 2511.04260v1
+2025-11-07 08:50:32,024 - INFO - ✅ Successfully processed paper 2511.04260v1
+2025-11-07 08:50:32,025 - INFO - Processing paper 9/15: 2511.04256v1
+2025-11-07 08:50:32,638 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:36,193 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:36,194 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:36,297 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:36,300 - INFO - Successfully saved summary for paper 2511.04256v1
+2025-11-07 08:50:36,300 - INFO - ✅ Successfully processed paper 2511.04256v1
+2025-11-07 08:50:36,300 - INFO - Processing paper 10/15: 2511.04255v1
+2025-11-07 08:50:37,044 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:40,303 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:50:40,304 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:50:40,426 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:50:40,429 - INFO - Successfully saved summary for paper 2511.04255v1
+2025-11-07 08:50:40,429 - INFO - ✅ Successfully processed paper 2511.04255v1
+2025-11-07 08:50:40,429 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:50:40,430 - INFO - Processing paper 11/15: 2511.04251v1
+2025-11-07 08:50:41,440 - INFO - Rate limit reached. Waiting 16.1 seconds...
+2025-11-07 08:50:57,595 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:01,498 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:01,499 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:01,765 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:01,769 - INFO - Successfully saved summary for paper 2511.04251v1
+2025-11-07 08:51:01,769 - INFO - ✅ Successfully processed paper 2511.04251v1
+2025-11-07 08:51:01,769 - INFO - Processing paper 12/15: 2511.04249v1
+2025-11-07 08:51:03,096 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:06,936 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:06,938 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:07,271 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:07,274 - INFO - Successfully saved summary for paper 2511.04249v1
+2025-11-07 08:51:07,274 - INFO - ✅ Successfully processed paper 2511.04249v1
+2025-11-07 08:51:07,274 - INFO - Processing paper 13/15: 2511.04248v1
+2025-11-07 08:51:08,257 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:11,262 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:11,263 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:11,386 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:11,389 - INFO - Successfully saved summary for paper 2511.04248v1
+2025-11-07 08:51:11,390 - INFO - ✅ Successfully processed paper 2511.04248v1
+2025-11-07 08:51:11,390 - INFO - Processing paper 14/15: 2511.04247v1
+2025-11-07 08:51:13,887 - WARNING -  impossible to decode XFormObject /Im4
+2025-11-07 08:51:13,897 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:17,208 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:17,209 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:17,385 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:17,388 - INFO - Successfully saved summary for paper 2511.04247v1
+2025-11-07 08:51:17,388 - INFO - ✅ Successfully processed paper 2511.04247v1
+2025-11-07 08:51:17,388 - INFO - Processing paper 15/15: 2511.04244v1
+2025-11-07 08:51:18,164 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:20,650 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:20,651 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:20,752 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:20,754 - INFO - Successfully saved summary for paper 2511.04244v1
+2025-11-07 08:51:20,754 - INFO - ✅ Successfully processed paper 2511.04244v1
+2025-11-07 08:51:20,754 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:51:20,754 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:51:20,903 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:51:20,906 - INFO - Finding papers that need summarization
+2025-11-07 08:51:20,906 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:51:21,046 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:51:21,050 - INFO - Found 15 papers to process
+2025-11-07 08:51:21,051 - INFO - Processing paper 1/15: 2511.04243v1
+2025-11-07 08:51:21,708 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:37,551 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:37,553 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:38,006 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:38,008 - INFO - Successfully saved summary for paper 2511.04243v1
+2025-11-07 08:51:38,009 - INFO - ✅ Successfully processed paper 2511.04243v1
+2025-11-07 08:51:38,009 - INFO - Processing paper 2/15: 2511.04239v1
+2025-11-07 08:51:38,738 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:41,714 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:41,715 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:41,828 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:41,831 - INFO - Successfully saved summary for paper 2511.04239v1
+2025-11-07 08:51:41,831 - INFO - ✅ Successfully processed paper 2511.04239v1
+2025-11-07 08:51:41,831 - INFO - Processing paper 3/15: 2511.04237v1
+2025-11-07 08:51:42,415 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:45,589 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:45,590 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:45,692 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:45,695 - INFO - Successfully saved summary for paper 2511.04237v1
+2025-11-07 08:51:45,695 - INFO - ✅ Successfully processed paper 2511.04237v1
+2025-11-07 08:51:45,696 - INFO - Processing paper 4/15: 2511.04235v1
+2025-11-07 08:51:48,705 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:51,993 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:51,994 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:52,147 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:52,149 - INFO - Successfully saved summary for paper 2511.04235v1
+2025-11-07 08:51:52,150 - INFO - ✅ Successfully processed paper 2511.04235v1
+2025-11-07 08:51:52,150 - INFO - Processing paper 5/15: 2511.04234v1
+2025-11-07 08:51:52,692 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:55,978 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:51:55,979 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:51:56,076 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:51:56,079 - INFO - Successfully saved summary for paper 2511.04234v1
+2025-11-07 08:51:56,079 - INFO - ✅ Successfully processed paper 2511.04234v1
+2025-11-07 08:51:56,079 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:51:56,079 - INFO - Processing paper 6/15: 2511.04228v1
+2025-11-07 08:51:56,828 - INFO - Rate limit reached. Waiting 0.8 seconds...
+2025-11-07 08:51:57,600 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:02,942 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:52:02,943 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:03,107 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:52:03,108 - INFO - Successfully saved summary for paper 2511.04228v1
+2025-11-07 08:52:03,109 - INFO - ✅ Successfully processed paper 2511.04228v1
+2025-11-07 08:52:03,109 - INFO - Processing paper 7/15: 2511.04221v1
+2025-11-07 08:52:04,066 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:07,181 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:52:07,182 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:07,283 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:52:07,286 - INFO - Successfully saved summary for paper 2511.04221v1
+2025-11-07 08:52:07,286 - INFO - ✅ Successfully processed paper 2511.04221v1
+2025-11-07 08:52:07,286 - INFO - Processing paper 8/15: 2511.04220v1
+2025-11-07 08:52:07,777 - INFO - Rate limit reached. Waiting 0.5 seconds...
+2025-11-07 08:52:08,268 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:10,412 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:52:10,413 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:10,507 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:52:10,510 - INFO - Successfully saved summary for paper 2511.04220v1
+2025-11-07 08:52:10,510 - INFO - ✅ Successfully processed paper 2511.04220v1
+2025-11-07 08:52:10,510 - INFO - Processing paper 9/15: 2511.04217v1
+2025-11-07 08:52:11,587 - INFO - Rate limit reached. Waiting 2.3 seconds...
+2025-11-07 08:52:13,911 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:16,556 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:52:16,557 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:16,805 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:52:16,807 - INFO - Successfully saved summary for paper 2511.04217v1
+2025-11-07 08:52:16,807 - INFO - ✅ Successfully processed paper 2511.04217v1
+2025-11-07 08:52:16,807 - INFO - Processing paper 10/15: 2511.04215v1
+2025-11-07 08:52:17,846 - INFO - Rate limit reached. Waiting 0.3 seconds...
+2025-11-07 08:52:18,175 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:21,078 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:52:21,079 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:21,175 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:52:21,178 - INFO - Successfully saved summary for paper 2511.04215v1
+2025-11-07 08:52:21,178 - INFO - ✅ Successfully processed paper 2511.04215v1
+2025-11-07 08:52:21,178 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:52:21,179 - INFO - Processing paper 11/15: 2511.04214v1
+2025-11-07 08:52:21,865 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:24,492 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:52:24,492 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:52:24,591 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:52:24,593 - INFO - Successfully saved summary for paper 2511.04214v1
+2025-11-07 08:52:24,593 - INFO - ✅ Successfully processed paper 2511.04214v1
+2025-11-07 08:52:24,594 - INFO - Processing paper 12/15: 2511.04205v1
+2025-11-07 08:52:25,080 - INFO - Rate limit reached. Waiting 13.7 seconds...
+2025-11-07 08:53:03,460 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:07,216 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:07,217 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:07,411 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:07,416 - INFO - Successfully saved summary for paper 2511.04205v1
+2025-11-07 08:53:07,416 - INFO - ✅ Successfully processed paper 2511.04205v1
+2025-11-07 08:53:07,416 - INFO - Processing paper 13/15: 2511.04199v1
+2025-11-07 08:53:08,760 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:11,389 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:11,389 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:11,508 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:11,511 - INFO - Successfully saved summary for paper 2511.04199v1
+2025-11-07 08:53:11,511 - INFO - ✅ Successfully processed paper 2511.04199v1
+2025-11-07 08:53:11,512 - INFO - Processing paper 14/15: 2511.04195v1
+2025-11-07 08:53:12,459 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:15,196 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:15,197 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:15,388 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:15,390 - INFO - Successfully saved summary for paper 2511.04195v1
+2025-11-07 08:53:15,391 - INFO - ✅ Successfully processed paper 2511.04195v1
+2025-11-07 08:53:15,391 - INFO - Processing paper 15/15: 2511.04192v1
+2025-11-07 08:53:17,347 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:20,361 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:20,362 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:21,065 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:21,067 - INFO - Successfully saved summary for paper 2511.04192v1
+2025-11-07 08:53:21,067 - INFO - ✅ Successfully processed paper 2511.04192v1
+2025-11-07 08:53:21,067 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:53:21,068 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:53:21,237 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:53:21,239 - INFO - Finding papers that need summarization
+2025-11-07 08:53:21,240 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:53:21,553 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:53:21,557 - INFO - Found 15 papers to process
+2025-11-07 08:53:21,557 - INFO - Processing paper 1/15: 2511.04190v1
+2025-11-07 08:53:23,948 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:26,917 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:26,919 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:27,197 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:27,198 - INFO - Successfully saved summary for paper 2511.04190v1
+2025-11-07 08:53:27,198 - INFO - ✅ Successfully processed paper 2511.04190v1
+2025-11-07 08:53:27,199 - INFO - Processing paper 2/15: 2511.04184v1
+2025-11-07 08:53:27,639 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:30,305 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:30,305 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:30,406 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:30,407 - INFO - Successfully saved summary for paper 2511.04184v1
+2025-11-07 08:53:30,407 - INFO - ✅ Successfully processed paper 2511.04184v1
+2025-11-07 08:53:30,408 - INFO - Processing paper 3/15: 2511.04183v1
+2025-11-07 08:53:31,345 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:34,688 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:34,689 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:34,805 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:34,808 - INFO - Successfully saved summary for paper 2511.04183v1
+2025-11-07 08:53:34,808 - INFO - ✅ Successfully processed paper 2511.04183v1
+2025-11-07 08:53:34,808 - INFO - Processing paper 4/15: 2511.04180v1
+2025-11-07 08:53:35,817 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:39,042 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:39,043 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:39,148 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:39,149 - INFO - Successfully saved summary for paper 2511.04180v1
+2025-11-07 08:53:39,149 - INFO - ✅ Successfully processed paper 2511.04180v1
+2025-11-07 08:53:39,149 - INFO - Processing paper 5/15: 2511.04179v1
+2025-11-07 08:53:39,636 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:42,764 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:42,766 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:42,868 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:42,871 - INFO - Successfully saved summary for paper 2511.04179v1
+2025-11-07 08:53:42,871 - INFO - ✅ Successfully processed paper 2511.04179v1
+2025-11-07 08:53:42,871 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 08:53:42,871 - INFO - Processing paper 6/15: 2511.04177v1
+2025-11-07 08:53:43,824 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:55,632 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:53:55,633 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:53:55,803 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:53:55,806 - INFO - Successfully saved summary for paper 2511.04177v1
+2025-11-07 08:53:55,806 - INFO - ✅ Successfully processed paper 2511.04177v1
+2025-11-07 08:53:55,806 - INFO - Processing paper 7/15: 2511.04172v1
+2025-11-07 08:53:56,441 - INFO - Rate limit reached. Waiting 7.0 seconds...
+2025-11-07 08:54:03,465 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:06,538 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:06,539 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:06,709 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:06,710 - INFO - Successfully saved summary for paper 2511.04172v1
+2025-11-07 08:54:06,710 - INFO - ✅ Successfully processed paper 2511.04172v1
+2025-11-07 08:54:06,710 - INFO - Processing paper 8/15: 2511.04171v1
+2025-11-07 08:54:07,536 - INFO - Rate limit reached. Waiting 1.2 seconds...
+2025-11-07 08:54:08,773 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:11,320 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:11,320 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:11,439 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:11,442 - INFO - Successfully saved summary for paper 2511.04171v1
+2025-11-07 08:54:11,442 - INFO - ✅ Successfully processed paper 2511.04171v1
+2025-11-07 08:54:11,442 - INFO - Processing paper 9/15: 2511.04162v1
+2025-11-07 08:54:12,191 - INFO - Rate limit reached. Waiting 0.3 seconds...
+2025-11-07 08:54:12,472 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:15,138 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:15,139 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:15,243 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:15,246 - INFO - Successfully saved summary for paper 2511.04162v1
+2025-11-07 08:54:15,246 - INFO - ✅ Successfully processed paper 2511.04162v1
+2025-11-07 08:54:15,246 - INFO - Processing paper 10/15: 2511.04161v1
+2025-11-07 08:54:16,078 - INFO - Rate limit reached. Waiting 1.3 seconds...
+2025-11-07 08:54:17,359 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:20,258 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:20,259 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:20,423 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:20,425 - INFO - Successfully saved summary for paper 2511.04161v1
+2025-11-07 08:54:20,425 - INFO - ✅ Successfully processed paper 2511.04161v1
+2025-11-07 08:54:20,425 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 08:54:20,425 - INFO - Processing paper 11/15: 2511.04160v1
+2025-11-07 08:54:21,153 - INFO - Rate limit reached. Waiting 2.8 seconds...
+2025-11-07 08:54:23,960 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:26,718 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:26,719 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:26,881 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:26,883 - INFO - Successfully saved summary for paper 2511.04160v1
+2025-11-07 08:54:26,883 - INFO - ✅ Successfully processed paper 2511.04160v1
+2025-11-07 08:54:26,883 - INFO - Processing paper 12/15: 2511.04158v1
+2025-11-07 08:54:28,346 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:31,410 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:31,411 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:31,534 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:31,537 - INFO - Successfully saved summary for paper 2511.04158v1
+2025-11-07 08:54:31,537 - INFO - ✅ Successfully processed paper 2511.04158v1
+2025-11-07 08:54:31,537 - INFO - Processing paper 13/15: 2511.04157v1
+2025-11-07 08:54:32,100 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:35,517 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:35,518 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:35,652 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:35,655 - INFO - Successfully saved summary for paper 2511.04157v1
+2025-11-07 08:54:35,655 - INFO - ✅ Successfully processed paper 2511.04157v1
+2025-11-07 08:54:35,655 - INFO - Processing paper 14/15: 2511.04155v1
+2025-11-07 08:54:36,273 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:39,407 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:39,408 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:39,509 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:39,512 - INFO - Successfully saved summary for paper 2511.04155v1
+2025-11-07 08:54:39,512 - INFO - ✅ Successfully processed paper 2511.04155v1
+2025-11-07 08:54:39,512 - INFO - Processing paper 15/15: 2511.04153v1
+2025-11-07 08:54:40,194 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:43,505 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:43,506 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:43,622 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:43,625 - INFO - Successfully saved summary for paper 2511.04153v1
+2025-11-07 08:54:43,625 - INFO - ✅ Successfully processed paper 2511.04153v1
+2025-11-07 08:54:43,626 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 08:54:43,626 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 08:54:44,724 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 08:54:44,726 - INFO - Finding papers that need summarization
+2025-11-07 08:54:44,727 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 08:54:44,874 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 08:54:44,878 - INFO - Found 15 papers to process
+2025-11-07 08:54:44,878 - INFO - Processing paper 1/15: 2511.04147v1
+2025-11-07 08:54:45,446 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:51,632 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:54:51,633 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:54:51,785 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:54:51,788 - INFO - Successfully saved summary for paper 2511.04147v1
+2025-11-07 08:54:51,788 - INFO - ✅ Successfully processed paper 2511.04147v1
+2025-11-07 08:54:51,788 - INFO - Processing paper 2/15: 2511.04144v1
+2025-11-07 08:54:52,544 - INFO - Rate limit reached. Waiting 10.9 seconds...
+2025-11-07 08:55:03,469 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:55:06,176 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:55:06,177 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:55:06,752 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:55:06,754 - INFO - Successfully saved summary for paper 2511.04144v1
+2025-11-07 08:55:06,754 - INFO - ✅ Successfully processed paper 2511.04144v1
+2025-11-07 08:55:06,755 - INFO - Processing paper 3/15: 2511.04139v1
+2025-11-07 08:55:07,226 - INFO - Rate limit reached. Waiting 1.5 seconds...
+2025-11-07 08:55:08,775 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:55:11,742 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:55:11,743 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:55:11,861 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:55:11,864 - INFO - Successfully saved summary for paper 2511.04139v1
+2025-11-07 08:55:11,864 - INFO - ✅ Successfully processed paper 2511.04139v1
+2025-11-07 08:55:11,864 - INFO - Processing paper 4/15: 2511.04137v1
+2025-11-07 08:55:12,481 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:55:15,109 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 08:55:15,111 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 08:55:15,214 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 08:55:15,217 - INFO - Successfully saved summary for paper 2511.04137v1
+2025-11-07 08:55:15,218 - INFO - ✅ Successfully processed paper 2511.04137v1
+2025-11-07 08:55:15,218 - INFO - Processing paper 5/15: 2511.04133v1
+2025-11-07 08:55:15,802 - INFO - Rate limit reached. Waiting 1.5 seconds...
+2025-11-07 08:55:17,368 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:12:48,312 - ERROR - Error generating summaries with Gemini (attempt 1): 504 Deadline Exceeded
+2025-11-07 09:12:48,313 - INFO - Retrying due to exception...
+2025-11-07 09:12:48,315 - INFO - Generating summaries with Gemini 2.5 Flash Lite (attempt 2/3)
+2025-11-07 09:12:52,518 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:12:52,518 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite on attempt 2
+2025-11-07 09:43:39,782 - INFO - Gemini 2.5 Flash Lite configured successfully with rate limiting (10 req/min)
+2025-11-07 09:43:39,782 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-11-07 09:43:41,157 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-11-07 09:43:41,167 - INFO - Loaded taxonomy with 156 category mappings from Supabase
+2025-11-07 09:43:44,344 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 500 Internal Server Error"
+2025-11-07 09:43:44,350 - ERROR - Summarization process failed: {'message': 'canceling statement due to statement timeout', 'code': '57014', 'hint': None, 'details': None}
+2025-11-07 09:44:39,148 - INFO - Gemini 2.5 Flash Lite configured successfully with rate limiting (10 req/min)
+2025-11-07 09:44:39,148 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-11-07 09:44:39,542 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-11-07 09:44:39,552 - INFO - Loaded taxonomy with 156 category mappings from Supabase
+2025-11-07 09:44:40,112 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 09:44:40,115 - INFO - Finding papers that need summarization
+2025-11-07 09:44:40,116 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 09:44:40,298 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 09:44:40,303 - INFO - Found 15 papers to process
+2025-11-07 09:44:40,304 - INFO - Processing paper 1/15: 2511.04132v1
+2025-11-07 09:44:41,000 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:44,754 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:44:44,754 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:44,921 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:44:44,923 - INFO - Successfully saved summary for paper 2511.04132v1
+2025-11-07 09:44:44,923 - INFO - ✅ Successfully processed paper 2511.04132v1
+2025-11-07 09:44:44,923 - INFO - Processing paper 2/15: 2511.04131v1
+2025-11-07 09:44:47,091 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:50,464 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:44:50,464 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:50,667 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:44:50,670 - INFO - Successfully saved summary for paper 2511.04131v1
+2025-11-07 09:44:50,670 - INFO - ✅ Successfully processed paper 2511.04131v1
+2025-11-07 09:44:50,671 - INFO - Processing paper 3/15: 2511.04128v1
+2025-11-07 09:44:52,947 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:55,787 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:44:55,788 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:56,049 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:44:56,051 - INFO - Successfully saved summary for paper 2511.04128v1
+2025-11-07 09:44:56,052 - INFO - ✅ Successfully processed paper 2511.04128v1
+2025-11-07 09:44:56,052 - INFO - Processing paper 4/15: 2511.04126v1
+2025-11-07 09:44:56,545 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:59,812 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:44:59,812 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:44:59,934 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:44:59,937 - INFO - Successfully saved summary for paper 2511.04126v1
+2025-11-07 09:44:59,937 - INFO - ✅ Successfully processed paper 2511.04126v1
+2025-11-07 09:44:59,937 - INFO - Processing paper 5/15: 2511.04124v1
+2025-11-07 09:45:01,263 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:04,088 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:04,089 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:04,208 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:04,211 - INFO - Successfully saved summary for paper 2511.04124v1
+2025-11-07 09:45:04,211 - INFO - ✅ Successfully processed paper 2511.04124v1
+2025-11-07 09:45:04,211 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 09:45:04,211 - INFO - Processing paper 6/15: 2511.04123v1
+2025-11-07 09:45:05,874 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:08,929 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:08,929 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:09,046 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:09,049 - INFO - Successfully saved summary for paper 2511.04123v1
+2025-11-07 09:45:09,050 - INFO - ✅ Successfully processed paper 2511.04123v1
+2025-11-07 09:45:09,050 - INFO - Processing paper 7/15: 2511.04120v1
+2025-11-07 09:45:09,832 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:12,743 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:12,744 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:12,867 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:12,870 - INFO - Successfully saved summary for paper 2511.04120v1
+2025-11-07 09:45:12,870 - INFO - ✅ Successfully processed paper 2511.04120v1
+2025-11-07 09:45:12,870 - INFO - Processing paper 8/15: 2511.04117v1
+2025-11-07 09:45:13,734 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:16,812 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:16,813 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:16,928 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:16,931 - INFO - Successfully saved summary for paper 2511.04117v1
+2025-11-07 09:45:16,931 - INFO - ✅ Successfully processed paper 2511.04117v1
+2025-11-07 09:45:16,931 - INFO - Processing paper 9/15: 2511.04114v1
+2025-11-07 09:45:17,505 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:19,987 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:19,987 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:20,110 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:20,113 - INFO - Successfully saved summary for paper 2511.04114v1
+2025-11-07 09:45:20,113 - INFO - ✅ Successfully processed paper 2511.04114v1
+2025-11-07 09:45:20,113 - INFO - Processing paper 10/15: 2511.04112v1
+2025-11-07 09:45:21,413 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:24,386 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:24,387 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:24,802 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:24,805 - INFO - Successfully saved summary for paper 2511.04112v1
+2025-11-07 09:45:24,805 - INFO - ✅ Successfully processed paper 2511.04112v1
+2025-11-07 09:45:24,805 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 09:45:24,805 - INFO - Processing paper 11/15: 2511.04109v1
+2025-11-07 09:45:25,881 - INFO - Rate limit reached. Waiting 15.1 seconds...
+2025-11-07 09:45:41,014 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:44,152 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:44,152 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:44,429 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:44,432 - INFO - Successfully saved summary for paper 2511.04109v1
+2025-11-07 09:45:44,432 - INFO - ✅ Successfully processed paper 2511.04109v1
+2025-11-07 09:45:44,432 - INFO - Processing paper 12/15: 2511.04108v1
+2025-11-07 09:45:45,090 - INFO - Rate limit reached. Waiting 2.0 seconds...
+2025-11-07 09:45:47,097 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:50,147 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:50,148 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:50,411 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:50,414 - INFO - Successfully saved summary for paper 2511.04108v1
+2025-11-07 09:45:50,415 - INFO - ✅ Successfully processed paper 2511.04108v1
+2025-11-07 09:45:50,415 - INFO - Processing paper 13/15: 2511.04106v1
+2025-11-07 09:45:54,519 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:57,527 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:45:57,528 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:45:57,731 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:45:57,734 - INFO - Successfully saved summary for paper 2511.04106v1
+2025-11-07 09:45:57,734 - INFO - ✅ Successfully processed paper 2511.04106v1
+2025-11-07 09:45:57,734 - INFO - Processing paper 14/15: 2511.04103v1
+2025-11-07 09:45:58,329 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:01,771 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:01,771 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:01,877 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:01,880 - INFO - Successfully saved summary for paper 2511.04103v1
+2025-11-07 09:46:01,881 - INFO - ✅ Successfully processed paper 2511.04103v1
+2025-11-07 09:46:01,881 - INFO - Processing paper 15/15: 2511.04094v1
+2025-11-07 09:46:03,077 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:05,876 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:05,876 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:06,007 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:06,010 - INFO - Successfully saved summary for paper 2511.04094v1
+2025-11-07 09:46:06,010 - INFO - ✅ Successfully processed paper 2511.04094v1
+2025-11-07 09:46:06,010 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 09:46:06,011 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 09:46:06,158 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 09:46:06,160 - INFO - Finding papers that need summarization
+2025-11-07 09:46:06,160 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 09:46:06,299 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 09:46:06,300 - INFO - Found 15 papers to process
+2025-11-07 09:46:06,301 - INFO - Processing paper 1/15: 2511.04093v1
+2025-11-07 09:46:07,244 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:10,474 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:10,474 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:10,591 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:10,594 - INFO - Successfully saved summary for paper 2511.04093v1
+2025-11-07 09:46:10,594 - INFO - ✅ Successfully processed paper 2511.04093v1
+2025-11-07 09:46:10,594 - INFO - Processing paper 2/15: 2511.04092v1
+2025-11-07 09:46:11,349 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:13,923 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:13,925 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:14,039 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:14,042 - INFO - Successfully saved summary for paper 2511.04092v1
+2025-11-07 09:46:14,042 - INFO - ✅ Successfully processed paper 2511.04092v1
+2025-11-07 09:46:14,042 - INFO - Processing paper 3/15: 2511.04090v1
+2025-11-07 09:46:14,642 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:18,150 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:18,151 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:18,261 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:18,264 - INFO - Successfully saved summary for paper 2511.04090v1
+2025-11-07 09:46:18,264 - INFO - ✅ Successfully processed paper 2511.04090v1
+2025-11-07 09:46:18,264 - INFO - Processing paper 4/15: 2511.04087v1
+2025-11-07 09:46:19,404 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:22,858 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:22,858 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:22,994 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:22,996 - INFO - Successfully saved summary for paper 2511.04087v1
+2025-11-07 09:46:22,997 - INFO - ✅ Successfully processed paper 2511.04087v1
+2025-11-07 09:46:22,997 - INFO - Processing paper 5/15: 2511.04086v1
+2025-11-07 09:46:23,979 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:26,630 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:26,631 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:26,736 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:26,739 - INFO - Successfully saved summary for paper 2511.04086v1
+2025-11-07 09:46:26,739 - INFO - ✅ Successfully processed paper 2511.04086v1
+2025-11-07 09:46:26,739 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 09:46:26,739 - INFO - Processing paper 6/15: 2511.04084v1
+2025-11-07 09:46:27,302 - INFO - Rate limit reached. Waiting 13.7 seconds...
+2025-11-07 09:46:41,015 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:44,573 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:44,573 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:44,749 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:44,752 - INFO - Successfully saved summary for paper 2511.04084v1
+2025-11-07 09:46:44,753 - INFO - ✅ Successfully processed paper 2511.04084v1
+2025-11-07 09:46:44,753 - INFO - Processing paper 7/15: 2511.04083v1
+2025-11-07 09:46:45,309 - INFO - Rate limit reached. Waiting 1.8 seconds...
+2025-11-07 09:46:47,097 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:50,714 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:50,715 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:50,891 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:50,893 - INFO - Successfully saved summary for paper 2511.04083v1
+2025-11-07 09:46:50,893 - INFO - ✅ Successfully processed paper 2511.04083v1
+2025-11-07 09:46:50,893 - INFO - Processing paper 8/15: 2511.04082v1
+2025-11-07 09:46:51,732 - INFO - Rate limit reached. Waiting 2.8 seconds...
+2025-11-07 09:46:54,526 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:58,188 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:46:58,189 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:46:58,354 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:46:58,357 - INFO - Successfully saved summary for paper 2511.04082v1
+2025-11-07 09:46:58,357 - INFO - ✅ Successfully processed paper 2511.04082v1
+2025-11-07 09:46:58,357 - INFO - Processing paper 9/15: 2511.04080v1
+2025-11-07 09:46:58,903 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:01,774 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:47:01,774 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:01,878 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:47:01,881 - INFO - Successfully saved summary for paper 2511.04080v1
+2025-11-07 09:47:01,881 - INFO - ✅ Successfully processed paper 2511.04080v1
+2025-11-07 09:47:01,882 - INFO - Processing paper 10/15: 2511.04079v1
+2025-11-07 09:47:02,338 - INFO - Rate limit reached. Waiting 0.7 seconds...
+2025-11-07 09:47:03,089 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:06,119 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:47:06,120 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:06,220 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:47:06,222 - INFO - Successfully saved summary for paper 2511.04079v1
+2025-11-07 09:47:06,223 - INFO - ✅ Successfully processed paper 2511.04079v1
+2025-11-07 09:47:06,223 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 09:47:06,223 - INFO - Processing paper 11/15: 2511.04078v1
+2025-11-07 09:47:13,354 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:16,287 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:47:16,288 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:16,780 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:47:16,782 - INFO - Successfully saved summary for paper 2511.04078v1
+2025-11-07 09:47:16,783 - INFO - ✅ Successfully processed paper 2511.04078v1
+2025-11-07 09:47:16,783 - INFO - Processing paper 12/15: 2511.04077v1
+2025-11-07 09:47:17,213 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:20,209 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:47:20,209 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:20,306 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:47:20,309 - INFO - Successfully saved summary for paper 2511.04077v1
+2025-11-07 09:47:20,309 - INFO - ✅ Successfully processed paper 2511.04077v1
+2025-11-07 09:47:20,309 - INFO - Processing paper 13/15: 2511.04076v1
+2025-11-07 09:47:21,024 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:23,826 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:47:23,827 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:23,922 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:47:23,925 - INFO - Successfully saved summary for paper 2511.04076v1
+2025-11-07 09:47:23,925 - INFO - ✅ Successfully processed paper 2511.04076v1
+2025-11-07 09:47:23,925 - INFO - Processing paper 14/15: 2511.04075v1
+2025-11-07 09:47:24,837 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:28,128 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:47:28,129 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:28,227 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:47:28,230 - INFO - Successfully saved summary for paper 2511.04075v1
+2025-11-07 09:47:28,231 - INFO - ✅ Successfully processed paper 2511.04075v1
+2025-11-07 09:47:28,231 - INFO - Processing paper 15/15: 2511.04073v1
+2025-11-07 09:47:28,763 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:31,881 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:47:31,882 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:47:31,985 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:47:31,987 - INFO - Successfully saved summary for paper 2511.04073v1
+2025-11-07 09:47:31,988 - INFO - ✅ Successfully processed paper 2511.04073v1
+2025-11-07 09:47:31,988 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 09:47:31,988 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 09:47:32,119 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 09:47:32,120 - INFO - Finding papers that need summarization
+2025-11-07 09:47:32,120 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 09:47:32,235 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 09:47:32,237 - INFO - Found 15 papers to process
+2025-11-07 09:47:32,237 - INFO - Processing paper 1/15: 2511.04072v1
+2025-11-07 09:47:33,081 - INFO - Rate limit reached. Waiting 7.9 seconds...
+2025-11-07 09:47:41,023 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:14,319 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:14,321 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:14,529 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:14,531 - INFO - Successfully saved summary for paper 2511.04072v1
+2025-11-07 09:48:14,531 - INFO - ✅ Successfully processed paper 2511.04072v1
+2025-11-07 09:48:14,531 - INFO - Processing paper 2/15: 2511.04071v1
+2025-11-07 09:48:15,332 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:18,189 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:18,190 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:18,290 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:18,293 - INFO - Successfully saved summary for paper 2511.04071v1
+2025-11-07 09:48:18,293 - INFO - ✅ Successfully processed paper 2511.04071v1
+2025-11-07 09:48:18,293 - INFO - Processing paper 3/15: 2511.04069v1
+2025-11-07 09:48:18,962 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:21,638 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:21,639 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:21,803 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:21,806 - INFO - Successfully saved summary for paper 2511.04069v1
+2025-11-07 09:48:21,806 - INFO - ✅ Successfully processed paper 2511.04069v1
+2025-11-07 09:48:21,806 - INFO - Processing paper 4/15: 2511.04070v1
+2025-11-07 09:48:26,581 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:29,469 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:29,470 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:29,630 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:29,632 - INFO - Successfully saved summary for paper 2511.04070v1
+2025-11-07 09:48:29,632 - INFO - ✅ Successfully processed paper 2511.04070v1
+2025-11-07 09:48:29,633 - INFO - Processing paper 5/15: 2511.04063v1
+2025-11-07 09:48:30,258 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:33,552 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:33,552 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:33,679 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:33,683 - INFO - Successfully saved summary for paper 2511.04063v1
+2025-11-07 09:48:33,683 - INFO - ✅ Successfully processed paper 2511.04063v1
+2025-11-07 09:48:33,684 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 09:48:33,684 - INFO - Processing paper 6/15: 2511.04053v1
+2025-11-07 09:48:34,527 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:37,464 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:37,465 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:37,568 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:37,569 - INFO - Successfully saved summary for paper 2511.04053v1
+2025-11-07 09:48:37,570 - INFO - ✅ Successfully processed paper 2511.04053v1
+2025-11-07 09:48:37,570 - INFO - Processing paper 7/15: 2511.04052v1
+2025-11-07 09:48:38,634 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:44,819 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:44,820 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:44,993 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:44,995 - INFO - Successfully saved summary for paper 2511.04052v1
+2025-11-07 09:48:44,995 - INFO - ✅ Successfully processed paper 2511.04052v1
+2025-11-07 09:48:44,996 - INFO - Processing paper 8/15: 2511.04048v1
+2025-11-07 09:48:45,671 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:49,241 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:49,241 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:49,430 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:49,433 - INFO - Successfully saved summary for paper 2511.04048v1
+2025-11-07 09:48:49,433 - INFO - ✅ Successfully processed paper 2511.04048v1
+2025-11-07 09:48:49,434 - INFO - Processing paper 9/15: 2511.04047v1
+2025-11-07 09:48:49,968 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:54,736 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:54,737 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:54,998 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:48:55,001 - INFO - Successfully saved summary for paper 2511.04047v1
+2025-11-07 09:48:55,001 - INFO - ✅ Successfully processed paper 2511.04047v1
+2025-11-07 09:48:55,001 - INFO - Processing paper 10/15: 2511.04042v1
+2025-11-07 09:48:56,320 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:48:59,702 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:48:59,702 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:00,252 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:00,255 - INFO - Successfully saved summary for paper 2511.04042v1
+2025-11-07 09:49:00,255 - INFO - ✅ Successfully processed paper 2511.04042v1
+2025-11-07 09:49:00,256 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 09:49:00,256 - INFO - Processing paper 11/15: 2511.04040v1
+2025-11-07 09:49:01,068 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:04,219 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:04,220 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:04,319 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:04,322 - INFO - Successfully saved summary for paper 2511.04040v1
+2025-11-07 09:49:04,323 - INFO - ✅ Successfully processed paper 2511.04040v1
+2025-11-07 09:49:04,323 - INFO - Processing paper 12/15: 2511.04037v1
+2025-11-07 09:49:05,144 - INFO - Rate limit reached. Waiting 10.2 seconds...
+2025-11-07 09:49:15,347 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:18,586 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:18,587 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:18,757 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:18,759 - INFO - Successfully saved summary for paper 2511.04037v1
+2025-11-07 09:49:18,759 - INFO - ✅ Successfully processed paper 2511.04037v1
+2025-11-07 09:49:18,759 - INFO - Processing paper 13/15: 2511.04035v1
+2025-11-07 09:49:19,321 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:22,270 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:22,270 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:22,372 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:22,375 - INFO - Successfully saved summary for paper 2511.04035v1
+2025-11-07 09:49:22,375 - INFO - ✅ Successfully processed paper 2511.04035v1
+2025-11-07 09:49:22,376 - INFO - Processing paper 14/15: 2511.04032v1
+2025-11-07 09:49:22,977 - INFO - Rate limit reached. Waiting 3.6 seconds...
+2025-11-07 09:49:26,592 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:29,444 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:29,445 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:29,598 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:29,600 - INFO - Successfully saved summary for paper 2511.04032v1
+2025-11-07 09:49:29,600 - INFO - ✅ Successfully processed paper 2511.04032v1
+2025-11-07 09:49:29,600 - INFO - Processing paper 15/15: 2511.04029v1
+2025-11-07 09:49:31,747 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:35,686 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:35,687 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:35,855 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:35,858 - INFO - Successfully saved summary for paper 2511.04029v1
+2025-11-07 09:49:35,859 - INFO - ✅ Successfully processed paper 2511.04029v1
+2025-11-07 09:49:35,859 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 09:49:35,859 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 09:49:36,012 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 09:49:36,015 - INFO - Finding papers that need summarization
+2025-11-07 09:49:36,015 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 09:49:36,132 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 09:49:36,136 - INFO - Found 15 papers to process
+2025-11-07 09:49:36,137 - INFO - Processing paper 1/15: 2511.04020v1
+2025-11-07 09:49:36,574 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:39,936 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:39,937 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:40,042 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:40,045 - INFO - Successfully saved summary for paper 2511.04020v1
+2025-11-07 09:49:40,045 - INFO - ✅ Successfully processed paper 2511.04020v1
+2025-11-07 09:49:40,046 - INFO - Processing paper 2/15: 2511.04016v1
+2025-11-07 09:49:40,557 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:43,773 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:43,774 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:43,873 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:43,876 - INFO - Successfully saved summary for paper 2511.04016v1
+2025-11-07 09:49:43,876 - INFO - ✅ Successfully processed paper 2511.04016v1
+2025-11-07 09:49:43,876 - INFO - Processing paper 3/15: 2511.04009v1
+2025-11-07 09:49:44,622 - INFO - Rate limit reached. Waiting 1.0 seconds...
+2025-11-07 09:49:45,683 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:58,918 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:49:58,918 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:49:59,207 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:49:59,209 - INFO - Successfully saved summary for paper 2511.04009v1
+2025-11-07 09:49:59,209 - INFO - ✅ Successfully processed paper 2511.04009v1
+2025-11-07 09:49:59,209 - INFO - Processing paper 4/15: 2511.04008v1
+2025-11-07 09:49:59,818 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:03,192 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:03,193 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:03,297 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:03,299 - INFO - Successfully saved summary for paper 2511.04008v1
+2025-11-07 09:50:03,300 - INFO - ✅ Successfully processed paper 2511.04008v1
+2025-11-07 09:50:03,300 - INFO - Processing paper 5/15: 2511.04002v1
+2025-11-07 09:50:04,156 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:07,020 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:07,020 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:07,136 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:07,139 - INFO - Successfully saved summary for paper 2511.04002v1
+2025-11-07 09:50:07,139 - INFO - ✅ Successfully processed paper 2511.04002v1
+2025-11-07 09:50:07,139 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 09:50:07,139 - INFO - Processing paper 6/15: 2511.04001v1
+2025-11-07 09:50:07,831 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:10,696 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:10,697 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:10,808 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:10,809 - INFO - Successfully saved summary for paper 2511.04001v1
+2025-11-07 09:50:10,810 - INFO - ✅ Successfully processed paper 2511.04001v1
+2025-11-07 09:50:10,810 - INFO - Processing paper 7/15: 2511.04000v1
+2025-11-07 09:50:11,753 - INFO - Rate limit reached. Waiting 3.6 seconds...
+2025-11-07 09:50:15,349 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:19,288 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:19,289 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:19,492 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:19,495 - INFO - Successfully saved summary for paper 2511.04000v1
+2025-11-07 09:50:19,495 - INFO - ✅ Successfully processed paper 2511.04000v1
+2025-11-07 09:50:19,495 - INFO - Processing paper 8/15: 2511.03997v1
+2025-11-07 09:50:20,419 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:23,815 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:23,816 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:23,931 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:23,934 - INFO - Successfully saved summary for paper 2511.03997v1
+2025-11-07 09:50:23,934 - INFO - ✅ Successfully processed paper 2511.03997v1
+2025-11-07 09:50:23,934 - INFO - Processing paper 9/15: 2511.03996v1
+2025-11-07 09:50:35,074 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:38,660 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:38,661 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:38,842 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:38,844 - INFO - Successfully saved summary for paper 2511.03996v1
+2025-11-07 09:50:38,845 - INFO - ✅ Successfully processed paper 2511.03996v1
+2025-11-07 09:50:38,845 - INFO - Processing paper 10/15: 2511.03995v1
+2025-11-07 09:50:39,367 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:42,961 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:42,962 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:43,371 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:43,374 - INFO - Successfully saved summary for paper 2511.03995v1
+2025-11-07 09:50:43,374 - INFO - ✅ Successfully processed paper 2511.03995v1
+2025-11-07 09:50:43,374 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 09:50:43,374 - INFO - Processing paper 11/15: 2511.03993v1
+2025-11-07 09:50:44,218 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:47,603 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:47,603 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:47,711 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:47,714 - INFO - Successfully saved summary for paper 2511.03993v1
+2025-11-07 09:50:47,714 - INFO - ✅ Successfully processed paper 2511.03993v1
+2025-11-07 09:50:47,714 - INFO - Processing paper 12/15: 2511.03992v1
+2025-11-07 09:50:48,681 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:51,665 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:51,666 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:51,795 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:51,797 - INFO - Successfully saved summary for paper 2511.03992v1
+2025-11-07 09:50:51,798 - INFO - ✅ Successfully processed paper 2511.03992v1
+2025-11-07 09:50:51,798 - INFO - Processing paper 13/15: 2511.03988v1
+2025-11-07 09:50:52,578 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:55,931 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:50:55,931 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:50:56,045 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:50:56,046 - INFO - Successfully saved summary for paper 2511.03988v1
+2025-11-07 09:50:56,046 - INFO - ✅ Successfully processed paper 2511.03988v1
+2025-11-07 09:50:56,047 - INFO - Processing paper 14/15: 2511.03986v1
+2025-11-07 09:50:59,902 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:02,829 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:02,830 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:03,001 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:03,003 - INFO - Successfully saved summary for paper 2511.03986v1
+2025-11-07 09:51:03,004 - INFO - ✅ Successfully processed paper 2511.03986v1
+2025-11-07 09:51:03,004 - INFO - Processing paper 15/15: 2511.03985v1
+2025-11-07 09:51:03,783 - INFO - Rate limit reached. Waiting 0.4 seconds...
+2025-11-07 09:51:04,170 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:07,231 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:07,232 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:07,335 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:07,338 - INFO - Successfully saved summary for paper 2511.03985v1
+2025-11-07 09:51:07,338 - INFO - ✅ Successfully processed paper 2511.03985v1
+2025-11-07 09:51:07,338 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 09:51:07,338 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 09:51:08,414 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 09:51:08,415 - INFO - Finding papers that need summarization
+2025-11-07 09:51:08,415 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 09:51:08,565 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 09:51:08,569 - INFO - Found 15 papers to process
+2025-11-07 09:51:08,569 - INFO - Processing paper 1/15: 2511.03983v1
+2025-11-07 09:51:09,597 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:12,659 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:12,660 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:12,759 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:12,761 - INFO - Successfully saved summary for paper 2511.03983v1
+2025-11-07 09:51:12,762 - INFO - ✅ Successfully processed paper 2511.03983v1
+2025-11-07 09:51:12,762 - INFO - Processing paper 2/15: 2511.03981v1
+2025-11-07 09:51:13,861 - INFO - Rate limit reached. Waiting 1.5 seconds...
+2025-11-07 09:51:15,351 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:17,808 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:17,808 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:17,994 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:17,997 - INFO - Successfully saved summary for paper 2511.03981v1
+2025-11-07 09:51:17,997 - INFO - ✅ Successfully processed paper 2511.03981v1
+2025-11-07 09:51:17,997 - INFO - Processing paper 3/15: 2511.03980v1
+2025-11-07 09:51:18,675 - INFO - Rate limit reached. Waiting 1.7 seconds...
+2025-11-07 09:51:20,431 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:23,815 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:23,816 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:23,993 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:23,995 - INFO - Successfully saved summary for paper 2511.03980v1
+2025-11-07 09:51:23,995 - INFO - ✅ Successfully processed paper 2511.03980v1
+2025-11-07 09:51:23,996 - INFO - Processing paper 4/15: 2511.03976v1
+2025-11-07 09:51:24,701 - INFO - Rate limit reached. Waiting 10.4 seconds...
+2025-11-07 09:51:35,084 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:38,295 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:38,296 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:38,483 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:38,486 - INFO - Successfully saved summary for paper 2511.03976v1
+2025-11-07 09:51:38,487 - INFO - ✅ Successfully processed paper 2511.03976v1
+2025-11-07 09:51:38,487 - INFO - Processing paper 5/15: 2511.03972v1
+2025-11-07 09:51:39,224 - INFO - Rate limit reached. Waiting 0.1 seconds...
+2025-11-07 09:51:39,375 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:42,352 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:42,353 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:42,458 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:42,461 - INFO - Successfully saved summary for paper 2511.03972v1
+2025-11-07 09:51:42,461 - INFO - ✅ Successfully processed paper 2511.03972v1
+2025-11-07 09:51:42,461 - INFO - Progress: 5/15 papers processed, 5 successful
+2025-11-07 09:51:42,461 - INFO - Processing paper 6/15: 2511.03970v1
+2025-11-07 09:51:43,994 - INFO - Rate limit reached. Waiting 0.2 seconds...
+2025-11-07 09:51:44,222 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:47,353 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:47,354 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:47,457 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:47,460 - INFO - Successfully saved summary for paper 2511.03970v1
+2025-11-07 09:51:47,460 - INFO - ✅ Successfully processed paper 2511.03970v1
+2025-11-07 09:51:47,460 - INFO - Processing paper 7/15: 2511.03966v1
+2025-11-07 09:51:48,518 - INFO - Rate limit reached. Waiting 0.2 seconds...
+2025-11-07 09:51:48,693 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:51,835 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:51:51,835 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:51:51,954 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:51:51,957 - INFO - Successfully saved summary for paper 2511.03966v1
+2025-11-07 09:51:51,958 - INFO - ✅ Successfully processed paper 2511.03966v1
+2025-11-07 09:51:51,958 - INFO - Processing paper 8/15: 2511.03963v1
+2025-11-07 09:51:52,504 - INFO - Rate limit reached. Waiting 0.1 seconds...
+2025-11-07 09:51:52,584 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:03,991 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:03,991 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:04,166 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:04,168 - INFO - Successfully saved summary for paper 2511.03963v1
+2025-11-07 09:52:04,169 - INFO - ✅ Successfully processed paper 2511.03963v1
+2025-11-07 09:52:04,169 - INFO - Processing paper 9/15: 2511.03962v1
+2025-11-07 09:52:05,982 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:08,978 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:08,979 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:09,080 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:09,083 - INFO - Successfully saved summary for paper 2511.03962v1
+2025-11-07 09:52:09,083 - INFO - ✅ Successfully processed paper 2511.03962v1
+2025-11-07 09:52:09,083 - INFO - Processing paper 10/15: 2511.03958v1
+2025-11-07 09:52:09,645 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:13,175 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:13,176 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:13,291 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:13,294 - INFO - Successfully saved summary for paper 2511.03958v1
+2025-11-07 09:52:13,294 - INFO - ✅ Successfully processed paper 2511.03958v1
+2025-11-07 09:52:13,295 - INFO - Progress: 10/15 papers processed, 10 successful
+2025-11-07 09:52:13,295 - INFO - Processing paper 11/15: 2511.03953v1
+2025-11-07 09:52:14,527 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:17,226 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:17,227 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:17,329 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:17,332 - INFO - Successfully saved summary for paper 2511.03953v1
+2025-11-07 09:52:17,332 - INFO - ✅ Successfully processed paper 2511.03953v1
+2025-11-07 09:52:17,332 - INFO - Processing paper 12/15: 2511.03952v1
+2025-11-07 09:52:18,329 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:24,405 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:24,406 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:24,668 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:24,671 - INFO - Successfully saved summary for paper 2511.03952v1
+2025-11-07 09:52:24,671 - INFO - ✅ Successfully processed paper 2511.03952v1
+2025-11-07 09:52:24,671 - INFO - Processing paper 13/15: 2511.03950v1
+2025-11-07 09:52:26,247 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:29,003 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:29,006 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:29,285 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:29,287 - INFO - Successfully saved summary for paper 2511.03950v1
+2025-11-07 09:52:29,288 - INFO - ✅ Successfully processed paper 2511.03950v1
+2025-11-07 09:52:29,288 - INFO - Processing paper 14/15: 2511.03948v1
+2025-11-07 09:52:29,910 - INFO - Rate limit reached. Waiting 5.2 seconds...
+2025-11-07 09:52:35,090 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:38,091 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:38,091 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:38,353 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:38,355 - INFO - Successfully saved summary for paper 2511.03948v1
+2025-11-07 09:52:38,356 - INFO - ✅ Successfully processed paper 2511.03948v1
+2025-11-07 09:52:38,356 - INFO - Processing paper 15/15: 2511.03945v1
+2025-11-07 09:52:39,155 - INFO - Rate limit reached. Waiting 0.2 seconds...
+2025-11-07 09:52:39,383 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:43,663 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:43,665 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:43,844 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:43,847 - INFO - Successfully saved summary for paper 2511.03945v1
+2025-11-07 09:52:43,847 - INFO - ✅ Successfully processed paper 2511.03945v1
+2025-11-07 09:52:43,847 - INFO - Progress: 15/15 papers processed, 15 successful
+2025-11-07 09:52:43,847 - INFO - Successfully processed 15/15 papers (100.0% success rate)
+2025-11-07 09:52:43,991 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 206 Partial Content"
+2025-11-07 09:52:43,993 - INFO - Finding papers that need summarization
+2025-11-07 09:52:43,994 - INFO - Processing up to 15 papers (rate limited to 15 req/min for free tier)
+2025-11-07 09:52:44,110 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=%2A&limit=15 "HTTP/2 200 OK"
+2025-11-07 09:52:44,113 - INFO - Found 10 papers to process
+2025-11-07 09:52:44,113 - INFO - Processing paper 1/10: 2511.03943v1
+2025-11-07 09:52:44,729 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:48,094 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:48,094 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:48,194 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:48,196 - INFO - Successfully saved summary for paper 2511.03943v1
+2025-11-07 09:52:48,197 - INFO - ✅ Successfully processed paper 2511.03943v1
+2025-11-07 09:52:48,197 - INFO - Processing paper 2/10: 2511.03942v1
+2025-11-07 09:52:48,761 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:52,193 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:52,194 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:52,291 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:52,294 - INFO - Successfully saved summary for paper 2511.03942v1
+2025-11-07 09:52:52,294 - INFO - ✅ Successfully processed paper 2511.03942v1
+2025-11-07 09:52:52,294 - INFO - Processing paper 3/10: 2511.03939v1
+2025-11-07 09:52:52,896 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:56,083 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:52:56,084 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:52:56,181 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:52:56,184 - INFO - Successfully saved summary for paper 2511.03939v1
+2025-11-07 09:52:56,184 - INFO - ✅ Successfully processed paper 2511.03939v1
+2025-11-07 09:52:56,184 - INFO - Processing paper 4/10: 2511.03938v1
+2025-11-07 09:52:57,920 - INFO - Rate limit reached. Waiting 8.1 seconds...
+2025-11-07 09:53:05,999 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:10,072 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:53:10,073 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:10,236 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:53:10,239 - INFO - Successfully saved summary for paper 2511.03938v1
+2025-11-07 09:53:10,239 - INFO - ✅ Successfully processed paper 2511.03938v1
+2025-11-07 09:53:10,239 - INFO - Processing paper 5/10: 2511.03934v1
+2025-11-07 09:53:11,240 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:14,550 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:53:14,551 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:14,646 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:53:14,648 - INFO - Successfully saved summary for paper 2511.03934v1
+2025-11-07 09:53:14,649 - INFO - ✅ Successfully processed paper 2511.03934v1
+2025-11-07 09:53:14,649 - INFO - Progress: 5/10 papers processed, 5 successful
+2025-11-07 09:53:14,649 - INFO - Processing paper 6/10: 2511.03931v1
+2025-11-07 09:53:15,556 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:18,204 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:53:18,205 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:18,309 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:53:18,311 - INFO - Successfully saved summary for paper 2511.03931v1
+2025-11-07 09:53:18,311 - INFO - ✅ Successfully processed paper 2511.03931v1
+2025-11-07 09:53:18,311 - INFO - Processing paper 7/10: 2511.03929v1
+2025-11-07 09:53:19,283 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:22,297 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:53:22,298 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:22,398 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:53:22,401 - INFO - Successfully saved summary for paper 2511.03929v1
+2025-11-07 09:53:22,401 - INFO - ✅ Successfully processed paper 2511.03929v1
+2025-11-07 09:53:22,401 - INFO - Processing paper 8/10: 2511.03928v1
+2025-11-07 09:53:23,097 - INFO - Rate limit reached. Waiting 3.1 seconds...
+2025-11-07 09:53:26,259 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:29,379 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:53:29,379 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:29,531 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:53:29,532 - INFO - Successfully saved summary for paper 2511.03928v1
+2025-11-07 09:53:29,532 - INFO - ✅ Successfully processed paper 2511.03928v1
+2025-11-07 09:53:29,532 - INFO - Processing paper 9/10: 2511.03925v1
+2025-11-07 09:53:30,360 - INFO - Rate limit reached. Waiting 4.7 seconds...
+2025-11-07 09:53:35,092 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:37,966 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:53:37,967 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:38,142 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:53:38,145 - INFO - Successfully saved summary for paper 2511.03925v1
+2025-11-07 09:53:38,145 - INFO - ✅ Successfully processed paper 2511.03925v1
+2025-11-07 09:53:38,146 - INFO - Processing paper 10/10: 2511.03924v1
+2025-11-07 09:53:38,744 - INFO - Rate limit reached. Waiting 0.6 seconds...
+2025-11-07 09:53:39,388 - INFO - Generating summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:42,657 - INFO - Successfully parsed all 6 sections from Gemini response
+2025-11-07 09:53:42,658 - INFO - Successfully generated summaries with Gemini 2.5 Flash Lite
+2025-11-07 09:53:42,761 - INFO - HTTP Request: POST https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/summary_papers "HTTP/2 201 Created"
+2025-11-07 09:53:42,763 - INFO - Successfully saved summary for paper 2511.03924v1
+2025-11-07 09:53:42,763 - INFO - ✅ Successfully processed paper 2511.03924v1
+2025-11-07 09:53:42,764 - INFO - Progress: 10/10 papers processed, 10 successful
+2025-11-07 09:53:42,764 - INFO - Successfully processed 10/10 papers (100.0% success rate)
+2025-11-07 09:53:42,912 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 200 OK"
+2025-11-07 09:53:42,915 - INFO - Summarization process completed. Processed 85 papers in 5 batches.
