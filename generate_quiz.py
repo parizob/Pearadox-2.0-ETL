@@ -539,11 +539,13 @@ Examples:
             else:
                 max_date = max_created_at.split(' ')[0] if ' ' in max_created_at else max_created_at[:10]
             
-            # Get current date (UTC to match database)
-            current_date = dt.now(timezone.utc).strftime('%Y-%m-%d')
+            # Get current date in EST
+            from datetime import timezone, timedelta
+            est_tz = timezone(timedelta(hours=-5))  # EST is UTC-5
+            current_date = dt.now(est_tz).strftime('%Y-%m-%d')
             
             logger.info(f"Max date in summary_papers: {max_date}")
-            logger.info(f"Current date (UTC): {current_date}")
+            logger.info(f"Current date (EST): {current_date}")
             
             if max_date != current_date:
                 logger.info(f"Max date ({max_date}) does not equal current date ({current_date}). Skipping quiz generation.")
