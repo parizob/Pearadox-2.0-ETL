@@ -44491,3 +44491,8 @@ INTERMEDIATE_SUMMARY: This paper addresses the critical need for robots to accur
 2025-11-07 09:53:42,764 - INFO - Successfully processed 10/10 papers (100.0% success rate)
 2025-11-07 09:53:42,912 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 200 OK"
 2025-11-07 09:53:42,915 - INFO - Summarization process completed. Processed 85 papers in 5 batches.
+2025-11-12 08:21:38,038 - INFO - Gemini 2.5 Flash Lite configured successfully with rate limiting (10 req/min)
+2025-11-12 08:21:38,039 - INFO - Loading category taxonomy from Supabase public.v_arxiv_categories view
+2025-11-12 08:21:38,680 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_arxiv_categories?select=category_code%2Ccategory_name "HTTP/2 200 OK"
+2025-11-12 08:21:38,690 - INFO - Loaded taxonomy with 156 category mappings from Supabase
+2025-11-12 08:21:38,883 - INFO - HTTP Request: GET https://ullqyuvcyvaaiihmntnw.supabase.co/rest/v1/v_papers_needing_summaries?select=count "HTTP/2 200 OK"

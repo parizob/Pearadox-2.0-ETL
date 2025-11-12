@@ -330,11 +330,18 @@ class ArxivETL:
             pdf_url = None
             abstract_url = entry.id
             
+            # Try to extract PDF URL from links first
             if hasattr(entry, 'links'):
                 for link in entry.links:
                     if link.type == 'application/pdf':
                         pdf_url = link.href
                         break
+            
+            # If PDF URL not found in links, construct it from arxiv_id
+            # arXiv PDF URLs follow a predictable pattern: https://arxiv.org/pdf/{arxiv_id}.pdf
+            if not pdf_url:
+                pdf_url = f"https://arxiv.org/pdf/{arxiv_id}.pdf"
+                logger.debug(f"Constructed PDF URL for {arxiv_id}: {pdf_url}")
             
             # Build paper object
             paper = {
