@@ -44,7 +44,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class RateLimiter:
-    """Rate limiter for Gemini API to stay within free tier limits."""
+    """
+    Rate limiter for Gemini API to stay within free tier limits.
+    
+    Implements a strict sliding window: You must wait 60 seconds from the FIRST request
+    in the window before making request #11. For example:
+    - Request 1 at 10:00:30
+    - Requests 2-10 at 10:00:31-10:00:39
+    - Request 11 can only happen at 10:01:30 (60s after request 1)
+    """
     
     def __init__(self, max_requests_per_minute=10):
         self.max_requests_per_minute = max_requests_per_minute
@@ -52,29 +60,37 @@ class RateLimiter:
         self.lock = threading.Lock()
     
     def wait_if_needed(self):
-        """Wait if necessary to respect rate limits."""
+        """Wait if necessary to respect rate limits using strict sliding window."""
         with self.lock:
             now = datetime.now()
             
-            # Remove requests older than 1 minute
+            # Remove requests older than 60 seconds
+            cutoff_time = now - timedelta(seconds=60)
             self.requests_made = [req_time for req_time in self.requests_made 
-                                if (now - req_time).total_seconds() < 60]
+                                if req_time > cutoff_time]
             
-            # If we're at the limit, wait until we can make another request
+            # If we're at the limit, wait until 60 seconds have passed since the FIRST request
             if len(self.requests_made) >= self.max_requests_per_minute:
+                # Find the oldest (first) request in the current window
                 oldest_request = min(self.requests_made)
-                wait_time = 60 - (now - oldest_request).total_seconds()
+                # Calculate how long until 60 seconds have passed since that first request
+                elapsed_since_first = (now - oldest_request).total_seconds()
+                wait_time = 60 - elapsed_since_first
+                
                 if wait_time > 0:
-                    logger.info(f"Rate limit reached. Waiting {wait_time:.1f} seconds...")
-                    time.sleep(wait_time)
+                    logger.info(f"Rate limit reached ({len(self.requests_made)}/{self.max_requests_per_minute} requests). "
+                              f"Waiting {wait_time:.1f}s until 60s have passed since first request in window...")
+                    time.sleep(wait_time + 0.1)  # Add 100ms buffer for safety
+                    
                     # Clean up again after waiting
                     now = datetime.now()
+                    cutoff_time = now - timedelta(seconds=60)
                     self.requests_made = [req_time for req_time in self.requests_made 
-                                        if (now - req_time).total_seconds() < 60]
+                                        if req_time > cutoff_time]
             
             # Record this request
             self.requests_made.append(now)
-            logger.debug(f"API requests in last minute: {len(self.requests_made)}/{self.max_requests_per_minute}")
+            logger.debug(f"API requests in current 60s window: {len(self.requests_made)}/{self.max_requests_per_minute}")
 
 class ArxivETL:
     """ETL pipeline for extracting AI papers from arXiv, loading to Supabase, and generating AI summaries."""

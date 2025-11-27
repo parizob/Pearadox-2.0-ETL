@@ -245,7 +245,7 @@ class ArxivToGSheet:
                 pearadox_url = ''
                 if arxiv_id and title:
                     slug = generate_slug(title, arxiv_id)
-                    pearadox_url = f"https://pearadox.app/article/{slug}"
+                    pearadox_url = f"https://www.pearadox.app/article/{slug}"
                 
                 row = [
                     arxiv_id,
