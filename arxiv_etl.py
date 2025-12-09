@@ -149,6 +149,63 @@ class ArxivETL:
             'transformer', 'attention mechanism', 'generative model', 'large language model',
             'llm', 'gpt', 'bert', 'diffusion model', 'gan', 'autoencoder'
         ]
+        
+        # Commercial relevance keywords for filtering papers
+        # These indicate papers with practical/commercial applications vs purely theoretical
+        self.commercial_keywords = {
+            # High-value keywords (weight 3) - direct commercial/practical applications
+            'high': [
+                'production', 'deploy', 'deployment', 'real-world', 'real world', 'industry',
+                'enterprise', 'commercial', 'product', 'application', 'practical', 'scalable',
+                'efficient', 'cost-effective', 'low-latency', 'real-time', 'realtime',
+                'edge device', 'mobile', 'on-device', 'lightweight', 'fast inference',
+                'api', 'saas', 'platform', 'tool', 'framework', 'library', 'sdk',
+                'startup', 'business', 'customer', 'user experience', 'ux',
+                'healthcare', 'medical', 'clinical', 'diagnosis', 'drug discovery',
+                'finance', 'trading', 'fraud detection', 'risk', 'fintech',
+                'autonomous', 'self-driving', 'robotics', 'drone', 'manufacturing',
+                'e-commerce', 'recommendation', 'personalization', 'search engine',
+                'chatbot', 'virtual assistant', 'conversational', 'dialogue',
+                'code generation', 'copilot', 'developer tools', 'automation',
+                'security', 'cybersecurity', 'privacy', 'federated learning',
+                'energy efficient', 'green ai', 'sustainable', 'carbon',
+                'multimodal', 'vision-language', 'text-to-image', 'image-to-text',
+                'speech recognition', 'text-to-speech', 'voice', 'audio',
+                'video generation', 'video understanding', 'streaming',
+            ],
+            # Medium-value keywords (weight 2) - promising research directions
+            'medium': [
+                'benchmark', 'state-of-the-art', 'sota', 'outperform', 'surpass',
+                'improvement', 'better than', 'faster than', 'more efficient',
+                'fine-tuning', 'fine tuning', 'transfer learning', 'pretrained',
+                'instruction tuning', 'rlhf', 'alignment', 'safety',
+                'reasoning', 'chain-of-thought', 'cot', 'planning', 'agent',
+                'retrieval', 'rag', 'knowledge base', 'grounding',
+                'compression', 'quantization', 'pruning', 'distillation',
+                'open source', 'open-source', 'reproducible', 'dataset',
+                'evaluation', 'metric', 'leaderboard', 'competition',
+                'human evaluation', 'user study', 'ablation',
+                'zero-shot', 'few-shot', 'in-context learning',
+                'long context', 'context window', 'memory',
+                'hallucination', 'factual', 'truthful', 'reliable',
+                'robust', 'adversarial', 'attack', 'defense',
+                'interpretable', 'explainable', 'xai', 'transparent',
+                'bias', 'fairness', 'ethical', 'responsible ai',
+            ],
+            # Low-value keywords (weight 1) - general AI terms that add some relevance
+            'low': [
+                'novel', 'new', 'propose', 'introduce', 'present',
+                'model', 'architecture', 'network', 'layer',
+                'training', 'optimization', 'learning rate', 'convergence',
+                'accuracy', 'performance', 'results', 'experiments',
+                'language model', 'vision model', 'foundation model',
+                'attention', 'self-attention', 'cross-attention',
+                'encoder', 'decoder', 'embedding', 'representation',
+            ]
+        }
+        
+        # Maximum number of papers to process (due to Gemini rate limits)
+        self.max_papers_to_process = 50
     
     def load_taxonomy_from_supabase(self) -> Dict[str, str]:
         """Load category mappings from the public.v_arxiv_categories view in Supabase."""
@@ -191,6 +248,133 @@ class ArxivETL:
                 logger.debug(f"Category ID '{cat_id}' not found in taxonomy")
         
         return category_names
+    
+    def score_paper_commercial_relevance(self, paper: Dict[str, Any]) -> int:
+        """
+        Score a paper's commercial relevance based on title and abstract keywords.
+        This is a cheap, fast operation that doesn't require any API calls.
+        
+        Args:
+            paper: Paper dict with 'title' and 'abstract' fields
+            
+        Returns:
+            Integer score (higher = more commercially relevant)
+        """
+        title = paper.get('title', '').lower()
+        abstract = paper.get('abstract', '').lower()
+        
+        # Combine title and abstract for searching
+        # Title matches are weighted 2x more than abstract matches
+        text_to_search = abstract
+        
+        score = 0
+        matched_keywords = []
+        
+        # Check high-value keywords (weight 3)
+        for keyword in self.commercial_keywords['high']:
+            keyword_lower = keyword.lower()
+            # Title match = 6 points (3 * 2)
+            if keyword_lower in title:
+                score += 6
+                matched_keywords.append(f"{keyword}(title)")
+            # Abstract match = 3 points
+            elif keyword_lower in text_to_search:
+                score += 3
+                matched_keywords.append(keyword)
+        
+        # Check medium-value keywords (weight 2)
+        for keyword in self.commercial_keywords['medium']:
+            keyword_lower = keyword.lower()
+            # Title match = 4 points (2 * 2)
+            if keyword_lower in title:
+                score += 4
+                matched_keywords.append(f"{keyword}(title)")
+            # Abstract match = 2 points
+            elif keyword_lower in text_to_search:
+                score += 2
+                matched_keywords.append(keyword)
+        
+        # Check low-value keywords (weight 1)
+        for keyword in self.commercial_keywords['low']:
+            keyword_lower = keyword.lower()
+            # Title match = 2 points (1 * 2)
+            if keyword_lower in title:
+                score += 2
+                matched_keywords.append(f"{keyword}(title)")
+            # Abstract match = 1 point
+            elif keyword_lower in text_to_search:
+                score += 1
+                matched_keywords.append(keyword)
+        
+        # Store matched keywords for debugging
+        paper['_commercial_score'] = score
+        paper['_matched_keywords'] = matched_keywords[:10]  # Limit for logging
+        
+        return score
+    
+    def filter_papers_by_commercial_relevance(self, papers: List[Dict[str, Any]], max_papers: int = None) -> List[Dict[str, Any]]:
+        """
+        Filter papers to only include the most commercially relevant ones.
+        This is a cheap pre-filtering step that scans titles/abstracts without using any API.
+        
+        Args:
+            papers: List of paper dicts from arXiv
+            max_papers: Maximum number of papers to return (default: self.max_papers_to_process)
+            
+        Returns:
+            List of top N most commercially relevant papers, sorted by score
+        """
+        if max_papers is None:
+            max_papers = self.max_papers_to_process
+        
+        if not papers:
+            return []
+        
+        logger.info(f"Pre-filtering {len(papers)} papers for commercial relevance...")
+        
+        # Score all papers
+        for paper in papers:
+            self.score_paper_commercial_relevance(paper)
+        
+        # Sort by commercial relevance score (descending)
+        sorted_papers = sorted(papers, key=lambda p: p.get('_commercial_score', 0), reverse=True)
+        
+        # Log score distribution
+        scores = [p.get('_commercial_score', 0) for p in sorted_papers]
+        if scores:
+            avg_score = sum(scores) / len(scores)
+            max_score = max(scores)
+            min_score = min(scores)
+            logger.info(f"Score distribution - Max: {max_score}, Min: {min_score}, Avg: {avg_score:.1f}")
+        
+        # Take top N papers
+        selected_papers = sorted_papers[:max_papers]
+        
+        # Log the selection
+        if selected_papers:
+            selected_scores = [p.get('_commercial_score', 0) for p in selected_papers]
+            cutoff_score = min(selected_scores)
+            logger.info(f"Selected top {len(selected_papers)} papers (score cutoff: {cutoff_score})")
+            
+            # Log top 5 papers for visibility
+            logger.info("Top 5 commercially relevant papers:")
+            for i, paper in enumerate(selected_papers[:5], 1):
+                score = paper.get('_commercial_score', 0)
+                keywords = paper.get('_matched_keywords', [])[:5]
+                logger.info(f"  {i}. [{score}pts] {paper.get('arxiv_id')}: {paper.get('title', '')[:60]}...")
+                if keywords:
+                    logger.info(f"      Keywords: {', '.join(keywords)}")
+        
+        # Clean up temporary scoring fields before returning
+        for paper in selected_papers:
+            paper.pop('_commercial_score', None)
+            paper.pop('_matched_keywords', None)
+        
+        rejected_count = len(papers) - len(selected_papers)
+        if rejected_count > 0:
+            logger.info(f"Filtered out {rejected_count} papers with lower commercial relevance")
+        
+        return selected_papers
     
     def get_today_date_range(self) -> tuple:
         """Get the date range for papers from the previous publication day."""
@@ -498,7 +682,13 @@ class ArxivETL:
             return 0
     
     def run_daily_etl(self):
-        """Run the ETL pipeline to extract papers from previous publication day."""
+        """Run the ETL pipeline to extract papers from previous publication day.
+        
+        Due to Gemini API rate limits, we now:
+        1. Fetch ALL papers from arXiv for the target date
+        2. Pre-filter using cheap keyword matching on titles/abstracts
+        3. Only load the top 50 most commercially relevant papers to Supabase
+        """
         from datetime import timedelta
         
         today = datetime.now()
@@ -513,32 +703,31 @@ class ArxivETL:
             # Get target date range
             start_date, end_date = self.get_today_date_range()
             
-            # Extract papers from arXiv for today
-            papers = self.extract_papers_from_arxiv(start_date, end_date, start_date[:8])
+            # Extract ALL papers from arXiv for the target date
+            all_papers = self.extract_papers_from_arxiv(start_date, end_date, start_date[:8])
             
-            if not papers:
+            if not all_papers:
                 logger.info("No papers found for today")
-                # Still try to update existing papers' categories_name and process summaries
+                # Still try to update existing papers' categories_name
                 updated_count = self.update_categories_names()
                 logger.info(f"Updated {updated_count} existing papers with category names")
                 
-                # Process papers for summarization (rate limited to 5 papers for free tier)
-                summarized_count = self.process_papers_for_summarization()
-                logger.info(f"Generated summaries for {summarized_count} papers")
-                
-                return updated_count + summarized_count
+                return updated_count
+            
+            # Pre-filter papers by commercial relevance (cheap keyword-based filtering)
+            # This reduces the number of papers we send to the LLM
+            logger.info(f"Total papers extracted from arXiv: {len(all_papers)}")
+            papers = self.filter_papers_by_commercial_relevance(all_papers, max_papers=self.max_papers_to_process)
+            logger.info(f"Papers after commercial relevance filtering: {len(papers)} (max: {self.max_papers_to_process})")
             
             # Create table if needed
             self.create_papers_table_if_not_exists()
             
-            # Load papers to Supabase
+            # Load only the filtered papers to Supabase
             inserted_count = self.load_papers_to_supabase(papers)
             
             # Update existing papers' categories_name field
             updated_count = self.update_categories_names()
-            
-            # Process papers for summarization (rate limited to 5 papers for free tier)
-            summarized_count = self.process_papers_for_summarization()
             
             # Log completion message with target date
             from datetime import timedelta
@@ -551,9 +740,11 @@ class ArxivETL:
                 date_desc = f"previous day's papers ({target_date.strftime('%Y-%m-%d')})"
             
             logger.info(f"ETL pipeline completed successfully for {date_desc}.")
-            logger.info(f"Inserted {inserted_count} new papers, updated {updated_count} papers with category names, and generated summaries for {summarized_count} papers.")
+            logger.info(f"Filtered {len(all_papers)} papers down to {len(papers)} by commercial relevance.")
+            logger.info(f"Inserted {inserted_count} new papers, updated {updated_count} papers with category names.")
+            logger.info(f"Run process_summaries.py to generate AI summaries for these papers.")
             
-            return inserted_count + updated_count + summarized_count
+            return inserted_count + updated_count
             
         except Exception as e:
             logger.error(f"ETL pipeline failed: {str(e)}")
@@ -927,12 +1118,28 @@ INTERMEDIATE_SUMMARY: [150-200 words with technical details]
         
         try:
             logger.info("Finding papers that need summarization")
-            logger.info(f"Processing up to {limit} papers (rate limited to 15 req/min for free tier)")
+            logger.info(f"Processing up to {limit} papers (rate limited to 10 req/min for free tier)")
             
-            # Get papers that need summarization
-            papers_response = self.supabase.table('v_papers_needing_summaries').select('*').limit(limit).execute()
+            # Get papers that need summarization with retry logic for timeout issues
+            papers_response = None
+            max_retries = 3
             
-            if not papers_response.data:
+            for attempt in range(max_retries):
+                try:
+                    papers_response = self.supabase.table('v_papers_needing_summaries').select('*').limit(limit).execute()
+                    break  # Success, exit retry loop
+                except Exception as e:
+                    error_msg = str(e)
+                    if 'timeout' in error_msg.lower() or '57014' in error_msg:
+                        logger.warning(f"Query timeout on attempt {attempt + 1}/{max_retries}, retrying...")
+                        time.sleep(2 * (attempt + 1))  # Exponential backoff: 2s, 4s, 6s
+                        if attempt == max_retries - 1:
+                            logger.error(f"Query failed after {max_retries} attempts due to timeout")
+                            return 0
+                    else:
+                        raise  # Re-raise non-timeout errors
+            
+            if not papers_response or not papers_response.data:
                 logger.info("No papers found that need summarization")
                 return 0
             

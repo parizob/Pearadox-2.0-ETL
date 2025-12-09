@@ -44,15 +44,6 @@ def main():
             print("❌ Gemini AI is not configured. Please set GEMINI_API_KEY in your .env file.")
             return 1
 
-        # Check total remaining papers
-        remaining_response = etl.supabase.table('v_papers_needing_summaries').select('count', count='exact').execute()
-        total_remaining = remaining_response.count
-        print(f"📊 Total papers remaining to summarize: {total_remaining}")
-        
-        if total_remaining == 0:
-            print("🎉 All papers already have summaries!")
-            return 0
-
         batch_size = args.limit
         total_processed = 0
         batch_num = 1
@@ -73,20 +64,10 @@ def main():
             print(f"✅ Batch {batch_num} completed: {processed_count} papers processed")
             print(f"📈 Total processed so far: {total_processed}")
             
-            # Check if we're done
+            # Check if we're done (if no papers were processed, we're done)
             if processed_count == 0:
                 print("🎉 All papers completed! No more papers need summarization.")
                 break
-            
-            # Check remaining papers
-            remaining_response = etl.supabase.table('v_papers_needing_summaries').select('count', count='exact').execute()
-            current_remaining = remaining_response.count
-            
-            if current_remaining == 0:
-                print("🎉 All papers completed! Database shows no papers needing summaries.")
-                break
-            
-            print(f"📊 Papers remaining: {current_remaining}")
             
             # Exit if single batch mode
             if args.single_batch:
@@ -112,8 +93,8 @@ def main():
         print(f"\n{'='*60}")
         print(f"🏁 Summarization process completed!")
         print(f"📊 Total papers processed: {total_processed}")
-        print(f"🕐 Total batches: {batch_num - 1}")
-        logger.info(f"Summarization process completed. Processed {total_processed} papers in {batch_num - 1} batches.")
+        print(f"🕐 Total batches: {batch_num}")
+        logger.info(f"Summarization process completed. Processed {total_processed} papers in {batch_num} batches.")
         return 0
         
     except KeyboardInterrupt:
