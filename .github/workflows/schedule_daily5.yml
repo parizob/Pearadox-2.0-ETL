@@ -1,8 +1,8 @@
-name: Run daily5.py daily at 6 AM EST
+name: Run daily5.py at 6 AM EST Monday-Friday
 
 on:
   schedule:
-    - cron: '0 11 * * *'  # 11:00 AM UTC = 6:00 AM EST every day
+    - cron: '0 11 * * 1-5'  # 11:00 AM UTC = 6:00 AM EST Monday-Friday only
   workflow_dispatch:
 
 jobs:
