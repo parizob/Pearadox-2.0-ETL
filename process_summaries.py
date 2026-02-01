@@ -48,6 +48,22 @@ def main():
         total_processed = 0
         batch_num = 1
         
+        # Try to get count of papers needing summarization (with timeout handling)
+        try:
+            # Query a sample to estimate - avoid expensive count query that can timeout
+            sample_response = etl.supabase.table('v_papers_needing_summaries').select('id').limit(1000).execute()
+            papers_to_process = len(sample_response.data) if sample_response.data else 0
+            if papers_to_process >= 1000:
+                print(f"📊 Papers needing summarization: {papers_to_process}+ (1000+ found)")
+            elif papers_to_process > 0:
+                print(f"📊 Papers needing summarization: {papers_to_process}")
+            else:
+                print("🎉 No papers need summarization!")
+                return 0
+        except Exception as e:
+            logger.warning(f"Could not get paper count (will proceed anyway): {str(e)}")
+            print("📊 Papers needing summarization: (count unavailable, proceeding...)")
+        
         print(f"🔄 Processing in batches of {batch_size} papers with 1-minute intervals")
         print(f"⏱️  Rate limit: 10 requests per minute (free tier)")
         

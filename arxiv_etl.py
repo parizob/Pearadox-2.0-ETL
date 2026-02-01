@@ -848,6 +848,8 @@ Abstract: {cleaned_abstract}
 
 Paper Content (First part): {truncated_pdf}
 
+You are an exceptional science writer who makes research come alive with emotional resonance. Your goal is to make readers FEEL something powerful about this research—whether that's awe, excitement, and wonder for breakthroughs that could transform lives, or genuine concern, urgency, and alarm for research with potentially harmful implications.
+
 Please analyze this research paper and provide six outputs with specific requirements:
 
 **CRITICAL FORMATTING INSTRUCTIONS:**
@@ -872,42 +874,88 @@ BEGINNER_SUMMARY: [your 150-200 word beginner summary here]
 
 INTERMEDIATE_SUMMARY: [your 150-200 word intermediate summary here]
 
+**EMOTIONAL IMPACT GUIDELINES:**
+
+First, assess the research's potential impact:
+- **Positive/Beneficial Impact**: Research that could save lives, solve major problems, democratize technology, enhance human capabilities, or improve quality of life should evoke AWE, EXCITEMENT, and AMAZEMENT. Use language that makes readers feel inspired, hopeful, and energized about the future.
+- **Negative/Concerning Impact**: Research that could enable surveillance, manipulation, job displacement, environmental harm, weapons, bias amplification, or concentration of power should evoke CONCERN, URGENCY, and THOUGHTFUL ALARM. Use language that makes readers feel the weight of these implications and the need for caution.
+- **Mixed Impact**: Many papers have both positive potential and risks—acknowledge both sides with appropriate emotional weight.
+
 **CONTENT REQUIREMENTS:**
 
-1. BEGINNER_TITLE: Create a simple, engaging title that anyone can understand. Make it accessible and interesting for a general audience without technical jargon.
+1. BEGINNER_TITLE: Create a vivid, emotionally resonant title that captures the human stakes of this research. For beneficial research, use words that spark wonder (e.g., "breakthrough," "revolutionary," "remarkable"). For concerning research, use words that convey gravity (e.g., "raises alarms," "critical questions," "troubling implications"). Avoid jargon but pack emotional punch.
 
-2. INTERMEDIATE_TITLE: Create a moderately technical title that captures the essence of the research while being accessible to readers with some technical background.
+2. INTERMEDIATE_TITLE: Create a moderately technical title that still conveys emotional weight. Balance precision with impact—let the significance shine through even for technical readers.
 
-3. BEGINNER_OVERVIEW: Write exactly ONE SENTENCE that explains what this research is about in the simplest terms possible. This should be clear and engaging for anyone to understand.
+3. BEGINNER_OVERVIEW: Write exactly ONE SENTENCE that immediately hooks readers emotionally. For beneficial research, make them feel the excitement of possibility. For concerning research, make them feel why this matters urgently. This sentence should make someone stop scrolling and read more.
 
-4. INTERMEDIATE_OVERVIEW: Write exactly ONE SENTENCE that summarizes the research for readers with technical knowledge, including key technical concepts but keeping it concise. **Do not skip this section.**
+4. INTERMEDIATE_OVERVIEW: Write exactly ONE SENTENCE that conveys both the technical substance and the emotional stakes for readers with technical knowledge. **Do not skip this section.**
 
-5. BEGINNER_SUMMARY: Write a 150-200 word summary that explains this research in simple terms. Focus on:
-   - What problem they're trying to solve
-   - What they did (in simple terms)
-   - What they found
-   - Why it matters to everyday people
-   Keep it conversational and avoid technical jargon. Target exactly 150-200 words.
+5. BEGINNER_SUMMARY: Write a 150-200 word summary that triggers powerful emotional responses. This is your chance to make readers FEEL something profound:
 
-6. INTERMEDIATE_SUMMARY: Write a 150-200 word summary for readers with post-university education or technical knowledge. Include:
-   - The specific research problem and methodology
-   - Key technical findings and contributions
-   - Implications for the field
-   - Limitations and future work
-   Use appropriate technical terminology but keep it accessible. Target exactly 150-200 words.
+   **FOR BENEFICIAL/EXCITING RESEARCH - Evoke AWE, EXCITEMENT, AMAZEMENT:**
+   - Start with a mind-blowing hook: "What if...?" or "For the first time in history..."
+   - Use vivid imagery that sparks wonder and imagination
+   - Show the human impact with specific, relatable scenarios
+   - Build to a crescendo of possibility and hope
+   - Use emotionally charged words: "remarkable," "astonishing," "game-changing," "breathtaking," "finally"
+   - Make readers feel like they're witnessing history being made
+   - End with an inspiring vision of the future this enables
 
-**EXAMPLE OF CORRECT FORMAT:**
-BEGINNER_TITLE: Scientists Create Smart Computer That Learns Like Humans
+   **FOR CONCERNING/RISKY RESEARCH - Evoke CONCERN, ANXIETY, URGENCY:**
+   - Start with a wake-up call: "Here's what keeps researchers up at night..."
+   - Make the threat feel real and immediate, not abstract
+   - Use visceral language that creates genuine unease
+   - Show what's at stake for ordinary people
+   - Use words that convey gravity: "alarming," "troubling," "urgent," "we need to talk about," "before it's too late"
+   - Create a sense that action or awareness is needed NOW
+   - End with a call for vigilance or thoughtful consideration
 
-INTERMEDIATE_TITLE: Novel Neural Architecture Demonstrates Human-Like Learning Patterns
+   Keep it conversational and jargon-free. The reader should finish with their heart racing—either from excitement or concern. Target exactly 150-200 words.
 
-BEGINNER_OVERVIEW: Researchers built a computer program that learns new tasks the same way people do.
+6. INTERMEDIATE_SUMMARY: Write a 150-200 word summary for technical readers that still creates emotional impact. Even experts deserve to feel something:
 
-INTERMEDIATE_OVERVIEW: This study presents a neural network architecture that mimics human cognitive learning mechanisms through attention-based feature selection.
+   **FOR BENEFICIAL/EXCITING RESEARCH - Make experts feel the thrill:**
+   - Frame the technical achievement as genuinely impressive, even to those who understand the difficulty
+   - Highlight what makes this a breakthrough, not just an incremental improvement
+   - Use confident, energized language: "remarkably," "elegantly solves," "opens entirely new possibilities"
+   - Show implications that would excite a researcher in the field
+   - Convey that this could reshape how we approach the problem
 
-BEGINNER_SUMMARY: [150-200 words explaining in simple terms]
+   **FOR CONCERNING/RISKY RESEARCH - Make experts feel the weight:**
+   - Frame the technical capability in terms of its dual-use potential
+   - Be direct about security, ethical, or societal implications
+   - Use sobering language: "raises serious questions," "demands careful consideration," "the implications are concerning"
+   - Acknowledge the sophistication while questioning the safeguards
+   - Convey that the research community needs to grapple with this
 
-INTERMEDIATE_SUMMARY: [150-200 words with technical details]
+   Use appropriate technical terminology but write with conviction. Technical accuracy and emotional resonance are not mutually exclusive. Target exactly 150-200 words.
+
+**EXAMPLE OF CORRECT FORMAT (Beneficial Research):**
+BEGINNER_TITLE: Scientists Crack Code That Could End Cancer's Deadly Grip Forever
+
+INTERMEDIATE_TITLE: Groundbreaking Protein Folding Discovery Opens Unprecedented Cancer Treatment Pathways
+
+BEGINNER_OVERVIEW: In a discovery that could save millions of lives, researchers have found a way to predict exactly how cancer cells protect themselves—and how to destroy that protection.
+
+INTERMEDIATE_OVERVIEW: This landmark study demonstrates a novel computational approach to predicting oncogenic protein conformations with 94% accuracy, potentially revolutionizing targeted therapy development.
+
+BEGINNER_SUMMARY: What if we could see exactly how cancer hides from our immune system—and finally strip away its defenses? That's precisely what researchers have achieved in this remarkable breakthrough. For decades, scientists have been fighting blind, unable to predict how cancer cells shape their protective proteins. Now, using artificial intelligence, they've cracked the code. Imagine a future where doctors can design treatments tailored to attack YOUR specific cancer's weak points. Where chemotherapy's brutal side effects become a thing of the past. Where a diagnosis isn't a death sentence but the start of a precisely targeted counterattack. The results are stunning: the AI predicted protein shapes with 94% accuracy, turning months of laboratory guesswork into seconds of computation. This isn't incremental progress—it's a quantum leap. For the 10 million people who die from cancer each year, and the millions more who love them, this research represents something extraordinary: hope, backed by hard science. The war on cancer just got a powerful new weapon.
+
+INTERMEDIATE_SUMMARY: This study represents a watershed moment in computational oncology. The researchers developed a transformer-based architecture that predicts oncogenic protein conformational states with 94% accuracy—a remarkable improvement over existing methods that struggle to exceed 70%. What makes this technically impressive isn't just the accuracy; it's the model's ability to generalize across mutation types without task-specific fine-tuning. The implications for drug discovery are profound. Current targeted therapy development is bottlenecked by expensive, time-consuming crystallography studies. This approach could compress years of structural biology work into computational predictions, dramatically accelerating the pipeline from mutation identification to therapeutic candidate. The model's attention mechanisms reveal interpretable binding site predictions, enabling rational drug design rather than brute-force screening. Limitations exist—the training set underrepresents rare cancer subtypes, and experimental validation remains essential. But the paradigm shift is clear: we're moving from reactive to predictive oncology. For researchers who've spent careers fighting protein folding complexity, this work demonstrates that the problem is finally yielding to modern deep learning approaches.
+
+**EXAMPLE OF CORRECT FORMAT (Concerning Research):**
+BEGINNER_TITLE: New AI Can Fake Anyone's Voice Perfectly—And Researchers Are Worried
+
+INTERMEDIATE_TITLE: Zero-Shot Voice Cloning Breakthrough Raises Urgent Questions About Digital Identity
+
+BEGINNER_OVERVIEW: A new AI system can clone anyone's voice from just three seconds of audio, and experts say we're not ready for what comes next.
+
+INTERMEDIATE_OVERVIEW: This study presents a zero-shot voice synthesis model achieving human-indistinguishable output, amplifying critical concerns about authentication security and synthetic media proliferation.
+
+BEGINNER_SUMMARY: Here's a scenario that should make you uncomfortable: Someone calls your elderly parent, sounding exactly like you, asking for emergency money. The voice is perfect. The panic sounds real. And it's completely fake. This is now possible, and it's terrifyingly easy. Researchers have created an AI that needs just three seconds of anyone's voice to create a flawless clone. Three seconds—that's a voicemail greeting, a video clip, a podcast snippet. Your voice is no longer yours alone. The implications are chilling. Phone scams could become undetectable. Political leaders could be impersonated saying things they never said. Evidence in court cases could be fabricated. Your voice could authorize bank transfers you never made. While the researchers focused on legitimate uses like helping people who've lost their voices, they've also opened Pandora's box. There are currently no reliable ways to detect these fakes. No regulations to prevent misuse. No safeguards in place. This isn't a future threat—it's happening now, and we're not ready.
+
+INTERMEDIATE_SUMMARY: This paper presents a technically impressive and deeply concerning advancement in voice synthesis. The zero-shot approach eliminates the traditional requirement for speaker-specific training data, achieving human-indistinguishable output from just three seconds of reference audio. The architecture combines a neural codec with a diffusion-based prosody model, enabling natural intonation patterns that defeat current detection systems. From a security perspective, this research is alarming. Voice authentication systems—used by banks, government agencies, and enterprises—were already vulnerable; this makes them essentially obsolete. The 0.8% equal error rate for human detection means listeners cannot reliably identify synthetic speech. The authors acknowledge dual-use concerns but offer only suggestions for future watermarking research. The responsible disclosure debate is relevant here: by publishing full methodology, the researchers have democratized a capability previously limited to well-resourced actors. Detection countermeasures are now in an arms race with synthesis advances. The research community and policymakers must urgently address the authentication crisis this creates before the inevitable wave of sophisticated voice-based fraud and disinformation.
 
 **NOW PROVIDE YOUR RESPONSE IN THE EXACT FORMAT ABOVE:**
 """
