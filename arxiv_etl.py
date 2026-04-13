@@ -453,10 +453,39 @@ class ArxivETL:
         query_url = self.build_arxiv_query(start_date, end_date)
         logger.info(f"ArXiv query URL: {query_url}")
         
+        arxiv_headers = {
+            'User-Agent': 'PearadoxETL/2.0 (https://github.com/pearadox; mailto:pearadox@example.com)',
+            'Accept': 'application/atom+xml, application/xml, text/xml',
+        }
+        
+        max_retries = 5
+        backoff = 10  # seconds
+
         try:
-            # Make request to arXiv API
-            response = requests.get(query_url, timeout=30)
-            response.raise_for_status()
+            # Make request to arXiv API with retries and exponential backoff
+            response = None
+            for attempt in range(1, max_retries + 1):
+                try:
+                    response = requests.get(query_url, headers=arxiv_headers, timeout=60)
+                    response.raise_for_status()
+                    break
+                except requests.HTTPError as http_err:
+                    status = http_err.response.status_code if http_err.response is not None else None
+                    if status in (429, 503) or (status and status >= 500):
+                        wait = backoff * (2 ** (attempt - 1))
+                        logger.warning(f"arXiv returned {status} on attempt {attempt}/{max_retries}. Retrying in {wait}s...")
+                        time.sleep(wait)
+                    else:
+                        raise
+                except requests.ConnectionError as conn_err:
+                    wait = backoff * (2 ** (attempt - 1))
+                    logger.warning(f"Connection error on attempt {attempt}/{max_retries}: {conn_err}. Retrying in {wait}s...")
+                    time.sleep(wait)
+            else:
+                raise RuntimeError(f"arXiv API failed after {max_retries} attempts")
+            
+            if response is None:
+                raise RuntimeError("No response received from arXiv API")
             
             # Parse the Atom feed
             feed = feedparser.parse(response.content)
